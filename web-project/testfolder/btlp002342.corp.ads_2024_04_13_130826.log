@@ -1,0 +1,870 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 13:08:26 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "x159031".
+Last login: Tue Apr  9 17:17:07 2024 from 142.175.221.95
+
+ +----------------------------------------------------------------------------+
+ | WARNING                                                                    |
+ | The programs and data stored on this system are licensed to, or are        |
+ | private property of, TELUS and are lawfully available only to authorized   |
+ | users for approved purposes.  Unauthorized access to any program or data   |
+ | on this system is not permitted, and any unauthorized access beyond this   |
+ | point may lead to prosecution and/or disciplinary action.                  |
+ | This system may  be monitored at any time for operational reasons.         |
+ | If you are not an authorized user, do not attempt to log on.               |
+ +----------------------------------------------------------------------------+
+ | AVERTISSEMENT                                                              |
+ | Les programmes et les données stockés dans ce système sont visés par une   |
+ | licence ou sont propriété privée de TELUS et ils ne sont accessibles       |
+ | légalement qu'aux usagers autorisés à des fins autorisées.  Il est         |
+ | interdit d'y accéder sans autorisation, et tout accès non autorisé au delà |
+ | de ce point peut entrainer des poursuites ou actions disciplinaires.       |
+ | Le système peut en tout temps faire l'objet d'une surveillance.            |
+ | Si vous n'êtes pas un usager autorisé, n'essayez pas d'y accéder.          |
+ +----------------------------------------------------------------------------+
+
+]0;x159031@btlp002342:~[?1034h[x159031@btlp002342 ~]$ su - oracle
+Password: 
+Last login: Sat Apr 13 05:07:58 UTC 2024
+[?1034h
+oracle : btlp002342 : @ : /home/oracle
+$ ps -ef | grep pmon
+oracle    4403     1  0 Apr10 ?        00:00:16 asm_pmon_+ASM1
+oracle    6970     1  0 Apr10 ?        00:00:12 apx_pmon_+APX1
+oracle    8043     1  0 Apr10 ?        00:00:20 ora_pmon_P002342F1
+oracle   14397     1  0 Apr10 ?        00:00:57 ora_pmon_P002342H1
+oracle   16413 16179  0 05:08 pts/2    00:00:00 grep pmon
+oracle   19529     1  0 Apr10 ?        00:00:14 ora_pmon_SP12CR2C1
+oracle   23884     1  0 Apr10 ?        00:00:19 ora_pmon_P002342A1
+oracle   29559     1  0 Apr10 ?        00:00:17 ora_pmon_P002342B1
+oracle   34558     1  0 Apr10 ?        00:00:24 ora_pmon_P002343B3
+oracle   41728     1  0 Apr10 ?        00:00:16 ora_pmon_P002342I1
+oracle   46780     1  0 Apr10 ?        00:00:24 ora_pmon_P002342D1
+oracle   51846     1  0 Apr10 ?        00:00:32 ora_pmon_P002342E1
+
+oracle : btlp002342 : @ : /home/oracle
+$ uptime
+ 05:08:37 up 3 days,  1:08,  3 users,  load average: 10.84, 10.05, 8.74
+
+oracle : btlp002342 : @ : /home/oracle
+$ . oraenv
+ORACLE_SID = [oracle] ? +ASM1
+The Oracle base has been set to /ora/fs0000/app/oracle
+
+oracle : btlp002342 : @+ASM1 : /home/oracle
+$ sqlplus / as sysasm
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Apr 13 05:08:45 2024
+Version 19.5.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.5.0.0.0
+
+SQL> select * from gv$asm_operation;
+
+no rows selected
+
+SQL> set lines 150
+set pages 500
+column path format a40
+SQL> SQL> SQL> column name format a40
+col STATE for a6
+SQL> SQL> col HEADER_STATUS for a13
+SQL> col MOUNT_STATUS for a12
+col GROUP_# for 99
+SQL> SQL> col DISK_# for 99
+SQL> col TOTAL_MB for 999,999
+SQL> col FREE_MB for 999,999
+SQL> select path, group_number group_#, disk_number disk_#, mount_status,
+header_status, state, total_mb, free_mb, OS_MB from v$asm_disk
+  2    3  where path like '/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1%' order by 5,3;
+
+PATH					 GROUP_# DISK_# MOUNT_STATUS HEADER_STATUS STATE  TOTAL_MB  FREE_MB	 OS_MB
+---------------------------------------- ------- ------ ------------ ------------- ------ -------- -------- ----------
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_       0      0 CLOSED	     CANDIDATE	   NORMAL	 0	  0	430080
+027_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_       0      1 CLOSED	     CANDIDATE	   NORMAL	 0	  0	430080
+029_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_       0      2 CLOSED	     CANDIDATE	   NORMAL	 0	  0	430080
+028_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      0 CACHED	     MEMBER	   NORMAL  430,080    4,076	430080
+001_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      1 CACHED	     MEMBER	   NORMAL  430,080    4,077	430080
+002_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      2 CACHED	     MEMBER	   NORMAL  430,080    4,070	430080
+003_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      3 CACHED	     MEMBER	   NORMAL  430,080    4,074	430080
+004_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      4 CACHED	     MEMBER	   NORMAL  430,080    4,070	430080
+005_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      5 CACHED	     MEMBER	   NORMAL  430,080    4,072	430080
+006_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      6 CACHED	     MEMBER	   NORMAL  430,080    4,070	430080
+007_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      7 CACHED	     MEMBER	   NORMAL  430,080    4,073	430080
+008_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      8 CACHED	     MEMBER	   NORMAL  430,080    4,068	430080
+009_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19      9 CACHED	     MEMBER	   NORMAL  430,080    4,064	430080
+010_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     10 CACHED	     MEMBER	   NORMAL  430,080    4,067	430080
+011_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     11 CACHED	     MEMBER	   NORMAL  430,080    4,072	430080
+012_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     12 CACHED	     MEMBER	   NORMAL  430,080    4,073	430080
+013_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     13 CACHED	     MEMBER	   NORMAL  430,080    4,072	430080
+014_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     14 CACHED	     MEMBER	   NORMAL  430,080    4,069	430080
+015_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     15 CACHED	     MEMBER	   NORMAL  430,080    4,071	430080
+016_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     16 CACHED	     MEMBER	   NORMAL  430,080    4,065	430080
+017_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     17 CACHED	     MEMBER	   NORMAL  430,080    4,072	430080
+018_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     18 CACHED	     MEMBER	   NORMAL  430,080    4,078	430080
+019_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     19 CACHED	     MEMBER	   NORMAL  430,080    4,073	430080
+020_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     20 CACHED	     MEMBER	   NORMAL  430,080    4,075	430080
+021_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     21 CACHED	     MEMBER	   NORMAL  430,080    4,067	430080
+022_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     22 CACHED	     MEMBER	   NORMAL  430,080    4,070	430080
+023_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     23 CACHED	     MEMBER	   NORMAL  430,080    4,075	430080
+024_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     24 CACHED	     MEMBER	   NORMAL  430,080    4,075	430080
+025_420g
+
+/dev/ora_rdsk/btlp002342_HSMPR_ORADATA1_      19     25 CACHED	     MEMBER	   NORMAL  430,080    4,077	430080
+026_420g
+
+
+29 rows selected.
+
+SQL> set linesize 200
+col error_code for a20
+select * from gv$asm_operation;SQL> SQL> 
+
+   INST_ID GROUP_NUMBER OPERA PASS	STATE	    POWER     ACTUAL	  SOFAR   EST_WORK   EST_RATE EST_MINUTES ERROR_CODE		   CON_ID
+---------- ------------ ----- --------- ------ ---------- ---------- ---------- ---------- ---------- ----------- -------------------- ----------
+	 3	     19 REBAL COMPACT	WAIT	       10											0
+	 3	     19 REBAL REBALANCE WAIT	       10											0
+	 3	     19 REBAL REBUILD	WAIT	       10											0
+	 1	     19 REBAL COMPACT	WAIT	       10	  10	      0 	 0	    0		0				0
+	 1	     19 REBAL REBALANCE RUN	       10	  10	  15622    1145954	82180	       13				0
+	 1	     19 REBAL REBUILD	DONE	       10	  10	      0 	 0	    0		0				0
+	 2	     19 REBAL COMPACT	WAIT	       10											0
+	 2	     19 REBAL REBALANCE WAIT	       10											0
+	 2	     19 REBAL REBUILD	WAIT	       10											0
+
+9 rows selected.
+
+SQL> select * from gv$asm_operation;
+
+   INST_ID GROUP_NUMBER OPERA PASS	STATE	    POWER     ACTUAL	  SOFAR   EST_WORK   EST_RATE EST_MINUTES ERROR_CODE		   CON_ID
+---------- ------------ ----- --------- ------ ---------- ---------- ---------- ---------- ---------- ----------- -------------------- ----------
+	 1	     19 REBAL COMPACT	WAIT	       10	  10	      0 	 0	    0		0				0
+	 1	     19 REBAL REBALANCE RUN	       10	  10	  64195    1145954	76120	       14				0
+	 1	     19 REBAL REBUILD	DONE	       10	  10	      0 	 0	    0		0				0
+	 3	     19 REBAL COMPACT	WAIT	       10											0
+	 3	     19 REBAL REBALANCE WAIT	       10											0
+	 3	     19 REBAL REBUILD	WAIT	       10											0
+	 2	     19 REBAL COMPACT	WAIT	       10											0
+	 2	     19 REBAL REBALANCE WAIT	       10											0
+	 2	     19 REBAL REBUILD	WAIT	       10											0
+
+9 rows selected.
+
+SQL> set linesize 200
+col error_code for a20
+select * from gv$asm_operation;SQL> SQL> 
+
+   INST_ID GROUP_NUMBER OPERA PASS	STATE	    POWER     ACTUAL	  SOFAR   EST_WORK   EST_RATE EST_MINUTES ERROR_CODE		   CON_ID
+---------- ------------ ----- --------- ------ ---------- ---------- ---------- ---------- ---------- ----------- -------------------- ----------
+	 3	     19 REBAL COMPACT	WAIT	       10											0
+	 3	     19 REBAL REBALANCE WAIT	       10											0
+	 3	     19 REBAL REBUILD	WAIT	       10											0
+	 1	     19 REBAL COMPACT	WAIT	       10	  10	      0 	 0	    0		0				0
+	 1	     19 REBAL REBALANCE RUN	       10	  10	 844255    1145954	61483		4				0
+	 1	     19 REBAL REBUILD	DONE	       10	  10	      0 	 0	    0		0				0
+	 2	     19 REBAL COMPACT	WAIT	       10											0
+	 2	     19 REBAL REBALANCE WAIT	       10											0
+	 2	     19 REBAL REBUILD	WAIT	       10											0
+
+9 rows selected.
+
+SQL> set linesize 200
+col error_code for a20
+select * from gv$asm_operation;SQL> SQL> 
+
+   INST_ID GROUP_NUMBER OPERA PASS	STATE	    POWER     ACTUAL	  SOFAR   EST_WORK   EST_RATE EST_MINUTES ERROR_CODE		   CON_ID
+---------- ------------ ----- --------- ------ ---------- ---------- ---------- ---------- ---------- ----------- -------------------- ----------
+	 1	     19 REBAL COMPACT	WAIT	       10	  10	      0 	 0	    0		0				0
+	 1	     19 REBAL REBALANCE RUN	       10	  10	 853000    1145954	62010		4				0
+	 1	     19 REBAL REBUILD	DONE	       10	  10	      0 	 0	    0		0				0
+	 2	     19 REBAL COMPACT	WAIT	       10											0
+	 2	     19 REBAL REBALANCE WAIT	       10											0
+	 2	     19 REBAL REBUILD	WAIT	       10											0
+	 3	     19 REBAL COMPACT	WAIT	       10											0
+	 3	     19 REBAL REBALANCE WAIT	       10											0
+	 3	     19 REBAL REBUILD	WAIT	       10											0
+
+9 rows selected.
+
+SQL> set linesize 200
+col error_code for a20
+select * from gv$asm_operation;SQL> SQL> 
+
+   INST_ID GROUP_NUMBER OPERA PASS	STATE	    POWER     ACTUAL	  SOFAR   EST_WORK   EST_RATE EST_MINUTES ERROR_CODE		   CON_ID
+---------- ------------ ----- --------- ------ ---------- ---------- ---------- ---------- ---------- ----------- -------------------- ----------
+	 2	     19 REBAL COMPACT	WAIT	       10											0
+	 2	     19 REBAL REBALANCE WAIT	       10											0
+	 2	     19 REBAL REBUILD	WAIT	       10											0
+	 3	     19 REBAL COMPACT	WAIT	       10											0
+	 3	     19 REBAL REBALANCE WAIT	       10											0
+	 3	     19 REBAL REBUILD	WAIT	       10											0
+	 1	     19 REBAL COMPACT	WAIT	       10	  10	      0 	 0	    0		0				0
+	 1	     19 REBAL REBALANCE RUN	       10	  10	 995046    1145954	13409	       11				0
+	 1	     19 REBAL REBUILD	DONE	       10	  10	      0 	 0	    0		0				0
+
+9 rows selected.
+
+SQL> set linesize 200
+col error_code for a20
+select * from gv$asm_operation;SQL> SQL> 
+
+no rows selected
+
+SQL> select
+   a.ksppinm "Parameter|Name",
+   c.ksppstvl "Instance Value"
+from
+   x$ksppi a,
+   x$ksppcv b,
+   x$ksppsv c
+where
+   a.indx = b.indx
+and
+   a.indx = c.indx
+and
+   ksppinm like '%asm%'
+order by
+   a.ksppinm;  2    3    4    5    6    7    8    9   10   11   12   13   14   15  
+
+Parameter|Name
+--------------------------------------------------------------------------------
+Instance Value
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+__asm_max_connected_clients
+3
+
+_asm_access
+auto
+
+_asm_access_assume_local
+FALSE
+
+_asm_acd_chunks
+1
+
+_asm_admin_with_sysdba
+FALSE
+
+_asm_allow_appliance_dropdisk_noforce
+FALSE
+
+_asm_allow_dangerous_unprotected_volumes
+FALSE
+
+_asm_allow_dgname_special_chars
+FALSE
+
+_asm_allow_foreign_siteguids
+
+
+_asm_allow_lvm_resilvering
+TRUE
+
+_asm_allow_older_clients
+FALSE
+
+_asm_allow_only_raw_disks
+TRUE
+
+_asm_allow_prepare_split
+TRUE
+
+_asm_allow_small_memory_target
+FALSE
+
+_asm_allow_system_alias_rename
+FALSE
+
+_asm_allow_unsafe_reconnect
+TRUE
+
+_asm_allowdegeneratemounts
+FALSE
+
+_asm_appliance_config_file
+
+
+_asm_appliance_disable_fg_check
+FALSE
+
+_asm_appliance_ignore_oak
+FALSE
+
+_asm_appliance_slot_from_path
+FALSE
+
+_asm_asmb_max_wait_timeout
+6
+
+_asm_asmb_rcvto
+10
+
+_asm_async_scrub_reap_wait
+100000
+
+_asm_audit_sp_param
+
+
+_asm_ausize
+1048576
+
+_asm_auto_online_interval
+
+
+_asm_automatic_rezone
+TRUE
+
+_asm_avoid_pst_scans
+TRUE
+
+_asm_blksize
+4096
+
+_asm_br_listener_port
+51521
+
+_asm_brfuzz_ios_lsnrport
+0
+
+_asm_cancel_alert_time
+600
+
+_asm_cancel_delta
+75000
+
+_asm_cclient_cleanup_timeout
+300
+
+_asm_check_for_misbehaving_cf_clients
+FALSE
+
+_asm_compatibility
+11.2.0.2
+
+_asm_dba_batch
+500000
+
+_asm_dba_spcchk_thld
+100000
+
+_asm_dba_threshold
+0
+
+_asm_dbmsdg_nohdrchk
+FALSE
+
+_asm_dependency_under_cfenqueue
+TRUE
+
+_asm_diag_dead_clients
+FALSE
+
+_asm_direct_con_expire_time
+120
+
+_asm_disable_amdu_dump
+FALSE
+
+_asm_disable_async_msgs
+FALSE
+
+_asm_disable_dangerous_failgroup_checking
+FALSE
+
+_asm_disable_failgroup_count_checking
+FALSE
+
+_asm_disable_failgroup_size_checking
+FALSE
+
+_asm_disable_multiple_instance_check
+FALSE
+
+_asm_disable_patch_compat
+FALSE
+
+_asm_disable_proact_client_cleanup
+FALSE
+
+_asm_disable_profilediscovery
+FALSE
+
+_asm_disable_request_tracer
+TRUE
+
+_asm_disable_smr_creation
+FALSE
+
+_asm_disable_ufg_dump
+FALSE
+
+_asm_disable_ufgmemberkill
+FALSE
+
+_asm_disable_vtoc_check
+FALSE
+
+_asm_disable_vxn_map_messages
+FALSE
+
+_asm_disk_repair_time
+14400
+
+_asm_diskerr_traces
+2
+
+_asm_diskgroups2
+
+
+_asm_diskgroups3
+
+
+_asm_diskgroups4
+
+
+_asm_emulate_nfs_disk
+FALSE
+
+_asm_emulmax
+10000
+
+_asm_emultimeout
+0
+
+_asm_enable_batch_scrub
+FALSE
+
+_asm_enable_kfios
+FALSE
+
+_asm_enable_kfks
+FALSE
+
+_asm_enable_lostwrite_scrub
+FALSE
+
+_asm_enable_multiple_asmb
+FALSE
+
+_asm_enable_parity_datafile_creation
+FALSE
+
+_asm_enable_parity_scrub
+FALSE
+
+_asm_enable_parityfile_creation
+TRUE
+
+_asm_enable_repair_lostwrite_scrub
+FALSE
+
+_asm_enable_xrov
+FALSE
+
+_asm_evenread
+2
+
+_asm_evenread_alpha
+0
+
+_asm_evenread_alpha2
+0
+
+_asm_evenread_faststart
+0
+
+_asm_fail_random_rx
+FALSE
+
+_asm_fd_cln_idle_sess_twait
+60000000
+
+_asm_fd_cln_on_fg
+TRUE
+
+_asm_fob_tac_frequency
+9
+
+_asm_force_parity_extent_check
+FALSE
+
+_asm_force_paritycheck_rebalance
+FALSE
+
+_asm_force_quiesce
+FALSE
+
+_asm_force_vam
+FALSE
+
+_asm_global_dump_level
+267
+
+_asm_hbeatiowait
+229
+
+_asm_hbeatwaitquantum
+2
+
+_asm_healthcheck_timeout
+180
+
+_asm_idn_processes
+0
+
+_asm_imbalance_tolerance
+3
+
+_asm_instlock_quota
+0
+
+_asm_ios_network_domains
+0
+
+_asm_ios_network_processes
+0
+
+_asm_iosconnect_timeout
+0
+
+_asm_iostat_latch_count
+31
+
+_asm_iowp_max_async
+0
+
+_asm_kfdpevent
+0
+
+_asm_kill_unresponsive_clients
+TRUE
+
+_asm_libraries
+UFS
+
+_asm_log_scale_rebalance
+FALSE
+
+_asm_lsod_bucket_size
+67
+
+_asm_max_aux_cods
+5
+
+_asm_max_clients
+1000
+
+_asm_max_cod_strides
+10
+
+_asm_max_connected_clients
+21
+
+_asm_max_parallelios
+256
+
+_asm_max_redo_buffer_size
+2097152
+
+_asm_maxio
+1048576
+
+_asm_min_compatibility
+11.2.0.2
+
+_asm_netp_factor
+0
+
+_asm_netp_iosize
+0
+
+_asm_network_timeout
+1
+
+_asm_networks
+
+
+_asm_node_site_guid
+
+
+_asm_nodekill_escalate_time
+180
+
+_asm_noevenread_diskgroups
+
+
+_asm_oda_type
+
+
+_asm_odapremchk
+TRUE
+
+_asm_offload_all
+FALSE
+
+_asm_partner_target_disk_part
+8
+
+_asm_partner_target_fg_rel
+4
+
+_asm_primary_load
+1
+
+_asm_primary_load_cycles
+TRUE
+
+_asm_procs_trace_diskerr
+5
+
+_asm_proxy_online_restart
+0
+
+_asm_proxy_startwait
+60
+
+_asm_pstonpartners
+TRUE
+
+_asm_random_zone
+FALSE
+
+_asm_read_cancel
+AUTO
+
+_asm_read_cancel_back_out
+5000
+
+_asm_rebalance_estimates_process
+TRUE
+
+_asm_rebalance_plan_size
+120
+
+_asm_rebalance_space_errors
+1000
+
+_asm_reloc_cic
+FALSE
+
+_asm_relocation_async_lock_count
+128
+
+_asm_relocation_ignore_hard_failure
+0
+
+_asm_relocation_scheme
+alloc_p2 alloc_s3 reb_p2 reb_s1 bal_p2 bal_s3 prep_p2 prep_s3
+
+_asm_relocation_trace
+FALSE
+
+_asm_remote_client_timeout
+300
+
+_asm_repairquantum
+60
+
+_asm_reserve_slaves
+TRUE
+
+_asm_resyncCkpt
+1024
+
+_asm_root_directory
+ASM
+
+_asm_runtime_capability_volume_support
+FALSE
+
+_asm_scrub_async
+TRUE
+
+_asm_scrub_disable_cod
+FALSE
+
+_asm_scrub_limit
+AUTO
+
+_asm_scrub_strict
+FALSE
+
+_asm_scrub_unmatched_dba
+1024
+
+_asm_secondary_load
+10000
+
+_asm_secondary_load_cycles
+FALSE
+
+_asm_serialize_volume_rebalance
+FALSE
+
+_asm_shadow_cycle
+3
+
+_asm_skip_dbfile_ios
+FALSE
+
+_asm_skip_diskval_check
+FALSE
+
+_asm_skip_rename_check
+FALSE
+
+_asm_skip_resize_check
+FALSE
+
+_asm_storagemaysplit
+FALSE
+
+_asm_stripesize
+131072
+
+_asm_stripewidth
+8
+
+
+Parameter|Name
+--------------------------------------------------------------------------------
+Instance Value
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+_asm_sync_rebalance
+FALSE
+
+_asm_tcp_user_timeout
+1
+
+_asm_trace_limit_timeout
+30000
+
+_asm_ufg_nw_wait_timeout
+10
+
+_asm_usd_batch
+64
+
+_asm_wait_time
+18
+
+_asm_write_badfdata_in_contentcheck
+FALSE
+
+_asm_write_cancel
+AUTO
+
+_asm_xrov_nstats
+0
+
+_asm_xrov_nvios
+24
+
+_asm_xrov_rsnmod
+2
+
+_asm_xrov_single
+FALSE
+
+_asm_zero_power_limit
+
+
+_asmsid
+asm
+
+_disable_asm_audit_feat
+0
+
+_ges_diagnostics_asm_dump_level
+11
+
+_hang_asm_hang_resolution_enabled
+TRUE
+
+_lm_asm_enq_hashing
+TRUE
+
+_remote_asm
+
+
+_use_cached_asm_free_space
+FALSE
+
+asm_diskgroups
+BTLP002342_ORAGIMR_DG, BTLP002342_ORAREDO1_DG, BTLP002342_ORAREDOM1_DG, BTLP002342_ORARECV1_DG, BTLP002342_ORADATA1_DG, CSBIPR_ORADATA1_DG, CSBIPR_ORARECV1_DG, CSBIPR_ORAREDO1_DG, CSBIPR_ORAREDOM1_DG,
+ HSMPR_ORAREDO1_DG, HSMPR_ORAREDOM1_DG, HSMPR_ORARECV1_DG, HSMPR_ORADATA1_DG, ESDBPR_ORAREDO1_DG, ESDBPR_ORAREDOM1_DG, ESDBPR_ORADATA1_DG, ESDBPR_ORARECV1_DG, BTLP002342_ORAGRID1_DG
+
+asm_diskstring
+/dev/ora_rdsk/*
+
+asm_io_processes
+20
+
+asm_power_limit
+1
+
+asm_preferred_read_failure_groups
+
+
+
+190 rows selected.
+
+SQL> 

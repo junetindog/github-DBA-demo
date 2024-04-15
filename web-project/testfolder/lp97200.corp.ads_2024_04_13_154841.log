@@ -1,0 +1,97 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 15:48:41 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "x159031".
+Last login: Thu Jan  4 21:34:02 2024 from vpn-vanc01-dbd2.west.tsl.telus.com
+
+ +----------------------------------------------------------------------------+
+ | WARNING                                                                    |
+ | The programs and data stored on this system are licensed to, or are        |
+ | private property of, TELUS and are lawfully available only to authorized   |
+ | users for approved purposes.  Unauthorized access to any program or data   |
+ | on this system is not permitted, and any unauthorized access beyond this   |
+ | point may lead to prosecution and/or disciplinary action.                  |
+ | This system may  be monitored at any time for operational reasons.         |
+ | If you are not an authorized user, do not attempt to log on.               |
+ +----------------------------------------------------------------------------+
+ | AVERTISSEMENT                                                              |
+ | Les programmes et les données stockés dans ce système sont visés par une   |
+ | licence ou sont propriété privée de TELUS et ils ne sont accessibles       |
+ | légalement qu'aux usagers autorisés à des fins autorisées.  Il est         |
+ | interdit d'y accéder sans autorisation, et tout accès non autorisé au delà |
+ | de ce point peut entrainer des poursuites ou actions disciplinaires.       |
+ | Le système peut en tout temps faire l'objet d'une surveillance.            |
+ | Si vous n'êtes pas un usager autorisé, n'essayez pas d'y accéder.          |
+ +----------------------------------------------------------------------------+
+
+lp97200:x159031$ su - oracle
+Password: 
+The Oracle base for ORACLE_HOME=/ora/fs0000/grid/oracle/product/11.2.0.4 is /ora/fs0000/app/oracle
+
+  oracle : lp97200 : @crs : /home/oracle
+$ ps -ef | grep pmon
+oracle    6010     1  0  2022 ?        17:27:19 ora_pmon_ECOMMPR1
+oracle    6317  6235  0 07:48 pts/1    00:00:00 grep pmon
+oracle   12529     1  0  2023 ?        07:50:27 ora_pmon_PCHP1
+oracle   17005     1  0  2022 ?        17:00:05 ora_pmon_RINFR1
+oracle   17048     1  0  2022 ?        12:43:04 asm_pmon_+ASM1
+oracle   18607     1  0  2022 ?        22:55:03 ora_pmon_MZRPR1
+oracle   26552     1  0  2022 ?        13:40:42 ora_pmon_DFRPR1
+oracle   27174     1  0  2022 ?        13:58:54 ora_pmon_RAUD1
+oracle   29060     1  0  2023 ?        12:15:03 ora_pmon_PEAS1
+oracle   29339     1  0  2022 ?        10:24:21 ora_pmon_ESSPR
+
+  oracle : lp97200 : @crs : /home/oracle
+$ uptime
+ 07:48:51 up 689 days, 23:50,  2 users,  load average: 3.99, 4.22, 4.20
+
+  oracle : lp97200 : @crs : /home/oracle
+$ . oraenv
+ORACLE_SID = [crs] ? AGENT12
+The /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0/bin/orabase binary does not exist
+You can set ORACLE_BASE manually if it is required.
+you have mail in /var/spool/mail/oracle
+
+  oracle : lp97200 : @AGENT12 : /home/oracle
+$ emcl t   tl stasu    tus agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 26543
+Parent Process ID      : 26357
+Agent URL              : https://lp97200.corp.ads:3873/emd/main/
+Local Agent URL in NAT : https://lp97200.corp.ads:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 07:36:18
+Started by user        : oracle
+Operating System       : Linux version 2.6.18-419.0.0.0.2.el5 (amd64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 08:07:35
+Last attempted upload                        : 2024-04-13 08:07:35
+Total Megabytes of XML files uploaded so far : 0.76
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 48.22%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 08:06:53
+Last successful heartbeat to OMS             : 2024-04-13 08:06:53
+Next scheduled heartbeat to OMS              : 2024-04-13 08:07:54
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : lp97200 : @AGENT12 : /home/oracle
+$ !date
+-ksh: !date: not found [No such file or directory]
+
+  oracle : lp97200 : @AGENT12 : /home/oracle
+$ date
+Sat Apr 13 08:07:46 UTC 2024
+
+  oracle : lp97200 : @AGENT12 : /home/oracle
+$ 

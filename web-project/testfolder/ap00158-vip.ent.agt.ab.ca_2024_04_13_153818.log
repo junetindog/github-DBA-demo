@@ -1,0 +1,2217 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 15:38:18 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "oracle".
+Last unsuccessful login: Sat Jun 17 06:06:46 UTC 2023 on ssh from 142.168.215.13
+Last login: Sat Apr 13 07:34:15 UTC 2024 on ssh from ap00155
+
+TELUS internal systems must only be used for conducting TELUS
+business or for purposes authorized by TELUS management.
+*** NO TELUS CONFIDENTIAL DATA is ALLOWED TO BE STORED ON THIS SERVER***
+Use is subject to audit at any time by TELUS management.
+
+ +----------------------------------------------------------------------------+
+ | WARNING                                                                    |
+ | The programs and data stored on this system are licensed to, or are        |
+ | private property of, TELUS and are lawfully available only to authorized   |
+ | users for approved purposes.  Unauthorized access to any program or data   |
+ | on this system is not permitted, and any unauthorized access beyond this   |
+ | point may lead to prosecution and/or disciplinary action.                  |
+ | This system may  be monitored at any time for operational reasons.         |
+ | If you are not an authorized user, do not attempt to log on.               |
+ +----------------------------------------------------------------------------+
+ | AVERTISSEMENT                                                              |
+ | Les programmes et les données stockés dans ce système sont visés par une   |
+ | licence ou sont propriété privée de TELUS et ils ne sont accessibles       |
+ | légalement qu'aux usagers autorisés à des fins autorisées.  Il est         |
+ | interdit d'y accéder sans autorisation, et tout accès non autorisé au delà |
+ | de ce point peut entrainer des poursuites ou actions disciplinaires.       |
+ | Le système peut en tout temps faire l'objet d'une surveillance.            |
+ | Si vous n'êtes pas un usager autorisé, n'essayez pas d'y accéder.          |
+ +----------------------------------------------------------------------------+
+The Oracle base for ORACLE_HOME=/ora/fs0000/grid/oracle/product/11.2.0.2 is /ora/fs0000/app/oracle
+
+  oracle : ap00158 : @crs : /ora/home
+$ ps -ef | grep pmon
+  oracle  6815954        1   0   May 10      - 53:54 ora_pmon_URDSPR4
+  oracle  8126550        1   0   May 10      - 52:02 ora_pmon_PC71PR4
+  oracle  9896032        1   0   May 10      - 44:22 ora_pmon_SBIPR4
+  oracle 20578394        1   0   May 10      - 52:37 asm_pmon_+ASM4
+  oracle 31195320 38142068   0 07:38:25  pts/0  0:00 grep pmon
+
+  oracle : ap00158 : @crs : /ora/home
+$ uptime
+  07:38AM   up 338 days,  20:17,  1 user,  load average: 2.99, 2.65, 2.22
+
+  oracle : ap00158 : @crs : /ora/home
+$ . oraenv
+ORACLE_SID = [crs] ? PC71PR4
+The Oracle base for ORACLE_HOME=/ora/fs0000/app/oracle/product/10.2.0.4 is /ora/fs0000/app/oracle
+
+  oracle : ap00158 : @PC71PR4 : /ora/home
+$ sqlplu^?^?     us / as sysdba
+
+SQL*Plus: Release 10.2.0.4.0 - Production on Sat Apr 13 07:38:44 2024
+
+Copyright (c) 1982, 2007, Oracle.  All Rights Reserved.
+
+
+Connected to:
+Oracle Database 10g Enterprise Edition Release 10.2.0.4.0 - 64bit Production
+With the Partitioning, Real Application Clusters, OLAP, Data Mining
+and Real Application Testing options
+
+SQL> set lines 1000 pages 1000
+SQL> col UPTIME for a80
+SQL> select'Hostname      : '||i.host_name||chr(10)||'Instance Name : '||i.
+  2  instance_name||chr(10)||'Status        : '||i.database_status||' and '||i.status
+||chr(10)||'Started At    : '||to_char(i.startup_time,'DD-MON-YYYY HH24:MI:SS')
+||chr(10)||'Appl Sessions : '||nvl(s.sessions,0)||chr(10)||'Appl Processes: '||
+nvl(p.process,0)||chr(10)||'Locked Objects: '||nvl(l.locks,0)||chr(10)||
+'Archiver      : '||i.archiver||chr(10)||'Uptime        : '||floor(sysdate-i.
+startup_time)||' days(s) '||trunc(24*((sysdate-i.startup_time)-trunc(sysdate-i.
+  3    4    5    6    7    8  startup_time)))||' hour(s) '||mod(trunc(1440*((sysdate-i.startup_time)-trunc(
+sysdate-i.startup_time))),60)||' minute(s) '||mod(trunc(86400*((sysdate-i.
+  9  startup_time)-trunc(sysdate-i.startup_time))),60)||' seconds'uptime from sys.
+gv_$instance i,(select inst_id,count(*)sessions from sys.gv$session where nvl(username
+,'BACKGROUND')not in('SYS','SYSTEM','BACKGROUND')group by inst_id)s,(select inst_id,
+ 10   11   12   13  count(*)process from(select p.inst_id,s.username,s.process from gv$session s,
+ 14  gv$process p where s.inst_id=p.inst_id and s.paddr=p.addr)where nvl(username,
+ 15  'BACKGROUND')not in('SYS','SYSTEM','BACKGROUND')group by inst_id)p,(select inst_id,
+ 16  count(*)locks from sys.gv$locked_object group by inst_id)l where s.inst_id(+)=i.
+instance_number and p.inst_id(+)=i.instance_number and l.inst_id(+)=i.
+instance_number; 17   18  
+
+UPTIME
+--------------------------------------------------------------------------------
+Hostname      : ap00158
+Instance Name : PC71PR4
+Status        : ACTIVE and OPEN
+Started At    : 10-MAY-2023 13:09:51
+Appl Sessions : 3
+Appl Processes: 3
+Locked Objects: 0
+Archiver      : STARTED
+Uptime        : 338 days(s) 18 hour(s) 29 minute(s) 9 seconds
+
+Hostname      : ap00157
+Instance Name : PC71PR3
+Status        : ACTIVE and OPEN
+Started At    : 10-MAY-2023 13:06:53
+Appl Sessions : 8
+Appl Processes: 8
+Locked Objects: 1
+Archiver      : STARTED
+Uptime        : 338 days(s) 18 hour(s) 32 minute(s) 7 seconds
+
+Hostname      : ap00155
+Instance Name : PC71PR2
+Status        : ACTIVE and OPEN
+Started At    : 10-MAY-2023 13:01:50
+Appl Sessions : 2
+Appl Processes: 2
+Locked Objects: 6
+Archiver      : STARTED
+Uptime        : 338 days(s) 18 hour(s) 37 minute(s) 9 seconds
+
+Hostname      : ap00150
+Instance Name : PC71PR1
+Status        : ACTIVE and OPEN
+Started At    : 10-MAY-2023 12:58:39
+Appl Sessions : 7
+Appl Processes: 7
+Locked Objects: 0
+Archiver      : STARTED
+Uptime        : 338 days(s) 18 hour(s) 40 minute(s) 20 seconds
+
+
+SQL> exit
+Disconnected from Oracle Database 10g Enterprise Edition Release 10.2.0.4.0 - 64bit Production
+With the Partitioning, Real Application Clusters, OLAP, Data Mining
+and Real Application Testing options
+
+  oracle : ap00158 : @PC71PR4 : /ora/home
+$ . oraenv
+ORACLE_SID = [PC71PR4] ? AGNET12
+ORACLE_HOME = [/ora/home] ? 
+The Oracle base for ORACLE_HOME=/ora/home is /ora/fs0000/app/oracle
+
+  oracle : ap00158 : @AGNET12 : /ora/home
+$  . oraenv
+ORACLE_SID = [AGNET12] ? AGNET12^?^?          GENT12
+The Oracle base for ORACLE_HOME=/ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0 is /ora/fs0000/app/oracle
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 40829076
+Parent Process ID      : 24969264
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-03 03:35:13
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 07:38:38
+Last attempted upload                        : 2024-04-13 07:38:38
+Total Megabytes of XML files uploaded so far : 15.58
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.52%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 07:39:14
+Last successful heartbeat to OMS             : 2024-04-13 07:39:14
+Next scheduled heartbeat to OMS              : 2024-04-13 07:40:14
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.PC71PR4 - EventType - TARGET_EVENT for operation RECALC_METRICS submitted at 2024-04-13 07:38:39 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 2, active: 0, finished: 2)
+
+Current target operations in progress
+-------------------------------------
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 40829076
+Parent Process ID      : 24969264
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-03 03:35:13
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 07:54:19
+Last attempted upload                        : 2024-04-13 07:54:19
+Total Megabytes of XML files uploaded so far : 15.61
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.52%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 07:54:17
+Last successful heartbeat to OMS             : 2024-04-13 07:54:17
+Next scheduled heartbeat to OMS              : 2024-04-13 07:55:17
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.PC71PR4 - EventType - STATUS_EVENT for operation REPORT_STATUS submitted at 2024-04-13 07:53:25 GMT
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 07:53:42 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 2, active: 1, finished: 1)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.PC71PR - SAVE_TARGET_DEPENDENT running for 38 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+You have mail in /usr/spool/mail/oracle
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ ap00158
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl stop agent -force
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+Stopping agent ..... stopped.
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl clearstate agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+EMD clearstate completed successfully
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl start agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+Starting agent ........................................................................................................................... started but not ready. 
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : (unknown)
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 20971592
+Parent Process ID      : 29229090
+Currently initializing component             : Target Manager (2) (53 of 69)
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.PC71PR4 - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 07:58:58 GMT
+        TargetID = oracle_database.URDSPR4 - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 07:58:58 GMT
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 07:58:57 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 18, active: 3, finished: 13)
+
+Current target operations in progress
+-------------------------------------
+        oracle_database.PC71PR4 - LOAD_TARGET_DYNAMIC running for 127 seconds
+        rac_database.SBIPR - LOAD_TARGET_DYNAMIC running for 127 seconds
+        oracle_database.URDSPR4 - LOAD_TARGET_DYNAMIC running for 127 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running but Not Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : (unknown)
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 20971592
+Parent Process ID      : 29229090
+Currently initializing component             : Target Manager (2) (53 of 69)
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.PC71PR4 - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 07:58:58 GMT
+        TargetID = oracle_database.URDSPR4 - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 07:58:58 GMT
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 07:58:57 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 18, active: 3, finished: 13)
+
+Current target operations in progress
+-------------------------------------
+        oracle_database.PC71PR4 - LOAD_TARGET_DYNAMIC running for 242 seconds
+        rac_database.SBIPR - LOAD_TARGET_DYNAMIC running for 242 seconds
+        oracle_database.URDSPR4 - LOAD_TARGET_DYNAMIC running for 242 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running but Not Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : (unknown)
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 20971592
+Parent Process ID      : 29229090
+Currently initializing component             : Target Manager (2) (53 of 69)
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.PC71PR4 - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 07:58:58 GMT
+        TargetID = oracle_database.URDSPR4 - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 07:58:58 GMT
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 07:58:57 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 18, active: 3, finished: 13)
+
+Current target operations in progress
+-------------------------------------
+        oracle_database.PC71PR4 - LOAD_TARGET_DYNAMIC running for 291 seconds
+        rac_database.SBIPR - LOAD_TARGET_DYNAMIC running for 291 seconds
+        oracle_database.URDSPR4 - LOAD_TARGET_DYNAMIC running for 291 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running but Not Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : (unknown)
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 20971592
+Parent Process ID      : 29229090
+Currently initializing component             : Target Manager (2) (53 of 69)
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 08:04:00 GMT
+        TargetID = rac_database.URDSPR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 08:04:00 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 18, active: 2, finished: 16)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.URDSPR - LOAD_TARGET_DYNAMIC running for 437 seconds
+        rac_database.PC71PR - LOAD_TARGET_DYNAMIC running for 437 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running but Not Ready
+You have mail in /usr/spool/mail/oracle
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ df -h
+df: Not a recognized flag: h
+Usage: df  [-P] | [-IMitv] [-gkm] [-s] [filesystem ...] [file ...]
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ df -g
+Filesystem    GB blocks      Free %Used    Iused %Iused Mounted on
+/dev/hd4           1.00      0.44   56%    18539    14% /
+/dev/hd2           4.25      0.86   80%    57755    20% /usr
+/dev/hd9var        2.00      0.28   87%    10747    13% /var
+/dev/hd3           5.00      3.21   36%     5309     1% /tmp
+/dev/hd1           2.00      1.98    2%      332     1% /home
+/proc                 -         -    -         -     -  /proc
+/dev/hd10opt       2.00      1.78   11%     2488     1% /opt
+/dev/hd11admin      1.00      0.99    1%       73     1% /admin
+/dev/lvMarimba      1.00      0.70   31%     1504     1% /opt/Marimba
+/dev/lvoptbmc      2.00      0.42   79%    10261     8% /opt/bmc
+/dev/usropv        5.00      3.57   29%     1774     1% /usr/openv
+/dev/lvops         3.00      2.98    1%     1802     1% /ops
+/dev/lvstaging     16.00      9.65   40%      826     1% /staging
+/dev/lvorahome      0.50      0.27   46%     1005     2% /ora/home
+/dev/lvorafs0000grid    100.00     35.31   65%    62972     1% /ora/fs0000/grid
+/dev/lvorafs0000app    100.00     42.53   58%   328676     4% /ora/fs0000/app
+/dev/lvorafs0000work     50.00     21.56   57%     2051     1% /ora/fs0000/work
+t8pncdot02nfs1:/AIX_BKUP_PR   3625.98   1304.62   65%    78829     1% /aixbackup
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ df -i
+Filesystem    512-blocks      Free %Used    Iused %Iused Mounted on
+/dev/hd4         2097152    928168   56%    18539    14% /
+/dev/hd2         8912896   1811744   80%    57755    20% /usr
+/dev/hd9var      4194304    579200   87%    10747    13% /var
+/dev/hd3        10485760   6721840   36%     5309     1% /tmp
+/dev/hd1         4194304   4151920    2%      332     1% /home
+/proc                  -         -    -         -     -  /proc
+/dev/hd10opt     4194304   3736648   11%     2488     1% /opt
+/dev/hd11admin    2097152   2086592    1%       73     1% /admin
+/dev/lvMarimba    2097152   1460272   31%     1504     1% /opt/Marimba
+/dev/lvoptbmc    4194304    890704   79%    10261     8% /opt/bmc
+/dev/usropv     10485760   7497088   29%     1774     1% /usr/openv
+/dev/lvops       6291456   6252304    1%     1802     1% /ops
+/dev/lvstaging   33554432  20233576   40%      826     1% /staging
+/dev/lvorahome    1048576    567656   46%     1005     2% /ora/home
+/dev/lvorafs0000grid  209715200  74045688   65%    62972     1% /ora/fs0000/grid
+/dev/lvorafs0000app  209715200  89185696   58%   328676     4% /ora/fs0000/app
+/dev/lvorafs0000work  104857600  45223816   57%     2051     1% /ora/fs0000/work
+t8pncdot02nfs1:/AIX_BKUP_PR 7604236352 2735977168   65%    78829     1% /aixbackup
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ df -g
+Filesystem    GB blocks      Free %Used    Iused %Iused Mounted on
+/dev/hd4           1.00      0.44   56%    18539    14% /
+/dev/hd2           4.25      0.86   80%    57755    20% /usr
+/dev/hd9var        2.00      0.28   87%    10747    13% /var
+/dev/hd3           5.00      3.21   36%     5309     1% /tmp
+/dev/hd1           2.00      1.98    2%      332     1% /home
+/proc                 -         -    -         -     -  /proc
+/dev/hd10opt       2.00      1.78   11%     2488     1% /opt
+/dev/hd11admin      1.00      0.99    1%       73     1% /admin
+/dev/lvMarimba      1.00      0.70   31%     1504     1% /opt/Marimba
+/dev/lvoptbmc      2.00      0.42   79%    10261     8% /opt/bmc
+/dev/usropv        5.00      3.57   29%     1774     1% /usr/openv
+/dev/lvops         3.00      2.98    1%     1802     1% /ops
+/dev/lvstaging     16.00      9.65   40%      826     1% /staging
+/dev/lvorahome      0.50      0.27   46%     1005     2% /ora/home
+/dev/lvorafs0000grid    100.00     35.31   65%    62972     1% /ora/fs0000/grid
+/dev/lvorafs0000app    100.00     42.53   58%   328680     4% /ora/fs0000/app
+/dev/lvorafs0000work     50.00     21.56   57%     2051     1% /ora/fs0000/work
+t8pncdot02nfs1:/AIX_BKUP_PR   3625.98   1304.62   65%    78829     1% /aixbackup
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 20971592
+Parent Process ID      : 29229090
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 07:58:45
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 08:09:14
+Last attempted upload                        : 2024-04-13 08:09:14
+Total Megabytes of XML files uploaded so far : 0.16
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.52%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 08:09:00
+Last successful heartbeat to OMS             : 2024-04-13 08:09:00
+Next scheduled heartbeat to OMS              : 2024-04-13 08:10:01
+Currently initializing component             : Internal Metrics (1) (69 of 69)
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = rac_database.URDSPR - EventType - TARGET_EVENT for operation RECALC_TARGET submitted at 2024-04-13 08:09:03 GMT
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation RECALC_TARGET submitted at 2024-04-13 08:09:03 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 4, active: 2, finished: 2)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.SBIPR - RETRY_TARGET running for 36 seconds
+        rac_database.URDSPR - RETRY_TARGET running for 36 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 20971592
+Parent Process ID      : 29229090
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 07:58:45
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 08:30:05
+Last attempted upload                        : 2024-04-13 08:30:05
+Total Megabytes of XML files uploaded so far : 0.3
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.48%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 08:30:05
+Last successful heartbeat to OMS             : 2024-04-13 08:30:05
+Next scheduled heartbeat to OMS              : 2024-04-13 08:31:05
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.PC71PR4 - EventType - TARGET_EVENT for operation RECALC_TARGET submitted at 2024-04-13 08:27:16 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 4, active: 1, finished: 2)
+
+Current target operations in progress
+-------------------------------------
+        oracle_database.PC71PR4 - RECALC_TARGET running for 177 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+You have mail in /usr/spool/mail/oracle
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 20971592
+Parent Process ID      : 29229090
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 07:58:45
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 08:34:29
+Last attempted upload                        : 2024-04-13 08:34:29
+Total Megabytes of XML files uploaded so far : 0.32
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.48%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 08:37:06
+Last successful heartbeat to OMS             : 2024-04-13 08:37:06
+Next scheduled heartbeat to OMS              : 2024-04-13 08:38:06
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 08:34:29 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 2, active: 1, finished: 1)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.PC71PR - SAVE_TARGET_DEPENDENT running for 211 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl stop agent -force
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+Stopping agent ..... stopped.
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ ps -ef | grep -i emagent
+  oracle 25624586 38142068   0 08:41:07  pts/0  0:00 grep -i emagent
+You have mail in /usr/spool/mail/oracle
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ ps -ef | grep java
+    root 13238456        1   0   May 10      - 1620:33 /ora/fs0000/grid/oracle/product/11.2.0.2/tfa/ap00158/tfa_home/jre/bin/java -server -Xms256m -Xmx512m -Djava.awt.headless=true -Ddisable.checkForUpdate=true -XX:ParallelGCThreads=5 oracle.rat.tfa.TFAMain /ora/fs0000/grid/oracle/product/11.2.0.2/tfa/ap00158/tfa_home
+  oracle 14024880 38142068   0 08:41:11  pts/0  0:00 grep java
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ ps -ef | grep perl
+  oracle 23461898 38142068   0 08:41:24  pts/0  0:00 grep perl
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl secure agent widaAG3T -emdWalletSrcUrl https://emccpr.tsl.telus.com:4900/em
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+Agent is already stopped...   Done.
+Securing agent...   Started.
+Securing agent...   Successful.
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl clearstate agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+EMD clearstate completed successfully
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl start agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+Starting agent ........................................................................................................................... started but not ready. 
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : (unknown)
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Currently initializing component             : Target Manager (2) (53 of 69)
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 08:47:54 GMT
+        TargetID = oracle_database.SBIPR4 - EventType - STATUS_EVENT for operation REPORT_STATUS submitted at 2024-04-13 08:47:51 GMT
+        TargetID = rac_database.URDSPR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 08:47:54 GMT
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 08:47:52 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 18, active: 3, finished: 15)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.SBIPR - LOAD_TARGET_DYNAMIC running for 347 seconds
+        rac_database.URDSPR - LOAD_TARGET_DYNAMIC running for 347 seconds
+        rac_database.PC71PR - LOAD_TARGET_DYNAMIC running for 347 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running but Not Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : (unknown)
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Currently initializing component             : Target Manager (2) (53 of 69)
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.SBIPR4 - EventType - STATUS_EVENT for operation REPORT_STATUS submitted at 2024-04-13 08:49:56 GMT
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 08:47:54 GMT
+        TargetID = rac_database.URDSPR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 08:47:54 GMT
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation LOAD_TARGET submitted at 2024-04-13 08:47:52 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 18, active: 3, finished: 15)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.SBIPR - LOAD_TARGET_DYNAMIC running for 489 seconds
+        rac_database.URDSPR - LOAD_TARGET_DYNAMIC running for 489 seconds
+        rac_database.PC71PR - LOAD_TARGET_DYNAMIC running for 489 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running but Not Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ ps -ef | grep pmon
+  oracle  6815954        1   0   May 10      - 53:54 ora_pmon_URDSPR4
+  oracle  8126550        1   0   May 10      - 52:02 ora_pmon_PC71PR4
+  oracle  9896032        1   0   May 10      - 44:22 ora_pmon_SBIPR4
+  oracle 20578394        1   0   May 10      - 52:37 asm_pmon_+ASM4
+  oracle 33357878 38142068   0 08:51:06  pts/0  0:00 grep pmon
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 08:42:40
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 08:56:32
+Last attempted upload                        : 2024-04-13 08:56:32
+Total Megabytes of XML files uploaded so far : 0.19
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.48%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 08:55:56
+Last successful heartbeat to OMS             : 2024-04-13 08:55:56
+Next scheduled heartbeat to OMS              : 2024-04-13 08:56:56
+Currently initializing component             : Internal Metrics (1) (69 of 69)
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 08:52:58 GMT
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation RECALC_TARGET submitted at 2024-04-13 08:52:56 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 5, active: 2, finished: 3)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.SBIPR - SAVE_TARGET_DEPENDENT running for 217 seconds
+        rac_database.PC71PR - RETRY_TARGET running for 219 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+You have mail in /usr/spool/mail/oracle
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ ps -ef | grep tns
+  oracle 19923020        1   0   May 10      - 189:14 /ora/fs0000/grid/oracle/product/11.2.0.2/bin/tnslsnr LISTENER -inherit
+  oracle 26869804 38142068   0 08:57:33  pts/0  0:00 grep tns
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ locate pdn^?^?en^?^?^?^?                  ^?^?^?^?^?                ps -ef | grep pending
+  oracle 10879124 38142068   0 09:00:30  pts/0  0:00 grep pending
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ locate pending
+ksh: locate:  not found.
+
+  oracle : ap00158 : @AGENT12 : /ora/home
+$ cd /ora/fs0000/app/oracle/product/12.1/agent _inst
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst
+$ ls -ltrh
+ls: Not a recognized flag: h
+Usage: ls [-1ACFHLNRSabcdefgiklmnopqrstuxEUX] [File...]
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst
+$ ls -ltr
+total 8
+drwxr-xr-x    3 oracle   oinstall        256 Feb 18 2015  install
+drwxr-xr-x    2 oracle   oinstall        256 Feb 18 2015  bin
+drwxr-----    2 oracle   oinstall        256 Feb 18 2015  internal
+drwxrwxr-x    3 oracle   oinstall        256 Feb 18 2015  diag
+-rw-------    1 oracle   oinstall          0 Apr 18 2017  RdYY0yVIhX
+-rw-------    1 oracle   oinstall          0 May 17 2017  iPlmsuXYAA
+-rw-------    1 oracle   oinstall          0 Jan 05 2019  fEo43w3c1W
+-rw-------    1 oracle   oinstall          0 Jan 12 2019  NoW6s4laFm
+-rw-------    1 oracle   oinstall          0 Jan 12 2019  aKaneIzxF8
+-rw-------    1 oracle   oinstall          0 Jan 12 2019  yMp8FtSz16
+drwxr-----    8 oracle   oinstall       4096 May 10 2023  sysman
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst
+$ cd sysman
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman
+$ ls -ltr
+total 400
+drwxr-----    2 oracle   oinstall        256 Feb 18 2015  recv
+drwxr-----    3 oracle   oinstall        256 Feb 18 2015  opmn
+drwxr-----    5 oracle   oinstall        256 Feb 18 2015  ApplicationsState
+-rw-r-----    1 oracle   oinstall      77667 Feb 18 2015  AgentPluginDeployNG.pl
+-rw-r-----    1 oracle   oinstall       4761 Sep 27 2022  registry.xml.bak
+-rw-r-----    1 oracle   oinstall       4608 May 10 2023  registry.xml
+drwx------    3 oracle   oinstall       4096 Apr 13 08:42 log
+drwx------    5 oracle   oinstall       4096 Apr 13 08:42 config
+drwxr-----   13 oracle   oinstall      98304 Apr 13 08:52 emd
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman
+$ cd emd
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd
+$ ls -ltr
+total 11078696
+drwxr-----    2 oracle   oinstall        256 Feb 18 2015  collection_upgrade
+drwxr-----    2 oracle   oinstall        256 Feb 18 2015  dumps
+drwxr-----    4 oracle   oinstall        256 Feb 18 2015  upload
+drwxr-----    2 oracle   oinstall        256 Feb 18 2015  metricCache
+drwxr-----    4 oracle   oinstall        256 Apr 07 2015  metricExtLib
+drwxr-----    5 oracle   oinstall        256 Oct 11 2015  attachmentDB
+-rw-r-----    1 oracle   oinstall     120653 Mar 12 2017  Threads.5308648.1489328181.traceback
+-rw-r-----    1 oracle   oinstall    1161098 Mar 12 2017  Threads.5308648.1489328192
+-rw-r-----    1 oracle   oinstall     149902 Mar 12 2017  Threads.6029314.1489329230
+-rw-r-----    1 oracle   oinstall    1078569 Mar 12 2017  Threads.6029314.1489329240
+-rw-r-----    1 oracle   oinstall     137470 Mar 12 2017  Threads.6029320.1489329596
+-rw-r-----    1 oracle   oinstall      17897 Mar 12 2017  Threads.6029314lsof.1
+-rw-r-----    1 oracle   oinstall    1071671 Mar 12 2017  Threads.6029320.1489329606
+-rw-r-----    1 oracle   oinstall     132995 Mar 12 2017  Threads.6029326.1489329990
+-rw-r-----    1 oracle   oinstall      17897 Mar 12 2017  Threads.6029320lsof.1
+-rw-r-----    1 oracle   oinstall    1069743 Mar 12 2017  Threads.6029326.1489330000
+-rw-r-----    1 oracle   oinstall      18242 Mar 12 2017  Threads.6029326lsof.1
+-rw-r-----    1 oracle   oinstall     137475 Mar 12 2017  Threads.13238404.1560602602
+-rw-r-----    1 oracle   oinstall      16183 Mar 20 2017  bak_targets.xml.bak
+-rw-r-----    1 oracle   oinstall    1411246 Apr 18 2017  Threads.35455200.1560598634
+-rw-r-----    1 oracle   oinstall    1385810 Apr 18 2017  Threads.35455200.1560598624
+-rw-r-----    1 oracle   oinstall    1385207 Apr 18 2017  Threads.35455200.1560598618
+-rw-r-----    1 oracle   oinstall    1381858 Apr 18 2017  Threads.25952340.1560596161
+-rw-r-----    1 oracle   oinstall    1292971 Oct 20 2017  Threads.25952340.1560596151
+-rw-r-----    1 oracle   oinstall    1317872 Oct 20 2017  Threads.25952340.1560596145
+-rw-r-----    1 oracle   oinstall    1351150 Oct 20 2017  Threads.14024834.1508488503
+-rw-r-----    1 oracle   oinstall      21512 Oct 20 2017  Threads.14024834lsof.1
+-rw-r-----    1 oracle   oinstall     170182 Oct 20 2017  Threads.14024834.1508488513
+-rw-r-----    1 oracle   oinstall    1316760 Oct 23 2017  Threads.25952500.1560594633
+-rw-r-----    1 oracle   oinstall    1333292 Oct 23 2017  Threads.22413552.1560593000
+-rw-r-----    1 oracle   oinstall    1315781 Oct 23 2017  Threads.22413552.1560592990
+-rw-r-----    1 oracle   oinstall    1314571 Oct 23 2017  Threads.22413552.1560592984
+-rw-r-----    1 oracle   oinstall    1339553 Oct 24 2017  Threads.23527470.1560590007
+-rw-r-----    1 oracle   oinstall    1320254 Oct 24 2017  Threads.12910820.1560588566
+-rw-r-----    1 oracle   oinstall    1321918 Oct 24 2017  Threads.36765772.1560587568
+-rw-r-----    1 oracle   oinstall    1321481 Oct 24 2017  Threads.36765772.1560587553
+-rw-r-----    1 oracle   oinstall    1446250 Oct 27 2017  Threads.15597586.1509075381
+-rw-r-----    1 oracle   oinstall      25046 Oct 27 2017  Threads.15597586lsof.1
+-rw-r-----    1 oracle   oinstall     174699 Oct 27 2017  Threads.15597586.1509075391
+-rw-r-----    1 oracle   oinstall    1351724 Oct 28 2017  Threads.36765772.1560587547
+-rw-r-----    1 oracle   oinstall    1328364 Oct 28 2017  Threads.33489038.1560582304
+-rw-r-----    1 oracle   oinstall    1327755 Oct 28 2017  Threads.25952418.1560581261
+-rw-r-----    1 oracle   oinstall    1375003 Oct 29 2017  Threads.25952418.1560581251
+-rw-r-----    1 oracle   oinstall    1371180 Oct 29 2017  Threads.25952418.1560581245
+-rw-r-----    1 oracle   oinstall    1369290 Oct 29 2017  Threads.36569284.1560579858
+-rw-r-----    1 oracle   oinstall    1367267 Oct 29 2017  Threads.25034970.1560577747
+-rw-r-----    1 oracle   oinstall    1359939 Oct 31 2017  Threads.22020294.1509410506
+-rw-r-----    1 oracle   oinstall      23886 Oct 31 2017  Threads.22020294lsof.1
+-rw-r-----    1 oracle   oinstall     165914 Oct 31 2017  Threads.22020294.1509410516
+-rw-r-----    1 oracle   oinstall    1351693 Nov 01 2017  Threads.28639318.1560576251
+-rw-r-----    1 oracle   oinstall    1351657 Nov 01 2017  Threads.25034970.1560577736
+-rw-r-----    1 oracle   oinstall    1348602 Nov 01 2017  Threads.31260814.1560574760
+-rw-r-----    1 oracle   oinstall    1347658 Nov 01 2017  Threads.31260814.1560574750
+-rw-r-----    1 oracle   oinstall    1375943 May 15 2018  Threads.31260814.1560574744
+-rw-r-----    1 oracle   oinstall    1376076 May 15 2018  Threads.31260814.1560574734
+-rw-r-----    1 oracle   oinstall    1373872 May 15 2018  Threads.9896042.1560570305
+-rw-r-----    1 oracle   oinstall    1372832 May 15 2018  Threads.36700356.1560572747
+-rw-r-----    1 oracle   oinstall    1429006 May 21 2018  Threads.9896042.1560570292
+-rw-r-----    1 oracle   oinstall    1398628 May 21 2018  Threads.9896042.1560570285
+-rw-r-----    1 oracle   oinstall    1394008 May 21 2018  Threads.9896042.1560570274
+-rw-r-----    1 oracle   oinstall    1397031 May 21 2018  Threads.27459782.1556365145
+-rw-r-----    1 oracle   oinstall    1352113 May 21 2018  Threads.31457336.1526916645
+-rw-r-----    1 oracle   oinstall      20484 May 21 2018  Threads.31457336lsof.1
+-rw-r-----    1 oracle   oinstall     175196 May 21 2018  Threads.31457336.1526916655
+-rw-r-----    1 oracle   oinstall    1384384 May 21 2018  Threads.27459782.1556365134
+-rw-r-----    1 oracle   oinstall    1364790 May 21 2018  Threads.27459782.1556365129
+-rw-r-----    1 oracle   oinstall    1366821 May 21 2018  Threads.31457426.1550325154
+-rw-r-----    1 oracle   oinstall    1327054 May 21 2018  Threads.31457426.1550325144
+-rw-r-----    1 oracle   oinstall    1300540 May 21 2018  Threads.31457334.1550323974
+-rw-r-----    1 oracle   oinstall    1302578 May 21 2018  Threads.31457334.1550323961
+-rw-r-----    1 oracle   oinstall    1287788 May 21 2018  Threads.31457334.1550323939
+-rw-r-----    1 oracle   oinstall    1279139 May 21 2018  Threads.39387162.1550320360
+-rw-r-----    1 oracle   oinstall    1256523 May 21 2018  Threads.37290232.1550322762
+-rw-r-----    1 oracle   oinstall    1256709 May 21 2018  Threads.37486782.1550317177
+-rw-r-----    1 oracle   oinstall    1254205 May 21 2018  Threads.36372484.1550318608
+-rw-r-----    1 oracle   oinstall    1284326 May 21 2018  Threads.37486782.1550317167
+-rw-r-----    1 oracle   oinstall    1262359 May 21 2018  Threads.10879014.1550314854
+-rw-r-----    1 oracle   oinstall    1259668 May 21 2018  Threads.39518436.1550312611
+-rw-r-----    1 oracle   oinstall    1258529 May 21 2018  Threads.22544526.1550313934
+-rw-r-----    1 oracle   oinstall    1227919 May 21 2018  Threads.38207614.1550310140
+-rw-r-----    1 oracle   oinstall    1205197 May 21 2018  Threads.38207614.1550310129
+-rw-r-----    1 oracle   oinstall    1206543 May 21 2018  Threads.37814330.1550293577
+-rw-r-----    1 oracle   oinstall    1203807 May 21 2018  Threads.34013294.1550292438
+-rw-r-----    1 oracle   oinstall    1301836 May 21 2018  Threads.32309374.1526935662
+-rw-r-----    1 oracle   oinstall      22306 May 21 2018  Threads.32309374lsof.1
+-rw-r-----    1 oracle   oinstall     169456 May 21 2018  Threads.32309374.1526935672
+-rw-r-----    1 oracle   oinstall    1318239 May 21 2018  Threads.34799670.1548512238
+-rw-r-----    1 oracle   oinstall    1347941 May 21 2018  Threads.34799670.1548512227
+-rw-r-----    1 oracle   oinstall    1314747 May 21 2018  Threads.34799670.1548512212
+-rw-r-----    1 oracle   oinstall    1313549 May 21 2018  Threads.34013294.1548508260
+-rw-r-----    1 oracle   oinstall    1265935 May 22 2018  Threads.32243772.1548507031
+-rw-r-----    1 oracle   oinstall    1281356 May 22 2018  Threads.12058752.1548506167
+-rw-r-----    1 oracle   oinstall    1265541 May 22 2018  Threads.12058752.1548506157
+-rw-r-----    1 oracle   oinstall    1264542 May 22 2018  Threads.12058698.1548503616
+-rw-r-----    1 oracle   oinstall    1316332 May 22 2018  Threads.31391816.1548502463
+-rw-r-----    1 oracle   oinstall    1315058 May 22 2018  Threads.31391816.1548502435
+-rw-r-----    1 oracle   oinstall    1312703 May 22 2018  Threads.33947802.1548500809
+-rw-r-----    1 oracle   oinstall    1311712 May 22 2018  Threads.33947802.1548500799
+-rw-r-----    1 oracle   oinstall    1305276 May 22 2018  Threads.30801942.1526965880
+-rw-r-----    1 oracle   oinstall      22346 May 22 2018  Threads.30801942lsof.1
+-rw-r-----    1 oracle   oinstall     158392 May 22 2018  Threads.30801942.1526965890
+-rw-r-----    1 oracle   oinstall    1357528 May 22 2018  Threads.33947802.1548500784
+-rw-r-----    1 oracle   oinstall    1330449 May 22 2018  Threads.22479044.1548499309
+-rw-r-----    1 oracle   oinstall    1325114 May 22 2018  Threads.22479044.1548499297
+-rw-r-----    1 oracle   oinstall    1326032 May 22 2018  Threads.22479044.1548499274
+-rw-r-----    1 oracle   oinstall    1207534 May 22 2018  Threads.22806764.1548497464
+-rw-r-----    1 oracle   oinstall    1229214 May 22 2018  Threads.22806764.1548497454
+-rw-r-----    1 oracle   oinstall    1205841 May 22 2018  Threads.36765886.1548495568
+-rw-r-----    1 oracle   oinstall    1202829 May 22 2018  Threads.36765886.1548495558
+-rw-r-----    1 oracle   oinstall    1287835 May 22 2018  Threads.36765886.1548495542
+-rw-r-----    1 oracle   oinstall    1289372 May 22 2018  Threads.30605428.1548492141
+-rw-r-----    1 oracle   oinstall    1284782 May 22 2018  Threads.37421172.1548490659
+-rw-r-----    1 oracle   oinstall    1283433 May 22 2018  Threads.20054234.1548488767
+-rw-r-----    1 oracle   oinstall    1315333 May 22 2018  Threads.20054234.1548488756
+-rw-r-----    1 oracle   oinstall    1343782 May 22 2018  Threads.20054234.1548488750
+-rw-r-----    1 oracle   oinstall    1313058 May 22 2018  Threads.20054234.1548488740
+-rw-r-----    1 oracle   oinstall    1305084 May 22 2018  Threads.35062000.1548486883
+-rw-r-----    1 oracle   oinstall    1278175 May 22 2018  Threads.35061994.1548480741
+-rw-r-----    1 oracle   oinstall    1276400 May 22 2018  Threads.38011010.1548479855
+-rw-r-----    1 oracle   oinstall    1277126 May 22 2018  Threads.38011010.1548479845
+-rw-r-----    1 oracle   oinstall    1276007 May 22 2018  Threads.38011010.1548479829
+-rw-r-----    1 oracle   oinstall    1453836 May 27 2018  Threads.36438052.1527396264
+-rw-r-----    1 oracle   oinstall     170129 May 27 2018  Threads.36438052.1527396274
+-rw-r-----    1 oracle   oinstall    1382441 May 27 2018  Threads.32636996.1548478004
+-rw-r-----    1 oracle   oinstall    1381249 May 27 2018  Threads.15269908.1547902469
+-rw-r-----    1 oracle   oinstall    1379361 May 27 2018  Threads.15269908.1547902459
+-rw-r-----    1 oracle   oinstall    1379610 May 27 2018  Threads.15269908.1547902453
+-rw-r-----    1 oracle   oinstall    1239030 May 31 2018  Threads.28770420.1547901386
+-rw-r-----    1 oracle   oinstall    1261969 May 31 2018  Threads.27394230.1547897374
+-rw-r-----    1 oracle   oinstall    1238334 May 31 2018  Threads.26542150.1547896370
+-rw-r-----    1 oracle   oinstall    1233172 May 31 2018  Threads.26542150.1547896357
+-rw-r-----    1 oracle   oinstall    1307192 May 31 2018  Threads.25362604.1547894263
+-rw-r-----    1 oracle   oinstall    1304147 May 31 2018  Threads.30998712.1547891602
+-rw-r-----    1 oracle   oinstall    1301268 May 31 2018  Threads.22478970.1547888887
+-rw-r-----    1 oracle   oinstall    1299182 May 31 2018  Threads.22478970.1547888876
+-rw-r-----    1 oracle   oinstall    1266468 May 31 2018  Threads.22478970.1547888860
+-rw-r-----    1 oracle   oinstall    1230840 May 31 2018  Threads.34078828.1547887612
+-rw-r-----    1 oracle   oinstall    1228147 May 31 2018  Threads.26476756.1547886536
+-rw-r-----    1 oracle   oinstall    1225210 May 31 2018  Threads.26476756.1547886525
+-rw-r-----    1 oracle   oinstall    1307426 May 31 2018  Threads.26476756.1547886508
+-rw-r-----    1 oracle   oinstall    1276256 May 31 2018  Threads.22085714.1547884067
+-rw-r-----    1 oracle   oinstall    1279286 May 31 2018  Threads.27197576.1547879867
+-rw-r-----    1 oracle   oinstall    1280838 May 31 2018  Threads.27197576.1547879857
+-rw-r-----    1 oracle   oinstall    1294185 May 31 2018  Threads.22675562.1547876318
+-rw-r-----    1 oracle   oinstall    1276067 May 31 2018  Threads.22675562.1547876306
+-rw-r-----    1 oracle   oinstall    1272117 May 31 2018  Threads.22675562.1547876290
+-rw-r-----    1 oracle   oinstall    1264404 May 31 2018  Threads.9699440.1547874367
+-rw-r-----    1 oracle   oinstall    1259299 May 31 2018  Threads.9699440.1547874357
+-rw-r-----    1 oracle   oinstall    1236956 May 31 2018  Threads.9699440.1547874351
+-rw-r-----    1 oracle   oinstall    1243238 May 31 2018  Threads.22478850.1547329249
+-rw-r-----    1 oracle   oinstall    1233951 May 31 2018  Threads.10616930.1547324321
+-rw-r-----    1 oracle   oinstall    1300767 Jun 01 2018  Threads.7995540.1547323409
+-rw-r-----    1 oracle   oinstall    1285900 Jun 01 2018  Threads.7995540.1547323399
+-rw-r-----    1 oracle   oinstall    1288851 Jun 01 2018  Threads.38797430.1547321909
+-rw-r-----    1 oracle   oinstall    1291719 Jun 01 2018  Threads.38535422.1547320442
+-rw-r-----    1 oracle   oinstall    1441784 Jun 01 2018  Threads.31326410.1527887766
+-rw-r-----    1 oracle   oinstall      20422 Jun 01 2018  Threads.31326410lsof.1
+-rw-r-----    1 oracle   oinstall     322976 Jun 01 2018  Threads.31326410.1527887776
+drwxr-----   15 oracle   oinstall       4096 Jul 29 2018  state
+-rw-r-----    1 oracle   oinstall    1712092 Oct 25 2018  Threads.22609954.1547314905
+-rw-r-----    1 oracle   oinstall    1699676 Oct 25 2018  Threads.8650968.1547311589
+-rw-r-----    1 oracle   oinstall    1699794 Oct 25 2018  Threads.38600934.1547310514
+-rw-r-----    1 oracle   oinstall    1700119 Oct 25 2018  Threads.32243786.1547307656
+-rw-r-----    1 oracle   oinstall    1501510 Oct 26 2018  Threads.26476694.1547299162
+-rw-r-----    1 oracle   oinstall    1480550 Oct 26 2018  Threads.26476694.1547299152
+-rw-r-----    1 oracle   oinstall    1464167 Oct 26 2018  Threads.26476694.1547299136
+-rw-r-----    1 oracle   oinstall    1462975 Oct 26 2018  Threads.41484312.1547296390
+-rw-r-----    1 oracle   oinstall    1437374 Oct 26 2018  Threads.41484312.1547296380
+-rw-r-----    1 oracle   oinstall    1392015 Oct 26 2018  Threads.37945574.1547294660
+-rw-r-----    1 oracle   oinstall    1391354 Oct 26 2018  Threads.32702556.1547293488
+-rw-r-----    1 oracle   oinstall    1390170 Oct 26 2018  Threads.37879932.1547291971
+-rw-r-----    1 oracle   oinstall    1517207 Oct 26 2018  Threads.24379540.1547286847
+-rw-r-----    1 oracle   oinstall    1485746 Oct 26 2018  Threads.34275450.1547285881
+-rw-r-----    1 oracle   oinstall    1483759 Oct 26 2018  Threads.36569256.1547284667
+-rw-r-----    1 oracle   oinstall    1482021 Oct 26 2018  Threads.31653920.1547270585
+-rw-r-----    1 oracle   oinstall    1570476 Oct 28 2018  Threads.31653920.1547270575
+-rw-r-----    1 oracle   oinstall    1570836 Oct 28 2018  Threads.27328760.1547269530
+-rw-r-----    1 oracle   oinstall    1573757 Oct 28 2018  Threads.27328760.1547269520
+-rw-r-----    1 oracle   oinstall    1571648 Oct 28 2018  Threads.34144340.1546741758
+-rw-r-----    1 oracle   oinstall    1573078 Oct 28 2018  Threads.6357138.1546740753
+-rw-r-----    1 oracle   oinstall    1544567 Oct 28 2018  Threads.6357138.1546740743
+-rw-r-----    1 oracle   oinstall    1545519 Oct 28 2018  Threads.6357138.1546740727
+-rw-r-----    1 oracle   oinstall    1545487 Oct 28 2018  Threads.12910596.1546739017
+-rw-r-----    1 oracle   oinstall    1488501 Oct 28 2018  Threads.12058834.1540690832
+-rw-r-----    1 oracle   oinstall      26397 Oct 28 2018  Threads.12058834lsof.1
+-rw-r-----    1 oracle   oinstall     170699 Oct 28 2018  Threads.12058834.1540690842
+-rw-r-----    1 oracle   oinstall    1521912 Oct 31 2018  Threads.12910596.1546739006
+-rw-r-----    1 oracle   oinstall    1522090 Oct 31 2018  Threads.12910596.1546738991
+-rw-r-----    1 oracle   oinstall    1524357 Oct 31 2018  Threads.21889038.1546737724
+-rw-r-----    1 oracle   oinstall    1525155 Oct 31 2018  Threads.40894678.1546736080
+-rw-r-----    1 oracle   oinstall    1466537 Oct 31 2018  Threads.40894678.1546736070
+-rw-r-----    1 oracle   oinstall    1467116 Oct 31 2018  Threads.40894678.1546736064
+-rw-r-----    1 oracle   oinstall    1465055 Oct 31 2018  Threads.40894678.1546736052
+-rw-r-----    1 oracle   oinstall    1464325 Oct 31 2018  Threads.40894678.1546736037
+-rw-r-----    1 oracle   oinstall    1458481 Nov 02 2018  Threads.33882200.1546734905
+-rw-r-----    1 oracle   oinstall    1444806 Nov 02 2018  Threads.21233866.1546732990
+-rw-r-----    1 oracle   oinstall    1453596 Nov 02 2018  Threads.21233866.1546732980
+-rw-r-----    1 oracle   oinstall    1417482 Nov 02 2018  Threads.21233866.1546732964
+-rw-r-----    1 oracle   oinstall    1394628 Nov 02 2018  Threads.34472000.1546731693
+-rw-r-----    1 oracle   oinstall    1393230 Nov 02 2018  Threads.39583876.1546730519
+-rw-r-----    1 oracle   oinstall    1392802 Nov 02 2018  Threads.40108044.1546729370
+-rw-r-----    1 oracle   oinstall    1599604 Nov 02 2018  Threads.31981604.1541183584
+-rw-r-----    1 oracle   oinstall      26049 Nov 02 2018  Threads.31981604lsof.1
+-rw-r-----    1 oracle   oinstall     250617 Nov 02 2018  Threads.31981604.1541183594
+-rw-r-----    1 oracle   oinstall    1506752 Nov 03 2018  Threads.40108032.1546727947
+-rw-r-----    1 oracle   oinstall    1489330 Nov 03 2018  Threads.36307080.1546726812
+-rw-r-----    1 oracle   oinstall    1488536 Nov 03 2018  Threads.21233876.1546715298
+-rw-r-----    1 oracle   oinstall    1487776 Nov 03 2018  Threads.14352602.1546714105
+-rw-r-----    1 oracle   oinstall    1476147 Nov 03 2018  Threads.41222228.1546713236
+-rw-r-----    1 oracle   oinstall    1451114 Nov 03 2018  Threads.38273270.1546710867
+-rw-r-----    1 oracle   oinstall    1450791 Nov 03 2018  Threads.38273270.1546710857
+-rw-r-----    1 oracle   oinstall    1458832 Nov 03 2018  Threads.40566940.1546709212
+-rw-r-----    1 oracle   oinstall    1593166 Nov 03 2018  Threads.35782712.1541271339
+-rw-r-----    1 oracle   oinstall      25881 Nov 03 2018  Threads.35782712lsof.1
+-rw-r-----    1 oracle   oinstall     215349 Nov 03 2018  Threads.35782712.1541271350
+-rw-r-----    1 oracle   oinstall    1507444 Nov 04 2018  Threads.40566940.1546709201
+-rw-r-----    1 oracle   oinstall    1486127 Nov 04 2018  Threads.40566940.1546709196
+-rw-r-----    1 oracle   oinstall    1484982 Nov 04 2018  Threads.34537524.1546707885
+-rw-r-----    1 oracle   oinstall    1472804 Nov 04 2018  Threads.6488262.1546706333
+-rw-r-----    1 oracle   oinstall    1487963 Nov 04 2018  Threads.6488084.1541367162
+-rw-r-----    1 oracle   oinstall      23863 Nov 04 2018  Threads.6488084lsof.1
+-rw-r-----    1 oracle   oinstall     171793 Nov 04 2018  Threads.6488084.1541367173
+-rw-r-----    1 oracle   oinstall    1477077 Nov 05 2018  Threads.6488262.1546706322
+-rw-r-----    1 oracle   oinstall    1444730 Nov 05 2018  Threads.36438052.1546704195
+-rw-r-----    1 oracle   oinstall    1438736 Nov 05 2018  Threads.36438052.1546704185
+-rw-r-----    1 oracle   oinstall    1435860 Nov 05 2018  Threads.36438052.1546704168
+-rw-r-----    1 oracle   oinstall    1497821 Nov 05 2018  Threads.38404160.1546702391
+-rw-r-----    1 oracle   oinstall    1497653 Nov 05 2018  Threads.38404160.1546702380
+-rw-r-----    1 oracle   oinstall    1496916 Nov 05 2018  Threads.38404160.1546702374
+-rw-r-----    1 oracle   oinstall    1495394 Nov 05 2018  Threads.38404160.1546702364
+-rw-r-----    1 oracle   oinstall    1546380 Nov 05 2018  Threads.23920886.1541397282
+-rw-r-----    1 oracle   oinstall      23136 Nov 05 2018  Threads.23920886lsof.1
+-rw-r-----    1 oracle   oinstall     406841 Nov 05 2018  Threads.23920886.1541397292
+-rw-r-----    1 oracle   oinstall    1505363 Nov 06 2018  Threads.37814372.1546700830
+-rw-r-----    1 oracle   oinstall    1493546 Nov 06 2018  Threads.34537610.1546699399
+-rw-r-----    1 oracle   oinstall    1482567 Nov 06 2018  Threads.34537610.1546699389
+-rw-r-----    1 oracle   oinstall    1483286 Nov 06 2018  Threads.37093548.1546698109
+-rw-r-----    1 oracle   oinstall    1502060 Nov 06 2018  Threads.37093548.1546698098
+-rw-r-----    1 oracle   oinstall    1484895 Nov 06 2018  Threads.38535420.1546697079
+-rw-r-----    1 oracle   oinstall    1486762 Nov 06 2018  Threads.9633820.1546694249
+-rw-r-----    1 oracle   oinstall    1485529 Nov 06 2018  Threads.40370186.1546693120
+-rw-r-----    1 oracle   oinstall    1595085 Nov 06 2018  Threads.35651710.1541527679
+-rw-r-----    1 oracle   oinstall      22757 Nov 06 2018  Threads.35651710lsof.1
+-rw-r-----    1 oracle   oinstall     177491 Nov 06 2018  Threads.35651710.1541527689
+-rw-r-----    1 oracle   oinstall    1531033 Nov 07 2018  Threads.41943152.1546689426
+-rw-r-----    1 oracle   oinstall    1508732 Nov 07 2018  Threads.27984008.1546675695
+-rw-r-----    1 oracle   oinstall    1503187 Nov 07 2018  Threads.7733388.1546672936
+-rw-r-----    1 oracle   oinstall    1500732 Nov 07 2018  Threads.7733388.1546672924
+-rw-r-----    1 oracle   oinstall    1527430 Nov 07 2018  Threads.37814348.1546671628
+-rw-r-----    1 oracle   oinstall    1554088 Nov 07 2018  Threads.7340224.1546670270
+-rw-r-----    1 oracle   oinstall    1522328 Nov 07 2018  Threads.7340224.1546670260
+-rw-r-----    1 oracle   oinstall    1521379 Nov 07 2018  Threads.5308648.1546663281
+-rw-r-----    1 oracle   oinstall    1791954 Jan 05 2019  Threads.5308648.1546663291
+-rw-r-----    1 oracle   oinstall      29658 Jan 05 2019  Threads.5308648lsof.1
+-rw-r-----    1 oracle   oinstall      25676 Jan 05 2019  Threads.7340224lsof.1
+-rw-r-----    1 oracle   oinstall     127368 Jan 05 2019  Threads.37814348.1546671638
+-rw-r-----    1 oracle   oinstall      26164 Jan 05 2019  Threads.37814348lsof.1
+-rw-r-----    1 oracle   oinstall      25253 Jan 05 2019  Threads.7733388lsof.1
+-rw-r-----    1 oracle   oinstall    1603611 Jan 05 2019  Threads.27984008.1546675705
+-rw-r-----    1 oracle   oinstall      25783 Jan 05 2019  Threads.27984008lsof.1
+-rw-r-----    1 oracle   oinstall      24273 Jan 05 2019  Threads.41943152lsof.1
+-rw-r-----    1 oracle   oinstall     971797 Jan 05 2019  Threads.41943152.1546689437
+-rw-r-----    1 oracle   oinstall    1038659 Jan 05 2019  Threads.40370186.1546693130
+-rw-r-----    1 oracle   oinstall      23473 Jan 05 2019  Threads.40370186lsof.1
+-rw-r-----    1 oracle   oinstall    1647178 Jan 05 2019  Threads.9633820.1546694259
+-rw-r-----    1 oracle   oinstall      25756 Jan 05 2019  Threads.9633820lsof.1
+-rw-r-----    1 oracle   oinstall    1580177 Jan 05 2019  Threads.37093548.1546698092
+-rw-r-----    1 oracle   oinstall      21797 Jan 05 2019  Threads.38535420lsof.1
+-rw-r-----    1 oracle   oinstall     745583 Jan 05 2019  Threads.38535420.1546697089
+-rw-r-----    1 oracle   oinstall     836311 Jan 05 2019  Threads.37093548.1546698082
+-rw-r-----    1 oracle   oinstall        208 Jan 05 2019  Threads.37093548lsof.1
+-rw-r-----    1 oracle   oinstall      24042 Jan 05 2019  Threads.34537610lsof.1
+-rw-r-----    1 oracle   oinstall      25762 Jan 05 2019  Threads.37814372lsof.1
+-rw-r-----    1 oracle   oinstall    1350227 Jan 05 2019  Threads.37814372.1546700840
+-rw-r-----    1 oracle   oinstall        208 Jan 05 2019  Threads.38404160lsof.1
+-rw-r-----    1 oracle   oinstall    1656106 Jan 05 2019  Threads.36438052.1546704178
+-rw-r-----    1 oracle   oinstall        208 Jan 05 2019  Threads.36438052lsof.1
+-rw-r-----    1 oracle   oinstall      23924 Jan 05 2019  Threads.6488262lsof.1
+-rw-r-----    1 oracle   oinstall    1577798 Jan 05 2019  Threads.34537524.1546707895
+-rw-r-----    1 oracle   oinstall      22631 Jan 05 2019  Threads.34537524lsof.1
+-rw-r-----    1 oracle   oinstall    1456714 Jan 05 2019  Threads.40566940.1546709186
+-rw-r-----    1 oracle   oinstall        208 Jan 05 2019  Threads.40566940lsof.1
+-rw-r-----    1 oracle   oinstall      23610 Jan 05 2019  Threads.38273270lsof.1
+-rw-r-----    1 oracle   oinstall      23257 Jan 05 2019  Threads.41222228lsof.1
+-rw-r-----    1 oracle   oinstall     989176 Jan 05 2019  Threads.41222228.1546713226
+-rw-r-----    1 oracle   oinstall    1333034 Jan 05 2019  Threads.14352602.1546714115
+-rw-r-----    1 oracle   oinstall      20167 Jan 05 2019  Threads.14352602lsof.1
+-rw-r-----    1 oracle   oinstall    1512711 Jan 05 2019  Threads.21233876.1546715308
+-rw-r-----    1 oracle   oinstall      23216 Jan 05 2019  Threads.21233876lsof.1
+-rw-r-----    1 oracle   oinstall    1223645 Jan 05 2019  Threads.36307080.1546726802
+-rw-r-----    1 oracle   oinstall      21338 Jan 05 2019  Threads.36307080lsof.1
+-rw-r-----    1 oracle   oinstall    1597966 Jan 05 2019  Threads.40108032.1546727937
+-rw-r-----    1 oracle   oinstall      22965 Jan 05 2019  Threads.40108032lsof.1
+-rw-r-----    1 oracle   oinstall     288306 Jan 05 2019  Threads.40108044.1546729389
+-rw-r-----    1 oracle   oinstall      23106 Jan 05 2019  Threads.40108044lsof.1
+-rw-r-----    1 oracle   oinstall    1391826 Jan 05 2019  Threads.39583876.1546730529
+-rw-r-----    1 oracle   oinstall      21442 Jan 05 2019  Threads.39583876lsof.1
+-rw-r-----    1 oracle   oinstall    1423792 Jan 05 2019  Threads.34472000.1546731703
+-rw-r-----    1 oracle   oinstall      21623 Jan 05 2019  Threads.34472000lsof.1
+-rw-r-----    1 oracle   oinstall    1369444 Jan 06 2019  Threads.21233866.1546732974
+-rw-r-----    1 oracle   oinstall        208 Jan 06 2019  Threads.21233866lsof.1
+-rw-r-----    1 oracle   oinstall      22987 Jan 06 2019  Threads.33882200lsof.1
+-rw-r-----    1 oracle   oinstall     801392 Jan 06 2019  Threads.33882200.1546734915
+-rw-r-----    1 oracle   oinstall     106381 Jan 06 2019  Threads.40894678.1546736047
+-rw-r-----    1 oracle   oinstall        208 Jan 06 2019  Threads.40894678lsof.1
+-rw-r-----    1 oracle   oinstall     739939 Jan 06 2019  Threads.21889038.1546737734
+-rw-r-----    1 oracle   oinstall      23614 Jan 06 2019  Threads.21889038lsof.1
+-rw-r-----    1 oracle   oinstall    1679506 Jan 06 2019  Threads.12910596.1546739001
+-rw-r-----    1 oracle   oinstall        208 Jan 06 2019  Threads.12910596lsof.1
+-rw-r-----    1 oracle   oinstall     124783 Jan 06 2019  Threads.6357138.1546740737
+-rw-r-----    1 oracle   oinstall        208 Jan 06 2019  Threads.6357138lsof.1
+-rw-r-----    1 oracle   oinstall      21263 Jan 06 2019  Threads.34144340lsof.1
+-rw-r-----    1 oracle   oinstall    1329275 Jan 06 2019  Threads.34144340.1546741768
+-rw-r-----    1 oracle   oinstall      24893 Jan 12 2019  Threads.27328760lsof.1
+-rw-r-----    1 oracle   oinstall      31912 Jan 12 2019  Threads.41353336.1547283402
+-rw-r-----    1 oracle   oinstall      22980 Jan 12 2019  Threads.31653920lsof.1
+-rw-r-----    1 oracle   oinstall      22940 Jan 12 2019  Threads.41353336lsof.1
+-rw-r-----    1 oracle   oinstall     440831 Jan 12 2019  Threads.41353336.1547283412
+-rw-r-----    1 oracle   oinstall    1614315 Jan 12 2019  Threads.36569256.1547284677
+-rw-r-----    1 oracle   oinstall      25121 Jan 12 2019  Threads.36569256lsof.1
+-rw-r-----    1 oracle   oinstall    1358158 Jan 12 2019  Threads.34275450.1547285892
+-rw-r-----    1 oracle   oinstall      21366 Jan 12 2019  Threads.34275450lsof.1
+-rw-r-----    1 oracle   oinstall     242556 Jan 12 2019  Threads.24379540.1547286857
+-rw-r-----    1 oracle   oinstall      22489 Jan 12 2019  Threads.24379540lsof.1
+-rw-r-----    1 oracle   oinstall    1692920 Jan 12 2019  Threads.37879932.1547291982
+-rw-r-----    1 oracle   oinstall      24276 Jan 12 2019  Threads.37879932lsof.1
+-rw-r-----    1 oracle   oinstall    1550217 Jan 12 2019  Threads.32702556.1547293498
+-rw-r-----    1 oracle   oinstall      22956 Jan 12 2019  Threads.32702556lsof.1
+-rw-r-----    1 oracle   oinstall    1544773 Jan 12 2019  Threads.37945574.1547294670
+-rw-r-----    1 oracle   oinstall      23703 Jan 12 2019  Threads.37945574lsof.1
+-rw-r-----    1 oracle   oinstall      25248 Jan 12 2019  Threads.41484312lsof.1
+-rw-r-----    1 oracle   oinstall    1813500 Jan 12 2019  Threads.26476694.1547299146
+-rw-r-----    1 oracle   oinstall        208 Jan 12 2019  Threads.26476694lsof.1
+-rw-r-----    1 oracle   oinstall    1073568 Jan 12 2019  Threads.32243786.1547307646
+-rw-r-----    1 oracle   oinstall      40106 Jan 12 2019  Threads.32243786lsof.1
+-rw-r-----    1 oracle   oinstall     140205 Jan 12 2019  Threads.38600934.1547310524
+-rw-r-----    1 oracle   oinstall      24410 Jan 12 2019  Threads.38600934lsof.1
+-rw-r-----    1 oracle   oinstall    1691075 Jan 12 2019  Threads.8650968.1547311600
+-rw-r-----    1 oracle   oinstall      24786 Jan 12 2019  Threads.8650968lsof.1
+-rw-r-----    1 oracle   oinstall    1817359 Jan 12 2019  Threads.22609954.1547314916
+-rw-r-----    1 oracle   oinstall      23148 Jan 12 2019  Threads.22609954lsof.1
+-rw-r-----    1 oracle   oinstall    1460744 Jan 12 2019  Threads.38535422.1547320452
+-rw-r-----    1 oracle   oinstall      20928 Jan 12 2019  Threads.38535422lsof.1
+-rw-r-----    1 oracle   oinstall    1134864 Jan 12 2019  Threads.7995540.1547323378
+-rw-r-----    1 oracle   oinstall      48622 Jan 12 2019  Threads.38797430lsof.1
+-rw-r-----    1 oracle   oinstall     164596 Jan 12 2019  Threads.38797430.1547321919
+-rw-r-----    1 oracle   oinstall    1536323 Jan 12 2019  Threads.7995540.1547323388
+-rw-r-----    1 oracle   oinstall        208 Jan 12 2019  Threads.7995540lsof.1
+-rw-r-----    1 oracle   oinstall    1118970 Jan 12 2019  Threads.10616930.1547324331
+-rw-r-----    1 oracle   oinstall      52653 Jan 12 2019  Threads.10616930lsof.1
+-rw-r-----    1 oracle   oinstall    1601098 Jan 12 2019  Threads.9699440.1547874341
+-rw-r-----    1 oracle   oinstall      22860 Jan 12 2019  Threads.22478850lsof.1
+-rw-r-----    1 oracle   oinstall     682709 Jan 12 2019  Threads.22478850.1547329259
+-rw-r-----    1 oracle   oinstall        208 Jan 19 2019  Threads.9699440lsof.1
+-rw-r-----    1 oracle   oinstall    1587229 Jan 19 2019  Threads.22675562.1547876300
+-rw-r-----    1 oracle   oinstall        208 Jan 19 2019  Threads.22675562lsof.1
+-rw-r-----    1 oracle   oinstall      23304 Jan 19 2019  Threads.27197576lsof.1
+-rw-r-----    1 oracle   oinstall      25255 Jan 19 2019  Threads.22085714lsof.1
+-rw-r-----    1 oracle   oinstall     364508 Jan 19 2019  Threads.22085714.1547884077
+-rw-r-----    1 oracle   oinstall    1664511 Jan 19 2019  Threads.26476756.1547886519
+-rw-r-----    1 oracle   oinstall        208 Jan 19 2019  Threads.26476756lsof.1
+-rw-r-----    1 oracle   oinstall     988693 Jan 19 2019  Threads.34078828.1547887622
+-rw-r-----    1 oracle   oinstall      17173 Jan 19 2019  Threads.34078828lsof.1
+-rw-r-----    1 oracle   oinstall    1127873 Jan 19 2019  Threads.22478970.1547888871
+-rw-r-----    1 oracle   oinstall        208 Jan 19 2019  Threads.22478970lsof.1
+-rw-r-----    1 oracle   oinstall     250052 Jan 19 2019  Threads.30998712.1547891612
+-rw-r-----    1 oracle   oinstall      20428 Jan 19 2019  Threads.30998712lsof.1
+-rw-r-----    1 oracle   oinstall     154985 Jan 19 2019  Threads.25362604.1547894273
+-rw-r-----    1 oracle   oinstall      22006 Jan 19 2019  Threads.25362604lsof.1
+-rw-r-----    1 oracle   oinstall      19301 Jan 19 2019  Threads.26542150lsof.1
+-rw-r-----    1 oracle   oinstall    1050180 Jan 19 2019  Threads.27394230.1547897384
+-rw-r-----    1 oracle   oinstall      19323 Jan 19 2019  Threads.27394230lsof.1
+-rw-r-----    1 oracle   oinstall    1853010 Jan 19 2019  Threads.15269908.1547902443
+-rw-r-----    1 oracle   oinstall      22342 Jan 19 2019  Threads.28770420lsof.1
+-rw-r-----    1 oracle   oinstall     805280 Jan 19 2019  Threads.28770420.1547901396
+-rw-r-----    1 oracle   oinstall        208 Jan 19 2019  Threads.15269908lsof.1
+-rw-r-----    1 oracle   oinstall     361953 Jan 26 2019  Threads.32636996.1548478015
+-rw-r-----    1 oracle   oinstall      23630 Jan 26 2019  Threads.32636996lsof.1
+-rw-r-----    1 oracle   oinstall      81439 Jan 26 2019  Threads.38011010.1548479839
+-rw-r-----    1 oracle   oinstall        208 Jan 26 2019  Threads.38011010lsof.1
+-rw-r-----    1 oracle   oinstall    1000548 Jan 26 2019  Threads.35061994.1548480731
+-rw-r-----    1 oracle   oinstall      31929 Jan 26 2019  Threads.35061994lsof.1
+-rw-r-----    1 oracle   oinstall     700031 Jan 26 2019  Threads.35062000.1548486893
+-rw-r-----    1 oracle   oinstall      23118 Jan 26 2019  Threads.35062000lsof.1
+-rw-r-----    1 oracle   oinstall        208 Jan 26 2019  Threads.20054234lsof.1
+-rw-r-----    1 oracle   oinstall     772926 Jan 26 2019  Threads.37421172.1548490669
+-rw-r-----    1 oracle   oinstall      59266 Jan 26 2019  Threads.37421172lsof.1
+-rw-r-----    1 oracle   oinstall    1157647 Jan 26 2019  Threads.30605428.1548492151
+-rw-r-----    1 oracle   oinstall      40505 Jan 26 2019  Threads.30605428lsof.1
+-rw-r-----    1 oracle   oinstall     361604 Jan 26 2019  Threads.25362660.1548493006
+-rw-r-----    1 oracle   oinstall    1012671 Jan 26 2019  Threads.25362660.1548492996
+-rw-r-----    1 oracle   oinstall      34802 Jan 26 2019  Threads.25362660lsof.1
+-rw-r-----    1 oracle   oinstall    1426090 Jan 26 2019  Threads.36765886.1548495552
+-rw-r-----    1 oracle   oinstall        208 Jan 26 2019  Threads.36765886lsof.1
+-rw-r-----    1 oracle   oinstall      18083 Jan 26 2019  Threads.22806764lsof.1
+-rw-r-----    1 oracle   oinstall    1440837 Jan 26 2019  Threads.22479044.1548499285
+-rw-r-----    1 oracle   oinstall        208 Jan 26 2019  Threads.22479044lsof.1
+-rw-r-----    1 oracle   oinstall    1013650 Jan 26 2019  Threads.33947802.1548500794
+-rw-r-----    1 oracle   oinstall        208 Jan 26 2019  Threads.33947802lsof.1
+-rw-r-----    1 oracle   oinstall     118844 Jan 26 2019  Threads.31391816lsof.1
+-rw-r-----    1 oracle   oinstall     969969 Jan 26 2019  Threads.12058698.1548503626
+-rw-r-----    1 oracle   oinstall      17725 Jan 26 2019  Threads.12058698lsof.1
+-rw-r-----    1 oracle   oinstall      20114 Jan 26 2019  Threads.12058752lsof.1
+-rw-r-----    1 oracle   oinstall     815812 Jan 26 2019  Threads.32243772.1548507041
+-rw-r-----    1 oracle   oinstall      15805 Jan 26 2019  Threads.32243772lsof.1
+-rw-r-----    1 oracle   oinstall     988511 Jan 26 2019  Threads.34013294.1548508270
+-rw-r-----    1 oracle   oinstall    1160544 Jan 26 2019  Threads.34799670.1548512222
+-rw-r-----    1 oracle   oinstall        208 Jan 26 2019  Threads.34799670lsof.1
+-rw-r-----    1 oracle   oinstall    1667402 Feb 16 2019  Threads.34013294.1550292448
+-rw-r-----    1 oracle   oinstall      23533 Feb 16 2019  Threads.34013294lsof.1
+-rw-r-----    1 oracle   oinstall    1513710 Feb 16 2019  Threads.37814330.1550293587
+-rw-r-----    1 oracle   oinstall      22242 Feb 16 2019  Threads.37814330lsof.1
+-rw-r-----    1 oracle   oinstall      25191 Feb 16 2019  Threads.38207614lsof.1
+-rw-r-----    1 oracle   oinstall    1302812 Feb 16 2019  Threads.23199838.1550311585
+-rw-r-----    1 oracle   oinstall      22083 Feb 16 2019  Threads.23199838lsof.1
+-rw-r-----    1 oracle   oinstall     857496 Feb 16 2019  Threads.23199838.1550311595
+-rw-r-----    1 oracle   oinstall    1312204 Feb 16 2019  Threads.39518436.1550312621
+-rw-r-----    1 oracle   oinstall      18817 Feb 16 2019  Threads.39518436lsof.1
+-rw-r-----    1 oracle   oinstall    1403605 Feb 16 2019  Threads.22544526.1550313924
+-rw-r-----    1 oracle   oinstall      59376 Feb 16 2019  Threads.22544526lsof.1
+-rw-r-----    1 oracle   oinstall     842646 Feb 16 2019  Threads.10879014.1550314864
+-rw-r-----    1 oracle   oinstall      18650 Feb 16 2019  Threads.10879014lsof.1
+-rw-r-----    1 oracle   oinstall      22425 Feb 16 2019  Threads.37486782lsof.1
+-rw-r-----    1 oracle   oinstall    1523427 Feb 16 2019  Threads.39387162.1550320350
+-rw-r-----    1 oracle   oinstall      21904 Feb 16 2019  Threads.36372484lsof.1
+-rw-r-----    1 oracle   oinstall     181955 Feb 16 2019  Threads.36372484.1550318618
+-rw-r-----    1 oracle   oinstall      22940 Feb 16 2019  Threads.39387162lsof.1
+-rw-r-----    1 oracle   oinstall     180055 Feb 16 2019  Threads.37290232.1550322752
+-rw-r-----    1 oracle   oinstall      20629 Feb 16 2019  Threads.37290232lsof.1
+-rw-r-----    1 oracle   oinstall    1527560 Feb 16 2019  Threads.31457334.1550323949
+-rw-r-----    1 oracle   oinstall        208 Feb 16 2019  Threads.31457334lsof.1
+-rw-r-----    1 oracle   oinstall      23252 Feb 16 2019  Threads.31457426lsof.1
+-rw-r-----    1 oracle   oinstall    1695478 Apr 27 2019  Threads.27459782.1556365119
+-rw-r-----    1 oracle   oinstall        208 Apr 27 2019  Threads.27459782lsof.1
+-rw-r-----    1 oracle   oinstall        208 Jun 15 2019  Threads.9896042lsof.1
+-rw-r-----    1 oracle   oinstall     882314 Jun 15 2019  Threads.36700356.1560572737
+-rw-r-----    1 oracle   oinstall      47925 Jun 15 2019  Threads.36700356lsof.1
+-rw-r-----    1 oracle   oinstall        208 Jun 15 2019  Threads.31260814lsof.1
+-rw-r-----    1 oracle   oinstall    1339136 Jun 15 2019  Threads.28639318.1560576261
+-rw-r-----    1 oracle   oinstall      23873 Jun 15 2019  Threads.28639318lsof.1
+-rw-r-----    1 oracle   oinstall      64359 Jun 15 2019  Threads.25034970lsof.1
+-rw-r-----    1 oracle   oinstall      20750 Jun 15 2019  Threads.36569284lsof.1
+-rw-r-----    1 oracle   oinstall     183970 Jun 15 2019  Threads.36569284.1560579868
+-rw-r-----    1 oracle   oinstall    1367796 Jun 15 2019  Threads.25952418.1560581235
+-rw-r-----    1 oracle   oinstall        208 Jun 15 2019  Threads.25952418lsof.1
+-rw-r-----    1 oracle   oinstall    1004253 Jun 15 2019  Threads.12648466.1560583940
+-rw-r-----    1 oracle   oinstall      17778 Jun 15 2019  Threads.33489038lsof.1
+-rw-r-----    1 oracle   oinstall     612700 Jun 15 2019  Threads.33489038.1560582314
+-rw-r-----    1 oracle   oinstall      25599 Jun 15 2019  Threads.12648466lsof.1
+-rw-r-----    1 oracle   oinstall     993142 Jun 15 2019  Threads.12648466.1560583950
+-rw-r-----    1 oracle   oinstall    1765284 Jun 15 2019  Threads.36765772.1560587537
+-rw-r-----    1 oracle   oinstall        208 Jun 15 2019  Threads.36765772lsof.1
+-rw-r-----    1 oracle   oinstall    1358278 Jun 15 2019  Threads.23527470.1560589996
+-rw-r-----    1 oracle   oinstall      24241 Jun 15 2019  Threads.12910820lsof.1
+-rw-r-----    1 oracle   oinstall     207372 Jun 15 2019  Threads.12910820.1560588576
+-rw-r-----    1 oracle   oinstall      43991 Jun 15 2019  Threads.23527470lsof.1
+-rw-r-----    1 oracle   oinstall     148794 Jun 15 2019  Threads.22413552.1560592974
+-rw-r-----    1 oracle   oinstall        208 Jun 15 2019  Threads.22413552lsof.1
+-rw-r-----    1 oracle   oinstall    1402679 Jun 15 2019  Threads.25952500.1560594643
+-rw-r-----    1 oracle   oinstall      22725 Jun 15 2019  Threads.25952500lsof.1
+-rw-r-----    1 oracle   oinstall          0 Jun 15 2019  Threads.25952340.1560596135
+-rw-r-----    1 oracle   oinstall        208 Jun 15 2019  Threads.25952340lsof.1
+-rw-r-----    1 oracle   oinstall    1032159 Jun 15 2019  Threads.28377138.1560597483
+-rw-r-----    1 oracle   oinstall      75959 Jun 15 2019  Threads.28377138lsof.1
+-rw-r-----    1 oracle   oinstall     187180 Jun 15 2019  Threads.28377138.1560597493
+-rw-r-----    1 oracle   oinstall     981274 Jun 15 2019  Threads.35455200.1560598607
+-rw-r-----    1 oracle   oinstall        208 Jun 15 2019  Threads.35455200lsof.1
+-rw-r-----    1 oracle   oinstall     156931 Jun 15 2019  Threads.13238404.1560602612.traceback
+-rw-r-----    1 oracle   oinstall     127652 Jun 15 2019  Threads.19923152.1561175996
+-rw-r-----    1 oracle   oinstall      20777 Jun 15 2019  Threads.13238404lsof.1
+-rw-r-----    1 oracle   oinstall     285900 Jun 22 2019  Threads.19923152.1561176006
+-rw-r-----    1 oracle   oinstall      21780 Jun 22 2019  Threads.19923152lsof.1
+-rw-r-----    1 oracle   oinstall      71700 Jun 22 2019  Threads.22020238.1561177567.traceback
+-rw-r-----    1 oracle   oinstall    1071706 Jun 22 2019  Threads.22020238.1561177641
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.22020238.1561177647.traceback
+-rw-r-----    1 oracle   oinstall        208 Jun 22 2019  Threads.22020238lsof.1
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.22020238.1561177657.traceback
+-rw-r-----    1 oracle   oinstall    1051770 Jun 22 2019  Threads.27656410.1561178576
+-rw-r-----    1 oracle   oinstall     211508 Jun 22 2019  Threads.38207516.1561179788
+-rw-r-----    1 oracle   oinstall      72232 Jun 22 2019  Threads.27656410lsof.1
+-rw-r-----    1 oracle   oinstall      71075 Jun 22 2019  Threads.27656410.1561178586.traceback
+-rw-r-----    1 oracle   oinstall     735535 Jun 22 2019  Threads.38207516.1561179798
+-rw-r-----    1 oracle   oinstall      23012 Jun 22 2019  Threads.38207516lsof.1
+-rw-r-----    1 oracle   oinstall      63211 Jun 22 2019  Threads.38731908.1561180606.traceback
+-rw-r-----    1 oracle   oinstall    1018970 Jun 22 2019  Threads.38731908.1561180619
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.38731908.1561180634.traceback
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.38731908.1561180648.traceback
+-rw-r-----    1 oracle   oinstall        208 Jun 22 2019  Threads.38731908lsof.1
+-rw-r-----    1 oracle   oinstall     981613 Jun 22 2019  Threads.33489024.1561181799
+-rw-r-----    1 oracle   oinstall     952358 Jun 22 2019  Threads.33489024.1561181809
+-rw-r-----    1 oracle   oinstall      16859 Jun 22 2019  Threads.33489024lsof.1
+-rw-r-----    1 oracle   oinstall     159451 Jun 22 2019  Threads.30933158.1561184965.traceback
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.30933158.1561185051.traceback
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.30933158.1561185057.traceback
+-rw-r-----    1 oracle   oinstall        208 Jun 22 2019  Threads.30933158lsof.1
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.30933158.1561185067.traceback
+-rw-r-----    1 oracle   oinstall      72689 Jun 22 2019  Threads.31981762.1561186291.traceback
+-rw-r-----    1 oracle   oinstall    1046432 Jun 22 2019  Threads.28246252.1561188086
+-rw-r-----    1 oracle   oinstall      26820 Jun 22 2019  Threads.31981762lsof.1
+-rw-r-----    1 oracle   oinstall     299433 Jun 22 2019  Threads.31981762.1561186303
+-rw-r-----    1 oracle   oinstall    1529570 Jun 22 2019  Threads.28246252.1561188096
+-rw-r-----    1 oracle   oinstall      22388 Jun 22 2019  Threads.28246252lsof.1
+-rw-r-----    1 oracle   oinstall     169408 Jun 22 2019  Threads.36503552.1561190640.traceback
+-rw-r-----    1 oracle   oinstall    1737249 Jun 22 2019  Threads.36503552.1561190652
+-rw-r-----    1 oracle   oinstall      21436 Jun 22 2019  Threads.36503552lsof.1
+-rw-r-----    1 oracle   oinstall     145945 Jun 22 2019  Threads.37093392.1561193182.traceback
+-rw-r-----    1 oracle   oinstall     789262 Jun 22 2019  Threads.37093392.1561193193
+-rw-r-----    1 oracle   oinstall      19896 Jun 22 2019  Threads.37093392lsof.1
+-rw-r-----    1 oracle   oinstall     187831 Jun 22 2019  Threads.37748778.1561194508.traceback
+-rw-r-----    1 oracle   oinstall    1393578 Jun 22 2019  Threads.37748778.1561194526
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.37748778.1561194532.traceback
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.37748778.1561194543.traceback
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.37748778.1561194548.traceback
+-rw-r-----    1 oracle   oinstall         27 Jun 22 2019  Threads.37748778.1561194558.traceback
+-rw-r-----    1 oracle   oinstall        208 Jun 22 2019  Threads.37748778lsof.1
+-rw-r-----    1 oracle   oinstall     163043 Jun 22 2019  Threads.23199882.1561203069.traceback
+-rw-r-----    1 oracle   oinstall     909117 Jun 22 2019  Threads.23199882.1561203082
+-rw-r-----    1 oracle   oinstall      21389 Jun 22 2019  Threads.23199882lsof.1
+-rw-r-----    1 oracle   oinstall     279312 Jun 22 2019  Threads.28311580.1561205229.traceback
+-rw-r-----    1 oracle   oinstall    1655157 Jun 22 2019  Threads.28311580.1561205240
+-rw-r-----    1 oracle   oinstall      21165 Jun 22 2019  Threads.28311580lsof.1
+-rw-r-----    1 oracle   oinstall    1582358 Jun 22 2019  Threads.25821348.1561206920
+-rw-r-----    1 oracle   oinstall      22102 Jun 22 2019  Threads.25821348lsof.1
+-rw-r-----    1 oracle   oinstall     202316 Jun 22 2019  Threads.25821348.1561206930.traceback
+-rw-r-----    1 oracle   oinstall     217224 Jun 22 2019  Threads.19791874.1561208134
+-rw-r-----    1 oracle   oinstall     165602 Jun 22 2019  Threads.33488938.1561210241
+-rw-r-----    1 oracle   oinstall      22907 Jun 22 2019  Threads.19791874lsof.1
+-rw-r-----    1 oracle   oinstall     154968 Jun 22 2019  Threads.19791874.1561208145.traceback
+-rw-r-----    1 oracle   oinstall    1482753 Jun 22 2019  Threads.33488938.1561210251
+-rw-r-----    1 oracle   oinstall      20870 Jun 22 2019  Threads.33488938lsof.1
+-rw-r-----    1 oracle   oinstall     138846 Jun 22 2019  Threads.11665474.1561211595.traceback
+-rw-r-----    1 oracle   oinstall    1416532 Jun 22 2019  Threads.11665474.1561211608
+-rw-r-----    1 oracle   oinstall      21389 Jun 22 2019  Threads.11665474lsof.1
+-rw-r-----    1 oracle   oinstall     147358 Jun 22 2019  Threads.39518378.1561218061.traceback
+-rw-r-----    1 oracle   oinstall     932388 Jun 22 2019  Threads.39518378.1561218084
+-rw-r-----    1 oracle   oinstall      21236 Jun 22 2019  Threads.39518378lsof.1
+-rw-r-----    1 oracle   oinstall    1509010 Jul 13 2019  Threads.32768204.1562998648
+-rw-r-----    1 oracle   oinstall    1506250 Jul 13 2019  Threads.29884664.1562997778
+-rw-r-----    1 oracle   oinstall    1299602 Jul 13 2019  Threads.29884664.1562997788
+-rw-r-----    1 oracle   oinstall      19510 Jul 13 2019  Threads.29884664lsof.1
+-rw-r-----    1 oracle   oinstall    1300324 Jul 13 2019  Threads.32768204.1562998638
+-rw-r-----    1 oracle   oinstall      21984 Jul 13 2019  Threads.32768204lsof.1
+-rw-r-----    1 oracle   oinstall   31484711 Jan 09 2020  heapdump.20200109.112205.25100442.0001.phd
+-rw-r-----    1 oracle   oinstall    1638250 Jan 09 2020  javacore.20200109.112205.25100442.0002.txt
+-rw-r--r--    1 oracle   oinstall    1814812 Jan 09 2020  Snap.20200109.112205.25100442.0003.trc
+-rw-r-----    1 oracle   oinstall   31475130 Jan 09 2020  heapdump.20200109.112230.25100442.0004.phd
+-rw-r-----    1 oracle   oinstall   31475261 Jan 09 2020  heapdump.20200109.112230.25100442.0005.phd
+-rw-r--r--    1 oracle   oinstall     471324 Jan 09 2020  Snap.20200109.112230.25100442.0011.trc
+-rw-r-----    1 oracle   oinstall    1623551 Jan 09 2020  javacore.20200109.112230.25100442.0006.txt
+-rw-r-----    1 oracle   oinstall   31469023 Jan 09 2020  heapdump.20200109.112230.25100442.0007.phd
+-rw-r-----    1 oracle   oinstall    1619819 Jan 09 2020  javacore.20200109.112230.25100442.0008.txt
+-rw-r-----    1 oracle   oinstall   31469023 Jan 09 2020  heapdump.20200109.112230.25100442.0009.phd
+-rw-r-----    1 oracle   oinstall    1617837 Jan 09 2020  javacore.20200109.112230.25100442.0010.txt
+-rw-r-----    1 oracle   oinstall   29570286 Jan 09 2020  heapdump.20200109.181017.24772760.0001.phd
+-rw-r-----    1 oracle   oinstall    1488841 Jan 09 2020  javacore.20200109.181017.24772760.0002.txt
+-rw-r--r--    1 oracle   oinstall    1519344 Jan 09 2020  Snap.20200109.181017.24772760.0003.trc
+-rw-r-----    1 oracle   oinstall   29569761 Jan 09 2020  heapdump.20200109.181022.24772760.0004.phd
+-rw-r-----    1 oracle   oinstall    1456699 Jan 09 2020  javacore.20200109.181022.24772760.0005.txt
+-rw-r--r--    1 oracle   oinstall      12016 Jan 09 2020  Snap.20200109.181022.24772760.0007.trc
+-rw-r-----    1 oracle   oinstall   29569888 Jan 09 2020  heapdump.20200109.181025.24772760.0006.phd
+-rw-r-----    1 oracle   oinstall    1457151 Jan 09 2020  javacore.20200109.181025.24772760.0008.txt
+-rw-r--r--    1 oracle   oinstall      20208 Jan 09 2020  Snap.20200109.181025.24772760.0010.trc
+-rw-r-----    1 oracle   oinstall   29521953 Jan 09 2020  heapdump.20200109.181026.24772760.0009.phd
+-rw-r-----    1 oracle   oinstall    1453415 Jan 09 2020  javacore.20200109.181027.24772760.0011.txt
+-rw-r-----    1 oracle   oinstall   31682948 Feb 27 2020  heapdump.20200227.165318.5636334.0001.phd
+-rw-r-----    1 oracle   oinstall   31682948 Feb 27 2020  heapdump.20200227.165318.5636334.0002.phd
+-rw-r-----    1 oracle   oinstall   31682955 Feb 27 2020  heapdump.20200227.165324.5636334.0003.phd
+-rw-r-----    1 oracle   oinstall   31682955 Feb 27 2020  heapdump.20200227.165325.5636334.0004.phd
+-rw-r--r--    1 oracle   oinstall    1691368 Feb 27 2020  Snap.20200227.165325.5636334.0009.trc
+-rw-r-----    1 oracle   oinstall    1521909 Feb 27 2020  javacore.20200227.165327.5636334.0005.txt
+-rw-r-----    1 oracle   oinstall    1516381 Feb 27 2020  javacore.20200227.165318.5636334.0006.txt
+-rw-r-----    1 oracle   oinstall    1515251 Feb 27 2020  javacore.20200227.165318.5636334.0007.txt
+-rw-r-----    1 oracle   oinstall    1514088 Feb 27 2020  Threads.16777318.1582862239
+drwxr-----  165 oracle   oinstall      12288 Feb 28 2020  metricDump
+-rw-r-----    1 oracle   oinstall    1530792 Feb 28 2020  Threads.16777318.1582862249
+-rw-r-----    1 oracle   oinstall      22075 Feb 28 2020  Threads.16777318lsof.1
+-rw-r-----    1 oracle   oinstall   29876563 Mar 04 2020  heapdump.20200304.182410.5308562.0001.phd
+-rw-r-----    1 oracle   oinstall   29876563 Mar 04 2020  heapdump.20200304.182410.5308562.0002.phd
+-rw-r-----    1 oracle   oinstall   29876563 Mar 04 2020  heapdump.20200304.182410.5308562.0003.phd
+-rw-r-----    1 oracle   oinstall    1673120 Mar 04 2020  javacore.20200304.182410.5308562.0004.txt
+-rw-r--r--    1 oracle   oinstall    1822440 Mar 04 2020  Snap.20200304.182410.5308562.0007.trc
+-rw-r-----    1 oracle   oinstall    1642304 Mar 04 2020  javacore.20200304.182410.5308562.0005.txt
+-rw-r-----    1 oracle   oinstall    1641640 Mar 04 2020  javacore.20200304.182410.5308562.0006.txt
+-rw-r--r--    1 oracle   oinstall      28392 Mar 04 2020  Snap.20200304.182410.5308562.0009.trc
+-rw-r-----    1 oracle   oinstall   29874810 Mar 04 2020  heapdump.20200304.182417.5308562.0010.phd
+-rw-r-----    1 oracle   oinstall    1634567 Mar 04 2020  javacore.20200304.182418.5308562.0011.txt
+-rw-r-----    1 oracle   oinstall   28666588 Mar 04 2020  heapdump.20200304.194420.36438086.0001.phd
+-rw-r-----    1 oracle   oinstall    1431080 Mar 04 2020  javacore.20200304.194420.36438086.0003.txt
+-rw-r-----    1 oracle   oinstall   28666588 Mar 04 2020  heapdump.20200304.194420.36438086.0002.phd
+-rw-r--r--    1 oracle   oinstall    1494760 Mar 04 2020  Snap.20200304.194420.36438086.0005.trc
+-rw-r-----    1 oracle   oinstall    1411910 Mar 04 2020  javacore.20200304.194420.36438086.0004.txt
+-rw-r--r--    1 oracle   oinstall      44776 Mar 04 2020  Snap.20200304.194420.36438086.0006.trc
+-rw-r-----    1 oracle   oinstall   28663520 Mar 04 2020  heapdump.20200304.194424.36438086.0007.phd
+-rw-r-----    1 oracle   oinstall    1411656 Mar 04 2020  javacore.20200304.194424.36438086.0008.txt
+-rw-r--r--    1 oracle   oinstall      36584 Mar 04 2020  Snap.20200304.194424.36438086.0009.trc
+-rw-r-----    1 oracle   oinstall   28012743 Mar 04 2020  heapdump.20200304.210314.33882196.0001.phd
+-rw-r-----    1 oracle   oinstall   28012743 Mar 04 2020  heapdump.20200304.210314.33882196.0002.phd
+-rw-r-----    1 oracle   oinstall   28012743 Mar 04 2020  heapdump.20200304.210314.33882196.0003.phd
+-rw-r-----    1 oracle   oinstall    1423408 Mar 04 2020  javacore.20200304.210314.33882196.0004.txt
+-rw-r--r--    1 oracle   oinstall    1470184 Mar 04 2020  Snap.20200304.210314.33882196.0009.trc
+-rw-r-----    1 oracle   oinstall   28012743 Mar 04 2020  heapdump.20200304.210314.33882196.0005.phd
+-rw-r-----    1 oracle   oinstall    1389713 Mar 04 2020  javacore.20200304.210314.33882196.0007.txt
+-rw-r-----    1 oracle   oinstall    1391090 Mar 04 2020  javacore.20200304.210314.33882196.0006.txt
+-rw-r-----    1 oracle   oinstall    1388458 Mar 04 2020  javacore.20200304.210314.33882196.0008.txt
+-rw-r-----    1 oracle   oinstall   29197581 Mar 05 2020  heapdump.20200305.005719.36307116.0001.phd
+-rw-r-----    1 oracle   oinstall    1431192 Mar 05 2020  javacore.20200305.005719.36307116.0002.txt
+-rw-r--r--    1 oracle   oinstall    1543912 Mar 05 2020  Snap.20200305.005719.36307116.0003.trc
+-rw-r-----    1 oracle   oinstall   29200175 Mar 05 2020  heapdump.20200305.005723.36307116.0004.phd
+-rw-r-----    1 oracle   oinstall   29200175 Mar 05 2020  heapdump.20200305.005723.36307116.0005.phd
+-rw-r-----    1 oracle   oinstall    1419055 Mar 05 2020  javacore.20200305.005723.36307116.0006.txt
+-rw-r-----    1 oracle   oinstall    1418163 Mar 05 2020  javacore.20200305.005723.36307116.0007.txt
+-rw-r--r--    1 oracle   oinstall      36584 Mar 05 2020  Snap.20200305.005723.36307116.0009.trc
+-rw-r-----    1 oracle   oinstall   29269523 Mar 05 2020  heapdump.20200305.005905.36307116.0010.phd
+-rw-r--r--    1 oracle   oinstall    1068776 Mar 05 2020  Snap.20200305.005905.36307116.0012.trc
+-rw-r-----    1 oracle   oinstall    1537674 Mar 05 2020  javacore.20200305.005906.36307116.0011.txt
+-rw-r-----    1 oracle   oinstall   28534341 Mar 05 2020  heapdump.20200305.134816.17825862.0001.phd
+-rw-r-----    1 oracle   oinstall   28534341 Mar 05 2020  heapdump.20200305.134816.17825862.0002.phd
+-rw-r-----    1 oracle   oinstall   28534341 Mar 05 2020  heapdump.20200305.134816.17825862.0003.phd
+-rw-r-----    1 oracle   oinstall   28534341 Mar 05 2020  heapdump.20200305.134816.17825862.0004.phd
+-rw-r-----    1 oracle   oinstall    1569609 Mar 05 2020  javacore.20200305.134816.17825862.0005.txt
+-rw-r--r--    1 oracle   oinstall    1724132 Mar 05 2020  Snap.20200305.134816.17825862.0009.trc
+-rw-r-----    1 oracle   oinstall    1538872 Mar 05 2020  javacore.20200305.134816.17825862.0006.txt
+-rw-r-----    1 oracle   oinstall    1532932 Mar 05 2020  javacore.20200305.134816.17825862.0008.txt
+-rw-r-----    1 oracle   oinstall    1534688 Mar 05 2020  javacore.20200305.134816.17825862.0007.txt
+-rw-r--r--    1 oracle   oinstall     134884 Mar 05 2020  Snap.20200305.134823.17825862.0012.trc
+-rw-r-----    1 oracle   oinstall   29447797 Mar 05 2020  heapdump.20200305.150820.27852836.0001.phd
+-rw-r-----    1 oracle   oinstall   29447797 Mar 05 2020  heapdump.20200305.150820.27852836.0002.phd
+-rw-r-----    1 oracle   oinstall   29447797 Mar 05 2020  heapdump.20200305.150820.27852836.0003.phd
+-rw-r-----    1 oracle   oinstall    1511732 Mar 05 2020  javacore.20200305.150820.27852836.0004.txt
+-rw-r--r--    1 oracle   oinstall    1691364 Mar 05 2020  Snap.20200305.150820.27852836.0007.trc
+-rw-r-----    1 oracle   oinstall    1489125 Mar 05 2020  javacore.20200305.150820.27852836.0005.txt
+-rw-r-----    1 oracle   oinstall    1487824 Mar 05 2020  javacore.20200305.150820.27852836.0006.txt
+-rw-r--r--    1 oracle   oinstall      61156 Mar 05 2020  Snap.20200305.150820.27852836.0009.trc
+-rw-r-----    1 oracle   oinstall   28807844 Mar 05 2020  heapdump.20200305.163035.35193086.0001.phd
+-rw-r-----    1 oracle   oinstall   28807844 Mar 05 2020  heapdump.20200305.163035.35193086.0002.phd
+-rw-r-----    1 oracle   oinstall    1514352 Mar 05 2020  javacore.20200305.163035.35193086.0003.txt
+-rw-r--r--    1 oracle   oinstall    1658596 Mar 05 2020  Snap.20200305.163035.35193086.0005.trc
+-rw-r-----    1 oracle   oinstall    1485726 Mar 05 2020  javacore.20200305.163035.35193086.0004.txt
+-rw-r--r--    1 oracle   oinstall      28388 Mar 05 2020  Snap.20200305.163035.35193086.0006.trc
+-rw-r-----    1 oracle   oinstall   28811702 Mar 05 2020  heapdump.20200305.163043.35193086.0007.phd
+-rw-r-----    1 oracle   oinstall    1483166 Mar 05 2020  javacore.20200305.163043.35193086.0008.txt
+-rw-r-----    1 oracle   oinstall    1484658 Mar 05 2020  javacore.20200305.163043.35193086.0009.txt
+-rw-r-----    1 oracle   oinstall   28811702 Mar 05 2020  heapdump.20200305.163043.35193086.0010.phd
+-rw-r-----    1 oracle   oinstall   29123759 Mar 06 2020  heapdump.20200306.111513.18415728.0001.phd
+-rw-r-----    1 oracle   oinstall   29123759 Mar 06 2020  heapdump.20200306.111513.18415728.0002.phd
+-rw-r-----    1 oracle   oinstall   29123759 Mar 06 2020  heapdump.20200306.111513.18415728.0003.phd
+-rw-r-----    1 oracle   oinstall    1654039 Mar 06 2020  javacore.20200306.111513.18415728.0004.txt
+-rw-r--r--    1 oracle   oinstall    1724136 Mar 06 2020  Snap.20200306.111513.18415728.0009.trc
+-rw-r-----    1 oracle   oinstall   29123759 Mar 06 2020  heapdump.20200306.111513.18415728.0005.phd
+-rw-r-----    1 oracle   oinstall    1630308 Mar 06 2020  javacore.20200306.111513.18415728.0006.txt
+-rw-r-----    1 oracle   oinstall    1629340 Mar 06 2020  javacore.20200306.111513.18415728.0007.txt
+-rw-r-----    1 oracle   oinstall    1628337 Mar 06 2020  javacore.20200306.111513.18415728.0008.txt
+-rw-r-----    1 oracle   oinstall   28817785 Mar 06 2020  heapdump.20200306.123743.18415736.0001.phd
+-rw-r-----    1 oracle   oinstall    1572995 Mar 06 2020  javacore.20200306.123743.18415736.0002.txt
+-rw-r--r--    1 oracle   oinstall    1601256 Mar 06 2020  Snap.20200306.123743.18415736.0003.trc
+-rw-r-----    1 oracle   oinstall    1543618 Mar 06 2020  javacore.20200306.123745.18415736.0005.txt
+-rw-r-----    1 oracle   oinstall   28819144 Mar 06 2020  heapdump.20200306.123745.18415736.0004.phd
+-rw-r--r--    1 oracle   oinstall      36584 Mar 06 2020  Snap.20200306.123745.18415736.0006.trc
+-rw-r-----    1 oracle   oinstall   28827354 Mar 06 2020  heapdump.20200306.123746.18415736.0007.phd
+-rw-r-----    1 oracle   oinstall   28827354 Mar 06 2020  heapdump.20200306.123746.18415736.0008.phd
+-rw-r-----    1 oracle   oinstall    1546245 Mar 06 2020  javacore.20200306.123746.18415736.0009.txt
+-rw-r-----    1 oracle   oinstall    1544444 Mar 06 2020  javacore.20200306.123746.18415736.0010.txt
+-rw-r--r--    1 oracle   oinstall      28392 Mar 06 2020  Snap.20200306.123746.18415736.0012.trc
+-rw-r-----    1 oracle   oinstall   28962142 Mar 06 2020  heapdump.20200306.143506.32833618.0001.phd
+-rw-r-----    1 oracle   oinstall    1389369 Mar 06 2020  javacore.20200306.143506.32833618.0002.txt
+-rw-r--r--    1 oracle   oinstall    1461992 Mar 06 2020  Snap.20200306.143506.32833618.0003.trc
+-rw-r-----    1 oracle   oinstall   28960946 Mar 06 2020  heapdump.20200306.143509.32833618.0004.phd
+-rw-r-----    1 oracle   oinstall   28960946 Mar 06 2020  heapdump.20200306.143509.32833618.0005.phd
+-rw-r-----    1 oracle   oinstall    1371958 Mar 06 2020  javacore.20200306.143509.32833618.0007.txt
+-rw-r-----    1 oracle   oinstall   28960946 Mar 06 2020  heapdump.20200306.143509.32833618.0006.phd
+-rw-r--r--    1 oracle   oinstall      36584 Mar 06 2020  Snap.20200306.143509.32833618.0010.trc
+-rw-r-----    1 oracle   oinstall    1368948 Mar 06 2020  javacore.20200306.143509.32833618.0008.txt
+-rw-r-----    1 oracle   oinstall    1367297 Mar 06 2020  javacore.20200306.143509.32833618.0009.txt
+-rw-r--r--    1 oracle   oinstall      44776 Mar 06 2020  Snap.20200306.143509.32833618.0012.trc
+-rw-r-----    1 oracle   oinstall   28527602 Mar 06 2020  heapdump.20200306.144123.32833626.0001.phd
+-rw-r-----    1 oracle   oinstall   28527602 Mar 06 2020  heapdump.20200306.144123.32833626.0002.phd
+-rw-r-----    1 oracle   oinstall    1280301 Mar 06 2020  javacore.20200306.144123.32833626.0003.txt
+-rw-r--r--    1 oracle   oinstall    1445608 Mar 06 2020  Snap.20200306.144123.32833626.0005.trc
+-rw-r-----    1 oracle   oinstall    1250232 Mar 06 2020  javacore.20200306.144123.32833626.0004.txt
+-rw-r--r--    1 oracle   oinstall      28392 Mar 06 2020  Snap.20200306.144123.32833626.0006.trc
+-rw-r-----    1 oracle   oinstall   28527622 Mar 06 2020  heapdump.20200306.144128.32833626.0007.phd
+-rw-r-----    1 oracle   oinstall    1283924 Mar 06 2020  javacore.20200306.144128.32833626.0008.txt
+-rw-r--r--    1 oracle   oinstall     102120 Mar 06 2020  Snap.20200306.144128.32833626.0009.trc
+-rw-r-----    1 oracle   oinstall   28799913 Mar 15 2020  heapdump.20200315.031039.1180500.0001.phd
+-rw-r-----    1 oracle   oinstall   28799913 Mar 15 2020  heapdump.20200315.031039.1180500.0002.phd
+-rw-r-----    1 oracle   oinstall   28799913 Mar 15 2020  heapdump.20200315.031039.1180500.0003.phd
+-rw-r-----    1 oracle   oinstall    1751522 Mar 15 2020  javacore.20200315.031039.1180500.0004.txt
+-rw-r--r--    1 oracle   oinstall    1896164 Mar 15 2020  Snap.20200315.031039.1180500.0007.trc
+-rw-r-----    1 oracle   oinstall    1730118 Mar 15 2020  javacore.20200315.031039.1180500.0005.txt
+-rw-r-----    1 oracle   oinstall    1728524 Mar 15 2020  javacore.20200315.031039.1180500.0006.txt
+-rw-r--r--    1 oracle   oinstall      52964 Mar 15 2020  Snap.20200315.031039.1180500.0009.trc
+-rw-r-----    1 oracle   oinstall   28795285 Mar 15 2020  heapdump.20200315.031047.1180500.0010.phd
+-rw-r-----    1 oracle   oinstall    1724866 Mar 15 2020  javacore.20200315.031047.1180500.0011.txt
+-rw-r-----    1 oracle   oinstall   29338404 Jun 19 2020  heapdump.20200619.015953.1704836.0001.phd
+-rw-r-----    1 oracle   oinstall   29338404 Jun 19 2020  heapdump.20200619.015953.1704836.0002.phd
+-rw-r--r--    1 oracle   oinstall    1740528 Jun 19 2020  Snap.20200619.015953.1704836.0009.trc
+-rw-r-----    1 oracle   oinstall   29338403 Jun 19 2020  heapdump.20200619.015953.1704836.0003.phd
+-rw-r-----    1 oracle   oinstall    1429834 Jun 19 2020  javacore.20200619.015953.1704836.0004.txt
+-rw-r-----    1 oracle   oinstall    1429778 Jun 19 2020  javacore.20200619.015953.1704836.0005.txt
+-rw-r-----    1 oracle   oinstall    1428604 Jun 19 2020  javacore.20200619.015953.1704836.0006.txt
+-rw-r-----    1 oracle   oinstall   29338403 Jun 19 2020  heapdump.20200619.015953.1704836.0007.phd
+-rw-r-----    1 oracle   oinstall    1426699 Jun 19 2020  javacore.20200619.015953.1704836.0008.txt
+-rw-r-----    1 oracle   oinstall   28382393 Jun 19 2020  heapdump.20200619.050400.5636426.0001.phd
+-rw-r-----    1 oracle   oinstall   28382418 Jun 19 2020  heapdump.20200619.050406.5636426.0002.phd
+-rw-r-----    1 oracle   oinstall    1426158 Jun 19 2020  javacore.20200619.050400.5636426.0003.txt
+-rw-r--r--    1 oracle   oinstall    1658608 Jun 19 2020  Snap.20200619.050400.5636426.0005.trc
+-rw-r-----    1 oracle   oinstall    1410900 Jun 19 2020  javacore.20200619.050406.5636426.0004.txt
+-rw-r--r--    1 oracle   oinstall      36592 Jun 19 2020  Snap.20200619.050406.5636426.0006.trc
+-rw-r-----    1 oracle   oinstall   28379406 Jun 19 2020  heapdump.20200619.050416.5636426.0007.phd
+-rw-r-----    1 oracle   oinstall    1416535 Jun 19 2020  javacore.20200619.050416.5636426.0008.txt
+-rw-r-----    1 oracle   oinstall    1416016 Jun 19 2020  javacore.20200619.050416.5636426.0009.txt
+-rw-r-----    1 oracle   oinstall   28379196 Jun 19 2020  heapdump.20200619.050416.5636426.0010.phd
+-rw-r-----    1 oracle   oinstall   29193322 Jun 19 2020  heapdump.20200619.110029.10354892.0001.phd
+-rw-r-----    1 oracle   oinstall   29193322 Jun 19 2020  heapdump.20200619.110029.10354892.0002.phd
+-rw-r-----    1 oracle   oinstall    1362861 Jun 19 2020  javacore.20200619.110029.10354892.0003.txt
+-rw-r--r--    1 oracle   oinstall    1576688 Jun 19 2020  Snap.20200619.110029.10354892.0005.trc
+-rw-r-----    1 oracle   oinstall    1339514 Jun 19 2020  javacore.20200619.110029.10354892.0004.txt
+-rw-r--r--    1 oracle   oinstall      52976 Jun 19 2020  Snap.20200619.110029.10354892.0006.trc
+-rw-r-----    1 oracle   oinstall   29193648 Jun 19 2020  heapdump.20200619.110043.10354892.0007.phd
+-rw-r-----    1 oracle   oinstall   29193648 Jun 19 2020  heapdump.20200619.110044.10354892.0008.phd
+-rw-r--r--    1 oracle   oinstall     454384 Jun 19 2020  Snap.20200619.110044.10354892.0011.trc
+-rw-r-----    1 oracle   oinstall    1342983 Jun 19 2020  javacore.20200619.110044.10354892.0009.txt
+-rw-r-----    1 oracle   oinstall    1340749 Jun 19 2020  javacore.20200619.110043.10354892.0010.txt
+-rw-r-----    1 oracle   oinstall   29470409 Jun 19 2020  heapdump.20200619.153745.5571500.0001.phd
+-rw-r-----    1 oracle   oinstall    1339029 Jun 19 2020  javacore.20200619.153745.5571500.0002.txt
+-rw-r--r--    1 oracle   oinstall    1511152 Jun 19 2020  Snap.20200619.153745.5571500.0004.trc
+-rw-r-----    1 oracle   oinstall   29470382 Jun 19 2020  heapdump.20200619.153748.5571500.0003.phd
+-rw-r-----    1 oracle   oinstall   29470382 Jun 19 2020  heapdump.20200619.153749.5571500.0005.phd
+-rw-r-----    1 oracle   oinstall    1305596 Jun 19 2020  javacore.20200619.153749.5571500.0007.txt
+-rw-r-----    1 oracle   oinstall    1306576 Jun 19 2020  javacore.20200619.153748.5571500.0006.txt
+-rw-r--r--    1 oracle   oinstall      61168 Jun 19 2020  Snap.20200619.153749.5571500.0009.trc
+-rw-r-----    1 oracle   oinstall   29464969 Jun 19 2020  heapdump.20200619.153803.5571500.0010.phd
+-rw-r-----    1 oracle   oinstall    1328907 Jun 19 2020  javacore.20200619.153803.5571500.0011.txt
+-rw-r--r--    1 oracle   oinstall     503536 Jun 19 2020  Snap.20200619.153807.5571500.0012.trc
+-rw-r-----    1 oracle   oinstall   28297078 Jun 19 2020  heapdump.20200619.180822.5571510.0001.phd
+-rw-r-----    1 oracle   oinstall   28297078 Jun 19 2020  heapdump.20200619.180822.5571510.0002.phd
+-rw-r-----    1 oracle   oinstall   28297078 Jun 19 2020  heapdump.20200619.180822.5571510.0003.phd
+-rw-r--r--    1 oracle   oinstall    1576688 Jun 19 2020  Snap.20200619.180822.5571510.0009.trc
+-rw-r-----    1 oracle   oinstall   28297070 Jun 19 2020  heapdump.20200619.180822.5571510.0004.phd
+-rw-r-----    1 oracle   oinstall    1362202 Jun 19 2020  javacore.20200619.180822.5571510.0005.txt
+-rw-r-----    1 oracle   oinstall    1360776 Jun 19 2020  javacore.20200619.180822.5571510.0006.txt
+-rw-r-----    1 oracle   oinstall    1359092 Jun 19 2020  javacore.20200619.180822.5571510.0007.txt
+-rw-r-----    1 oracle   oinstall    1358303 Jun 19 2020  javacore.20200619.180822.5571510.0008.txt
+-rw-r-----    1 oracle   oinstall   29993310 Jul 22 2020  heapdump.20200722.161033.1245512.0001.phd
+-rw-r-----    1 oracle   oinstall   29993310 Jul 22 2020  heapdump.20200722.161033.1245512.0002.phd
+-rw-r-----    1 oracle   oinstall   29993310 Jul 22 2020  heapdump.20200722.161033.1245512.0003.phd
+-rw-r-----    1 oracle   oinstall   29993310 Jul 22 2020  heapdump.20200722.161033.1245512.0004.phd
+-rw-r-----    1 oracle   oinstall    1541728 Jul 22 2020  javacore.20200722.161033.1245512.0005.txt
+-rw-r--r--    1 oracle   oinstall    2084580 Jul 22 2020  Snap.20200722.161033.1245512.0009.trc
+-rw-r-----    1 oracle   oinstall    1517462 Jul 22 2020  javacore.20200722.161033.1245512.0006.txt
+-rw-r-----    1 oracle   oinstall    1514903 Jul 22 2020  javacore.20200722.161033.1245512.0007.txt
+-rw-r-----    1 oracle   oinstall    1513203 Jul 22 2020  javacore.20200722.161033.1245512.0008.txt
+-rw-r--r--    1 oracle   oinstall      85732 Jul 22 2020  Snap.20200722.161042.1245512.0012.trc
+-rw-r-----    1 oracle   oinstall   30056470 Aug 04 2020  heapdump.20200804.071152.11272286.0001.phd
+-rw-r-----    1 oracle   oinstall    1549194 Aug 04 2020  javacore.20200804.071152.11272286.0002.txt
+-rw-r--r--    1 oracle   oinstall    1961700 Aug 04 2020  Snap.20200804.071152.11272286.0009.trc
+-rw-r-----    1 oracle   oinstall    1523235 Aug 04 2020  javacore.20200804.071152.11272286.0003.txt
+-rw-r-----    1 oracle   oinstall   30056470 Aug 04 2020  heapdump.20200804.071152.11272286.0004.phd
+-rw-r-----    1 oracle   oinstall    1521686 Aug 04 2020  javacore.20200804.071152.11272286.0005.txt
+-rw-r-----    1 oracle   oinstall   30056489 Aug 04 2020  heapdump.20200804.071152.11272286.0006.phd
+-rw-r-----    1 oracle   oinstall   30056489 Aug 04 2020  heapdump.20200804.071152.11272286.0007.phd
+-rw-r-----    1 oracle   oinstall    1522364 Aug 04 2020  javacore.20200804.071152.11272286.0008.txt
+-rw-r-----    1 oracle   oinstall   28834099 Sep 15 2020  heapdump.20200915.022737.1245978.0001.phd
+-rw-r-----    1 oracle   oinstall   28834099 Sep 15 2020  heapdump.20200915.022737.1245978.0002.phd
+-rw-r-----    1 oracle   oinstall   28834099 Sep 15 2020  heapdump.20200915.022738.1245978.0003.phd
+-rw-r--r--    1 oracle   oinstall    1789668 Sep 15 2020  Snap.20200915.022738.1245978.0009.trc
+-rw-r-----    1 oracle   oinstall   28834099 Sep 15 2020  heapdump.20200915.022738.1245978.0004.phd
+-rw-r-----    1 oracle   oinstall    1464246 Sep 15 2020  javacore.20200915.022738.1245978.0005.txt
+-rw-r-----    1 oracle   oinstall    1464464 Sep 15 2020  javacore.20200915.022739.1245978.0006.txt
+-rw-r-----    1 oracle   oinstall    1462885 Sep 15 2020  javacore.20200915.022737.1245978.0007.txt
+-rw-r-----    1 oracle   oinstall    1462198 Sep 15 2020  javacore.20200915.022737.1245978.0008.txt
+-rw-r-----    1 oracle   oinstall   29512135 Dec 13 2020  core.0
+-rw-r-----    1 oracle   oinstall   27597658 May 09 2021  heapdump.20210509.111046.33357900.0001.phd
+-rw-r-----    1 oracle   oinstall   27597658 May 09 2021  heapdump.20210509.111046.33357900.0002.phd
+-rw-r-----    1 oracle   oinstall    1490825 May 09 2021  javacore.20210509.111046.33357900.0003.txt
+-rw-r--r--    1 oracle   oinstall    2035440 May 09 2021  Snap.20210509.111046.33357900.0005.trc
+-rw-r-----    1 oracle   oinstall    1468574 May 09 2021  javacore.20210509.111046.33357900.0004.txt
+-rw-r--r--    1 oracle   oinstall      28400 May 09 2021  Snap.20210509.111046.33357900.0006.trc
+-rw-r-----    1 oracle   oinstall   27553812 May 09 2021  heapdump.20210509.111051.33357900.0007.phd
+-rw-r-----    1 oracle   oinstall    1469439 May 09 2021  javacore.20210509.111051.33357900.0008.txt
+-rw-r-----    1 oracle   oinstall   27553914 May 09 2021  heapdump.20210509.111051.33357900.0009.phd
+-rw-r-----    1 oracle   oinstall    1468336 May 09 2021  javacore.20210509.111051.33357900.0010.txt
+-rw-r-----    1 oracle   oinstall   31473439 Feb 26 2022  heapdump.20220226.072444.45613194.0001.phd
+-rw-r-----    1 oracle   oinstall    1487702 Feb 26 2022  javacore.20220226.072444.45613194.0002.txt
+-rw-r--r--    1 oracle   oinstall    1797872 Feb 26 2022  Snap.20220226.072444.45613194.0003.trc
+-rw-r-----    1 oracle   oinstall   31473253 Feb 26 2022  heapdump.20220226.072451.45613194.0004.phd
+-rw-r-----    1 oracle   oinstall   31473253 Feb 26 2022  heapdump.20220226.072451.45613194.0005.phd
+-rw-r--r--    1 oracle   oinstall     225008 Feb 26 2022  Snap.20220226.072451.45613194.0010.trc
+-rw-r-----    1 oracle   oinstall   31473253 Feb 26 2022  heapdump.20220226.072451.45613194.0006.phd
+-rw-r-----    1 oracle   oinstall    1465684 Feb 26 2022  javacore.20220226.072452.45613194.0007.txt
+-rw-r-----    1 oracle   oinstall    1464994 Feb 26 2022  javacore.20220226.072452.45613194.0008.txt
+-rw-r-----    1 oracle   oinstall    1464968 Feb 26 2022  javacore.20220226.072451.45613194.0009.txt
+-rw-r-----    1 oracle   oinstall   28667831 Feb 26 2022  heapdump.20220226.073624.43450430.0001.phd
+-rw-r-----    1 oracle   oinstall   28667831 Feb 26 2022  heapdump.20220226.073624.43450430.0002.phd
+-rw-r-----    1 oracle   oinstall    1399064 Feb 26 2022  javacore.20220226.073624.43450430.0003.txt
+-rw-r--r--    1 oracle   oinstall    1707760 Feb 26 2022  Snap.20220226.073624.43450430.0008.trc
+-rw-r-----    1 oracle   oinstall   28667831 Feb 26 2022  heapdump.20220226.073624.43450430.0004.phd
+-rw-r-----    1 oracle   oinstall   28667831 Feb 26 2022  heapdump.20220226.073624.43450430.0005.phd
+-rw-r-----    1 oracle   oinstall    1380084 Feb 26 2022  javacore.20220226.073624.43450430.0006.txt
+-rw-r-----    1 oracle   oinstall    1378939 Feb 26 2022  javacore.20220226.073624.43450430.0007.txt
+-rw-r-----    1 oracle   oinstall    1375208 Feb 26 2022  javacore.20220226.073624.43450430.0009.txt
+-rw-r-----    1 oracle   oinstall   28178373 Feb 26 2022  heapdump.20220226.075248.43450438.0001.phd
+-rw-r-----    1 oracle   oinstall   28178373 Feb 26 2022  heapdump.20220226.075248.43450438.0002.phd
+-rw-r-----    1 oracle   oinstall   28178373 Feb 26 2022  heapdump.20220226.075248.43450438.0003.phd
+-rw-r--r--    1 oracle   oinstall    1625840 Feb 26 2022  Snap.20220226.075248.43450438.0009.trc
+-rw-r-----    1 oracle   oinstall   28178373 Feb 26 2022  heapdump.20220226.075249.43450438.0004.phd
+-rw-r-----    1 oracle   oinstall    1361683 Feb 26 2022  javacore.20220226.075249.43450438.0005.txt
+-rw-r-----    1 oracle   oinstall    1359685 Feb 26 2022  javacore.20220226.075249.43450438.0006.txt
+-rw-r-----    1 oracle   oinstall    1359141 Feb 26 2022  javacore.20220226.075248.43450438.0007.txt
+-rw-r-----    1 oracle   oinstall    1357967 Feb 26 2022  javacore.20220226.075248.43450438.0008.txt
+-rw-r-----    1 oracle   oinstall    1483573 Feb 26 2022  Threads.45940744.1645876911
+-rw-r-----    1 oracle   oinstall      21871 Feb 26 2022  Threads.45940744lsof.1
+-rw-r-----    1 oracle   oinstall     177203 Feb 26 2022  Threads.45940744.1645876921
+-rw-r-----    1 oracle   oinstall   27960909 Feb 26 2022  heapdump.20220226.120815.45940750.0001.phd
+-rw-r-----    1 oracle   oinstall   27960909 Feb 26 2022  heapdump.20220226.120815.45940750.0002.phd
+-rw-r-----    1 oracle   oinstall   27960909 Feb 26 2022  heapdump.20220226.120815.45940750.0003.phd
+-rw-r-----    1 oracle   oinstall   27960909 Feb 26 2022  heapdump.20220226.120815.45940750.0004.phd
+-rw-r-----    1 oracle   oinstall    1540977 Feb 26 2022  javacore.20220226.120815.45940750.0005.txt
+-rw-r--r--    1 oracle   oinstall    2068208 Feb 26 2022  Snap.20220226.120815.45940750.0009.trc
+-rw-r-----    1 oracle   oinstall    1515081 Feb 26 2022  javacore.20220226.120815.45940750.0006.txt
+-rw-r-----    1 oracle   oinstall    1513661 Feb 26 2022  javacore.20220226.120815.45940750.0007.txt
+-rw-r-----    1 oracle   oinstall    1514579 Feb 26 2022  javacore.20220226.120815.45940750.0008.txt
+-rw-r-----    1 oracle   oinstall   28315065 Feb 26 2022  heapdump.20220226.120930.47775910.0001.phd
+-rw-r-----    1 oracle   oinstall    1488425 Feb 26 2022  javacore.20220226.120930.47775910.0002.txt
+-rw-r--r--    1 oracle   oinstall    1896176 Feb 26 2022  Snap.20220226.120930.47775910.0007.trc
+-rw-r-----    1 oracle   oinstall   28279050 Feb 26 2022  heapdump.20220226.120932.47775910.0003.phd
+-rw-r-----    1 oracle   oinstall   28279050 Feb 26 2022  heapdump.20220226.120932.47775910.0004.phd
+-rw-r-----    1 oracle   oinstall   28279050 Feb 26 2022  heapdump.20220226.120933.47775910.0005.phd
+-rw-r-----    1 oracle   oinstall    1462960 Feb 26 2022  javacore.20220226.120933.47775910.0006.txt
+-rw-r-----    1 oracle   oinstall    1462164 Feb 26 2022  javacore.20220226.120932.47775910.0008.txt
+-rw-r-----    1 oracle   oinstall    1461258 Feb 26 2022  javacore.20220226.120932.47775910.0009.txt
+-rw-r-----    1 oracle   oinstall   28390849 Feb 28 2022  heapdump.20220228.180409.32243774.0001.phd
+-rw-r-----    1 oracle   oinstall   28390849 Feb 28 2022  heapdump.20220228.180409.32243774.0002.phd
+-rw-r-----    1 oracle   oinstall   28390849 Feb 28 2022  heapdump.20220228.180409.32243774.0003.phd
+-rw-r-----    1 oracle   oinstall    1543062 Feb 28 2022  javacore.20220228.180409.32243774.0004.txt
+-rw-r--r--    1 oracle   oinstall    1822448 Feb 28 2022  Snap.20220228.180409.32243774.0007.trc
+-rw-r-----    1 oracle   oinstall    1517818 Feb 28 2022  javacore.20220228.180409.32243774.0005.txt
+-rw-r-----    1 oracle   oinstall    1517055 Feb 28 2022  javacore.20220228.180409.32243774.0006.txt
+-rw-r-----    1 oracle   oinstall   12792176 Feb 28 2022  heapdump.20220228.180417.32243774.0010.phd
+-rw-r--r--    1 oracle   oinstall      52976 Feb 28 2022  Snap.20220228.180409.32243774.0009.trc
+-rw-r-----    1 oracle   oinstall    1515206 Feb 28 2022  javacore.20220228.180417.32243774.0011.txt
+-rw-r--r--    1 oracle   oinstall      36592 Feb 28 2022  Snap.20220228.180417.32243774.0012.trc
+-rw-r-----    1 oracle   oinstall   28127625 Feb 28 2022  heapdump.20220228.180642.32243788.0001.phd
+-rw-r-----    1 oracle   oinstall   28127625 Feb 28 2022  heapdump.20220228.180642.32243788.0002.phd
+-rw-r--r--    1 oracle   oinstall    1552112 Feb 28 2022  Snap.20220228.180642.32243788.0009.trc
+-rw-r-----    1 oracle   oinstall   28127625 Feb 28 2022  heapdump.20220228.180642.32243788.0003.phd
+-rw-r-----    1 oracle   oinstall   28127617 Feb 28 2022  heapdump.20220228.180642.32243788.0004.phd
+-rw-r-----    1 oracle   oinstall    1343589 Feb 28 2022  javacore.20220228.180642.32243788.0006.txt
+-rw-r-----    1 oracle   oinstall    1345181 Feb 28 2022  javacore.20220228.180642.32243788.0005.txt
+-rw-r-----    1 oracle   oinstall    1342921 Feb 28 2022  javacore.20220228.180642.32243788.0007.txt
+-rw-r-----    1 oracle   oinstall    1341064 Feb 28 2022  javacore.20220228.180642.32243788.0008.txt
+-rw-r--r--    1 oracle   oinstall    1634032 Feb 28 2022  Snap.20220228.180908.44040234.0005.trc
+-rw-r-----    1 oracle   oinstall   28317892 Feb 28 2022  heapdump.20220228.180908.44040234.0001.phd
+-rw-r-----    1 oracle   oinstall   28317892 Feb 28 2022  heapdump.20220228.180908.44040234.0002.phd
+-rw-r-----    1 oracle   oinstall   28317892 Feb 28 2022  heapdump.20220228.180908.44040234.0003.phd
+-rw-r-----    1 oracle   oinstall    1345042 Feb 28 2022  javacore.20220228.180908.44040234.0004.txt
+-rw-r-----    1 oracle   oinstall    1344512 Feb 28 2022  javacore.20220228.180908.44040234.0006.txt
+-rw-r-----    1 oracle   oinstall    1342123 Feb 28 2022  javacore.20220228.180908.44040234.0009.txt
+-rw-r-----    1 oracle   oinstall    1343554 Feb 28 2022  javacore.20220228.180908.44040234.0007.txt
+-rw-r-----    1 oracle   oinstall   28317897 Feb 28 2022  heapdump.20220228.180908.44040234.0010.phd
+-rw-r-----    1 oracle   oinstall   28142361 Feb 28 2022  heapdump.20220228.190213.11337964.0001.phd
+-rw-r-----    1 oracle   oinstall    1507689 Feb 28 2022  Threads.11337964.1646075417
+-rw-r--r--    1 oracle   oinstall    1732336 Feb 28 2022  Snap.20220228.190213.11337964.0003.trc
+-rw-r-----    1 oracle   oinstall     740268 Feb 28 2022  Threads.11337964.1646075407
+-rw-r-----    1 oracle   oinstall      25237 Feb 28 2022  Threads.11337964lsof.1
+-rw-r-----    1 oracle   oinstall   28244895 Feb 28 2022  heapdump.20220228.203920.41615570.0001.phd
+-rw-r-----    1 oracle   oinstall   28244895 Feb 28 2022  heapdump.20220228.203920.41615570.0002.phd
+-rw-r-----    1 oracle   oinstall   28244895 Feb 28 2022  heapdump.20220228.203920.41615570.0003.phd
+-rw-r--r--    1 oracle   oinstall    1756912 Feb 28 2022  Snap.20220228.203920.41615570.0009.trc
+-rw-r-----    1 oracle   oinstall   28244895 Feb 28 2022  heapdump.20220228.203920.41615570.0004.phd
+-rw-r-----    1 oracle   oinstall    1444729 Feb 28 2022  javacore.20220228.203920.41615570.0005.txt
+-rw-r-----    1 oracle   oinstall    1442815 Feb 28 2022  javacore.20220228.203921.41615570.0006.txt
+-rw-r-----    1 oracle   oinstall    1442228 Feb 28 2022  javacore.20220228.203920.41615570.0007.txt
+-rw-r-----    1 oracle   oinstall    1440039 Feb 28 2022  javacore.20220228.203920.41615570.0008.txt
+-rw-r-----    1 oracle   oinstall   28684312 Feb 28 2022  heapdump.20220228.204341.45940842.0001.phd
+-rw-r-----    1 oracle   oinstall   28684312 Feb 28 2022  heapdump.20220228.204341.45940842.0002.phd
+-rw-r-----    1 oracle   oinstall   28684312 Feb 28 2022  heapdump.20220228.204341.45940842.0003.phd
+-rw-r-----    1 oracle   oinstall   28684312 Feb 28 2022  heapdump.20220228.204341.45940842.0004.phd
+-rw-r-----    1 oracle   oinstall    1394576 Feb 28 2022  javacore.20220228.204341.45940842.0005.txt
+-rw-r--r--    1 oracle   oinstall    1748720 Feb 28 2022  Snap.20220228.204341.45940842.0009.trc
+-rw-r-----    1 oracle   oinstall    1371167 Feb 28 2022  javacore.20220228.204341.45940842.0006.txt
+-rw-r-----    1 oracle   oinstall    1370438 Feb 28 2022  javacore.20220228.204341.45940842.0007.txt
+-rw-r-----    1 oracle   oinstall    1370681 Feb 28 2022  javacore.20220228.204341.45940842.0008.txt
+-rw-r--r--    1 oracle   oinstall     110320 Feb 28 2022  Snap.20220228.204351.45940842.0012.trc
+-rw-r-----    1 oracle   oinstall   28797097 Feb 28 2022  heapdump.20220228.204557.33030300.0001.phd
+-rw-r-----    1 oracle   oinstall   28797097 Feb 28 2022  heapdump.20220228.204557.33030300.0002.phd
+-rw-r-----    1 oracle   oinstall   28797097 Feb 28 2022  heapdump.20220228.204557.33030300.0003.phd
+-rw-r-----    1 oracle   oinstall   28797097 Feb 28 2022  heapdump.20220228.204557.33030300.0004.phd
+-rw-r-----    1 oracle   oinstall    1347990 Feb 28 2022  javacore.20220228.204557.33030300.0005.txt
+-rw-r--r--    1 oracle   oinstall    1634032 Feb 28 2022  Snap.20220228.204557.33030300.0009.trc
+-rw-r-----    1 oracle   oinstall    1326383 Feb 28 2022  javacore.20220228.204557.33030300.0006.txt
+-rw-r-----    1 oracle   oinstall    1325768 Feb 28 2022  javacore.20220228.204557.33030300.0007.txt
+-rw-r-----    1 oracle   oinstall    1325373 Feb 28 2022  javacore.20220228.204557.33030300.0008.txt
+-rw-r--r--    1 oracle   oinstall      61168 Feb 28 2022  Snap.20220228.204557.33030300.0012.trc
+-rw-r-----    1 oracle   oinstall   27729515 Feb 28 2022  heapdump.20220228.213948.40828930.0001.phd
+-rw-r-----    1 oracle   oinstall    1429919 Feb 28 2022  javacore.20220228.213948.40828930.0002.txt
+-rw-r--r--    1 oracle   oinstall    1642224 Feb 28 2022  Snap.20220228.213948.40828930.0004.trc
+-rw-r-----    1 oracle   oinstall   27727701 Feb 28 2022  heapdump.20220228.213949.40828930.0003.phd
+-rw-r-----    1 oracle   oinstall   27727701 Feb 28 2022  heapdump.20220228.213951.40828930.0005.phd
+-rw-r-----    1 oracle   oinstall   27727701 Feb 28 2022  heapdump.20220228.213951.40828930.0006.phd
+-rw-r-----    1 oracle   oinstall    1402809 Feb 28 2022  javacore.20220228.213949.40828930.0007.txt
+-rw-r-----    1 oracle   oinstall    1402306 Feb 28 2022  javacore.20220228.213951.40828930.0008.txt
+-rw-r-----    1 oracle   oinstall    1399372 Feb 28 2022  javacore.20220228.213951.40828930.0009.txt
+-rw-r--r--    1 oracle   oinstall     225008 Feb 28 2022  Snap.20220228.213957.40828930.0012.trc
+-rw-r-----    1 oracle   oinstall   27370326 Feb 28 2022  heapdump.20220228.214402.40042652.0001.phd
+-rw-r-----    1 oracle   oinstall   27370326 Feb 28 2022  heapdump.20220228.214403.40042652.0002.phd
+-rw-r-----    1 oracle   oinstall    1388884 Feb 28 2022  javacore.20220228.214402.40042652.0003.txt
+-rw-r--r--    1 oracle   oinstall    1666800 Feb 28 2022  Snap.20220228.214402.40042652.0005.trc
+-rw-r-----    1 oracle   oinstall    1369275 Feb 28 2022  javacore.20220228.214403.40042652.0004.txt
+-rw-r--r--    1 oracle   oinstall      28400 Feb 28 2022  Snap.20220228.214403.40042652.0006.trc
+-rw-r-----    1 oracle   oinstall   27362639 Feb 28 2022  heapdump.20220228.214407.40042652.0007.phd
+-rw-r-----    1 oracle   oinstall   27362639 Feb 28 2022  heapdump.20220228.214407.40042652.0008.phd
+-rw-r-----    1 oracle   oinstall    1368855 Feb 28 2022  javacore.20220228.214407.40042652.0009.txt
+-rw-r-----    1 oracle   oinstall    1370232 Feb 28 2022  javacore.20220228.214407.40042652.0010.txt
+-rw-r-----    1 oracle   oinstall   28359019 Feb 28 2022  heapdump.20220228.214630.40042660.0001.phd
+-rw-r-----    1 oracle   oinstall    1380092 Feb 28 2022  javacore.20220228.214630.40042660.0002.txt
+-rw-r--r--    1 oracle   oinstall    1601264 Feb 28 2022  Snap.20220228.214630.40042660.0005.trc
+-rw-r-----    1 oracle   oinstall   28357868 Feb 28 2022  heapdump.20220228.214632.40042660.0003.phd
+-rw-r-----    1 oracle   oinstall   28357867 Feb 28 2022  heapdump.20220228.214632.40042660.0004.phd
+-rw-r-----    1 oracle   oinstall   28357867 Feb 28 2022  heapdump.20220228.214633.40042660.0006.phd
+-rw-r-----    1 oracle   oinstall    1361821 Feb 28 2022  javacore.20220228.214633.40042660.0008.txt
+-rw-r-----    1 oracle   oinstall    1360991 Feb 28 2022  javacore.20220228.214633.40042660.0007.txt
+-rw-r-----    1 oracle   oinstall    1359502 Feb 28 2022  javacore.20220228.214632.40042660.0009.txt
+-rw-r-----    1 oracle   oinstall   45427043 Mar 01 2022  heapdump.20220301.174828.36700350.0001.phd
+-rw-r-----    1 oracle   oinstall    1562246 Mar 01 2022  javacore.20220301.174828.36700350.0002.txt
+-rw-r--r--    1 oracle   oinstall    1846984 Mar 01 2022  Snap.20220301.174828.36700350.0004.trc
+-rw-r-----    1 oracle   oinstall   45425056 Mar 01 2022  heapdump.20220301.174830.36700350.0003.phd
+-rw-r-----    1 oracle   oinstall   45425056 Mar 01 2022  heapdump.20220301.174832.36700350.0005.phd
+-rw-r-----    1 oracle   oinstall   45425056 Mar 01 2022  heapdump.20220301.174832.36700350.0006.phd
+-rw-r-----    1 oracle   oinstall    1538535 Mar 01 2022  javacore.20220301.174830.36700350.0007.txt
+-rw-r-----    1 oracle   oinstall    1538064 Mar 01 2022  javacore.20220301.174832.36700350.0008.txt
+-rw-r-----    1 oracle   oinstall    1536211 Mar 01 2022  javacore.20220301.174832.36700350.0009.txt
+-rw-r-----    1 oracle   oinstall   44446405 Mar 01 2022  heapdump.20220301.175237.43647106.0001.phd
+-rw-r-----    1 oracle   oinstall    1338302 Mar 01 2022  javacore.20220301.175237.43647106.0002.txt
+-rw-r--r--    1 oracle   oinstall    1584840 Mar 01 2022  Snap.20220301.175237.43647106.0004.trc
+-rw-r-----    1 oracle   oinstall   44442145 Mar 01 2022  heapdump.20220301.175242.43647106.0003.phd
+-rw-r-----    1 oracle   oinstall    1316136 Mar 01 2022  javacore.20220301.175242.43647106.0006.txt
+-rw-r-----    1 oracle   oinstall   44442145 Mar 01 2022  heapdump.20220301.175243.43647106.0005.phd
+-rw-r-----    1 oracle   oinstall    1315395 Mar 01 2022  javacore.20220301.175243.43647106.0007.txt
+-rw-r--r--    1 oracle   oinstall      20168 Mar 01 2022  Snap.20220301.175243.43647106.0009.trc
+-rw-r-----    1 oracle   oinstall    1340685 Mar 01 2022  javacore.20220301.175456.43647106.0010.txt
+-rw-r--r--    1 oracle   oinstall    1388232 Mar 01 2022  Snap.20220301.175456.43647106.0012.trc
+-rw-r-----    1 oracle   oinstall   45027116 Mar 01 2022  heapdump.20220301.175456.43647106.0011.phd
+-rw-r-----    1 oracle   oinstall   44953761 Mar 01 2022  heapdump.20220301.175757.44236950.0001.phd
+-rw-r-----    1 oracle   oinstall    1353246 Mar 01 2022  javacore.20220301.175757.44236950.0002.txt
+-rw-r--r--    1 oracle   oinstall    1576648 Mar 01 2022  Snap.20220301.175757.44236950.0003.trc
+-rw-r-----    1 oracle   oinstall   44954100 Mar 01 2022  heapdump.20220301.175803.44236950.0004.phd
+-rw-r-----    1 oracle   oinstall   44954100 Mar 01 2022  heapdump.20220301.175803.44236950.0005.phd
+-rw-r-----    1 oracle   oinstall    1319516 Mar 01 2022  javacore.20220301.175803.44236950.0006.txt
+-rw-r--r--    1 oracle   oinstall      36552 Mar 01 2022  Snap.20220301.175803.44236950.0008.trc
+-rw-r-----    1 oracle   oinstall    1319646 Mar 01 2022  javacore.20220301.175803.44236950.0007.txt
+-rw-r--r--    1 oracle   oinstall      52936 Mar 01 2022  Snap.20220301.175803.44236950.0009.trc
+-rw-r-----    1 oracle   oinstall    1322974 Mar 01 2022  javacore.20220301.175812.44236950.0011.txt
+-rw-r-----    1 oracle   oinstall   44953301 Mar 01 2022  heapdump.20220301.175810.44236950.0010.phd
+-rw-r-----    1 oracle   oinstall         13 May 10 2023  blackouts.xml.bak
+-rw-r-----    1 oracle   oinstall         13 May 10 2023  blackouts.xml
+drwxr-----   17 oracle   oinstall       4096 Apr 07 21:20 configDiag
+-rw-r-----    1 oracle   oinstall       3172 Apr 12 11:51 emagent_storage.config
+-rw-r-----    1 oracle   oinstall      12808 Apr 13 07:58 targets.xml.bak
+-rw-r-----    1 oracle   oinstall        314 Apr 13 08:40 agntstmp.txt.bak
+-rw-r-----    1 oracle   oinstall        275 Apr 13 08:42 agntstmp.txt
+-rw-r-----    1 oracle   oinstall      12808 Apr 13 08:42 targets.xml
+-rw-r-----    1 oracle   oinstall          0 Apr 13 08:42 blackouts.lck
+drwxr-----    2 oracle   oinstall        256 Apr 13 08:53 temp
+drwxr-----    2 oracle   oinstall       4096 Apr 13 08:57 collection
+-rw-r-----    1 oracle   oinstall         22 Apr 13 09:01 ag_current_status.msg
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd
+$ cd upload
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload
+$ ls -ltr
+total 8
+drwxr-----   10 oracle   oinstall        256 Feb 18 2015  upload
+drwxr-----    2 oracle   oinstall       4096 Apr 13 09:00 pending
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload
+$ cd pending
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ ls -ltr
+total 144
+-rw-r-----    1 oracle   oinstall        336 Apr 13 08:57 D_P4_S1_I98346.xml
+-rw-r-----    1 oracle   oinstall        261 Apr 13 08:57 D_P4_S1_I98347.xml
+-rw-r-----    1 oracle   oinstall        433 Apr 13 08:57 D_P4_S2_I98351.xml
+-rw-r-----    1 oracle   oinstall        471 Apr 13 08:57 D_P4_S2_I98350.xml
+-rw-r-----    1 oracle   oinstall        877 Apr 13 08:57 D_P4_S2_I98349.xml
+-rw-r-----    1 oracle   oinstall       3448 Apr 13 08:57 D_P4_S2_I98348.xml
+-rw-r-----    1 oracle   oinstall        314 Apr 13 08:57 D_P4_S2_I98352.xml
+-rw-r-----    1 oracle   oinstall        254 Apr 13 08:57 D_P4_S2_I98353.xml
+-rw-r-----    1 oracle   oinstall        371 Apr 13 08:58 D_P4_S2_I98354.xml
+-rw-r-----    1 oracle   oinstall        397 Apr 13 08:58 D_P4_S2_I98355.xml
+-rw-r-----    1 oracle   oinstall        828 Apr 13 08:58 D_P4_S2_I98356.xml
+-rw-r-----    1 oracle   oinstall        461 Apr 13 08:58 D_P4_S2_I98357.xml
+-rw-r-----    1 oracle   oinstall        270 Apr 13 08:58 D_P4_S2_I98359.xml
+-rw-r-----    1 oracle   oinstall       1026 Apr 13 08:58 D_P4_S2_I98358.xml
+-rw-r-----    1 oracle   oinstall        265 Apr 13 08:58 D_P4_S0_I98360.xml
+-rw-r-----    1 oracle   oinstall        698 Apr 13 08:59 D_P4_S2_I98361.xml
+-rw-r-----    1 oracle   oinstall        280 Apr 13 09:00 D_P4_S0_I98362.xml
+-rw-r-----    1 oracle   oinstall        376 Apr 13 09:00 D_P4_S2_I98363.xml
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 08:42:40
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 09:04:25
+Last attempted upload                        : 2024-04-13 09:04:25
+Total Megabytes of XML files uploaded so far : 0.26
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.47%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 09:03:58
+Last successful heartbeat to OMS             : 2024-04-13 09:03:58
+Next scheduled heartbeat to OMS              : 2024-04-13 09:04:58
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 09:04:06 GMT
+        TargetID = oracle_database.SBIPR4 - EventType - STATUS_EVENT for operation REPORT_STATUS submitted at 2024-04-13 09:04:08 GMT
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 09:03:00 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 4, active: 1, finished: 3)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.PC71PR - SAVE_TARGET_DEPENDENT running for 29 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 08:42:40
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 09:05:47
+Last attempted upload                        : 2024-04-13 09:05:47
+Total Megabytes of XML files uploaded so far : 0.27
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.47%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 09:05:58
+Last successful heartbeat to OMS             : 2024-04-13 09:05:58
+Next scheduled heartbeat to OMS              : 2024-04-13 09:06:58
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 09:04:06 GMT
+        TargetID = oracle_database.SBIPR4 - EventType - STATUS_EVENT for operation REPORT_STATUS submitted at 2024-04-13 09:06:23 GMT
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 09:03:00 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 4, active: 1, finished: 3)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.PC71PR - SAVE_TARGET_DEPENDENT running for 143 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ date
+Sat Apr 13 09:08:20 UTC 2024
+You have mail in /usr/spool/mail/oracle
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 08:42:40
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 09:12:53
+Last attempted upload                        : 2024-04-13 09:12:53
+Total Megabytes of XML files uploaded so far : 0.32
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.48%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 09:12:59
+Last successful heartbeat to OMS             : 2024-04-13 09:12:59
+Next scheduled heartbeat to OMS              : 2024-04-13 09:13:59
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 09:09:09 GMT
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 09:09:08 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 6, active: 2, finished: 4)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.SBIPR - SAVE_TARGET_DEPENDENT running for 236 seconds
+        rac_database.PC71PR - SAVE_TARGET_DEPENDENT running for 236 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 08:42:40
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 09:15:10
+Last attempted upload                        : 2024-04-13 09:15:10
+Total Megabytes of XML files uploaded so far : 0.34
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.48%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 09:16:00
+Last successful heartbeat to OMS             : 2024-04-13 09:16:00
+Next scheduled heartbeat to OMS              : 2024-04-13 09:17:00
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.SBIPR4 - EventType - TARGET_EVENT for operation RECALC_TARGET submitted at 2024-04-13 09:14:10 GMT
+        TargetID = rac_database.PC71PR - EventType - TARGET_EVENT for operation RECALC_TARGET submitted at 2024-04-13 09:14:10 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 3, active: 2, finished: 0)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.PC71PR - RETRY_TARGET running for 119 seconds
+        oracle_database.SBIPR4 - RECALC_TARGET running for 119 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 08:42:40
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 09:23:50
+Last attempted upload                        : 2024-04-13 09:23:50
+Total Megabytes of XML files uploaded so far : 0.36
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.48%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 09:24:01
+Last successful heartbeat to OMS             : 2024-04-13 09:24:01
+Next scheduled heartbeat to OMS              : 2024-04-13 09:25:02
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = rac_database.SBIPR - EventType - TARGET_EVENT for operation SAVE_TARGET submitted at 2024-04-13 09:21:17 GMT
+
+Target Manager Current Activity              : Compute Dynamic Properties (total operations: 2, active: 1, finished: 1)
+
+Current target operations in progress
+-------------------------------------
+        rac_database.SBIPR - SAVE_TARGET_DEPENDENT running for 181 seconds
+
+Dynamic property executor tasks running
+------------------------------
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+You have mail in /usr/spool/mail/oracle
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 08:42:40
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 09:26:38
+Last attempted upload                        : 2024-04-13 09:26:38
+Total Megabytes of XML files uploaded so far : 0.36
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.48%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 09:26:02
+Last successful heartbeat to OMS             : 2024-04-13 09:26:02
+Next scheduled heartbeat to OMS              : 2024-04-13 09:27:02
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.SBIPR4 - EventType - STATUS_EVENT for operation REPORT_STATUS submitted at 2024-04-13 09:26:38 GMT
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 08:42:40
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 09:27:53
+Last attempted upload                        : 2024-04-13 09:27:53
+Total Megabytes of XML files uploaded so far : 0.37
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.48%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 09:28:02
+Last successful heartbeat to OMS             : 2024-04-13 09:28:02
+Next scheduled heartbeat to OMS              : 2024-04-13 09:29:02
+Receivelet Interaction Manager Current Activity: Outstanding receivelet event tasks
+----------------------------------
+        TargetID = oracle_database.SBIPR4 - EventType - STATUS_EVENT for operation REPORT_STATUS submitted at 2024-04-13 09:26:38 GMT
+
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ emctl status agent
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 12.1.0.4.0
+OMS Version            : 12.1.0.4.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /ora/fs0000/app/oracle/product/12.1/agent_inst
+Agent Log Directory    : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/log
+Agent Binaries         : /ora/fs0000/app/oracle/product/12.1/core/12.1.0.4.0
+Agent Process ID       : 14024736
+Parent Process ID      : 38666430
+Agent URL              : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Local Agent URL in NAT : https://ap00158.ent.agt.ab.ca:3873/emd/main/
+Repository URL         : https://emccpr.tsl.telus.com:4900/empbs/upload
+Started at             : 2024-04-13 08:42:40
+Started by user        : oracle
+Operating System       : AIX version 6.1 (ppc64)
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 09:33:50
+Last attempted upload                        : 2024-04-13 09:33:50
+Total Megabytes of XML files uploaded so far : 0.39
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 42.48%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 09:34:05
+Last successful heartbeat to OMS             : 2024-04-13 09:34:05
+Next scheduled heartbeat to OMS              : 2024-04-13 09:35:05
+
+---------------------------------------------------------------
+Agent is Running and Ready
+
+  oracle : ap00158 : @AGENT12 : /ora/fs0000/app/oracle/product/12.1/agent_inst/sysman/emd/upload/pending
+$ 

@@ -1,0 +1,134 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 15:41:23 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "oracle".
+Last login: Sat Apr 13 03:20:55 EDT 2024 from ep14db04.corp.ads on ssh
+Last login: Sat Apr 13 03:41:23 2024 from 142.63.12.215
+[?1034hP14DB01@ep14db01:~ $ ps -ef | grep pmon
+oracle   230086 229755  0 03:41 pts/0    00:00:00 grep --color=auto [01;31m[Kpmon[m[K
+oracle   296795      1  0  2022 ?        01:00:50 asm_[01;31m[Kpmon[m[K_+ASM1
+oracle   297060      1  0  2022 ?        00:47:31 ora_[01;31m[Kpmon[m[K_P14DB01E1
+oracle   305005      1  0  2022 ?        00:53:45 apx_[01;31m[Kpmon[m[K_+APX1
+oracle   309381      1  0  2022 ?        01:59:25 ora_[01;31m[Kpmon[m[K_P14DB01Y1
+oracle   310002      1  0  2022 ?        01:16:06 ora_[01;31m[Kpmon[m[K_P14DB01I1
+oracle   310003      1  0  2022 ?        01:20:11 ora_[01;31m[Kpmon[m[K_P14DB01F1
+oracle   310005      1  0  2022 ?        00:59:13 ora_[01;31m[Kpmon[m[K_P14DB01G1
+oracle   310006      1  0  2022 ?        01:04:27 ora_[01;31m[Kpmon[m[K_P14DB01H1
+oracle   310007      1  0  2022 ?        01:04:02 ora_[01;31m[Kpmon[m[K_P14DB01J1
+oracle   311701      1  0  2022 ?        00:54:24 ora_[01;31m[Kpmon[m[K_P14DB01D1
+oracle   311702      1  0  2022 ?        01:00:12 ora_[01;31m[Kpmon[m[K_P14DB01C1
+oracle   311703      1  0  2022 ?        00:58:56 ora_[01;31m[Kpmon[m[K_P14DB01A1
+oracle   311705      1  0  2022 ?        01:03:23 ora_[01;31m[Kpmon[m[K_P14DB01B1
+oracle   390942      1  0  2023 ?        00:56:29 ora_[01;31m[Kpmon[m[K_P14DB01Z1
+P14DB01@ep14db01:~ $ uptime
+ 03:41:31 up 622 days, 22:37,  1 user,  load average: 14.68, 12.74, 13.40
+P14DB01@ep14db01:~ $ . oraenv
+ORACLE_SID = [P14DB01] ? P14DB01D1
+The Oracle base has been set to /u01/app/oracle
+P14DB01D1@ep14db01:~ $ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Apr 13 03:41:44 2024
+Version 19.14.0.0.0
+
+Copyright (c) 1982, 2021, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.14.0.0.0
+
+SQL> set lines 1000 pages 1000
+SQL> col UPTIME for a80
+select'Hostname      : '||i.host_name||chr(10)||'Instance Name : '||i.
+SQL>   2  instance_name||chr(10)||'Status        : '||i.database_status||' and '||i.status
+  3  ||chr(10)||'Started At    : '||to_char(i.startup_time,'DD-MON-YYYY HH24:MI:SS')
+||chr(10)||'Appl Sessions : '||nvl(s.sessions,0)||chr(10)||'Appl Processes: '||
+  4    5  nvl(p.process,0)||chr(10)||'Locked Objects: '||nvl(l.locks,0)||chr(10)||
+  6  'Archiver      : '||i.archiver||chr(10)||'Uptime        : '||floor(sysdate-i.
+startup_time)||' days(s) '||trunc(24*((sysdate-i.startup_time)-trunc(sysdate-i.
+  7    8  startup_time)))||' hour(s) '||mod(trunc(1440*((sysdate-i.startup_time)-trunc(
+  9  sysdate-i.startup_time))),60)||' minute(s) '||mod(trunc(86400*((sysdate-i.
+startup_time)-trunc(sysdate-i.startup_time))),60)||' seconds'uptime from sys.
+ 10   11  gv_$instance i,(select inst_id,count(*)sessions from sys.gv$session where nvl(username
+ 12  ,'BACKGROUND')not in('SYS','SYSTEM','BACKGROUND')group by inst_id)s,(select inst_id,
+ 13  count(*)process from(select p.inst_id,s.username,s.process from gv$session s,
+ 14  gv$process p where s.inst_id=p.inst_id and s.paddr=p.addr)where nvl(username,
+'BACKGROUND')not in('SYS','SYSTEM','BACKGROUND')group by inst_id)p,(select inst_id,
+ 15   16  count(*)locks from sys.gv$locked_object group by inst_id)l where s.inst_id(+)=i.
+ 17  instance_number and p.inst_id(+)=i.instance_number and l.inst_id(+)=i.
+instance_number; 18  
+
+UPTIME
+--------------------------------------------------------------------------------
+Hostname      : ep14db01.corp.ads
+Instance Name : P14DB01D1
+Status	      : ACTIVE and OPEN
+Started At    : 30-JUL-2022 05:23:15
+Appl Sessions : 14
+Appl Processes: 14
+Locked Objects: 0
+Archiver      : STARTED
+Uptime	      : 622 days(s) 22 hour(s) 18 minute(s) 34 seconds
+
+Hostname      : ep14db04.corp.ads
+Instance Name : P14DB01D2
+Status	      : ACTIVE and OPEN
+Started At    : 30-JUL-2022 02:13:41
+Appl Sessions : 7
+Appl Processes: 7
+Locked Objects: 0
+Archiver      : STARTED
+Uptime	      : 623 days(s) 1 hour(s) 28 minute(s) 9 seconds
+
+
+SQL> exit
+Disconnected from Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.14.0.0.0
+P14DB01D1@ep14db01:~ $ . oraenv
+ORACLE_SID = [P14DB01D1] ? AGNET13
+ORACLE_HOME = [/home/oracle] ? 
+ORACLE_BASE environment variable is not being set since this
+information is not available for the current user ID oracle.
+You can set ORACLE_BASE manually if it is required.
+AGNET13@ep14db01:~ $ . ORAENV
+-bash: ORAENV: No such file or directory
+AGNET13@ep14db01:~ $ . oraenv
+ORACLE_SID = [AGNET13] ? AGENT13
+The /u01/app/oracle/product/13.4/agent_13.5.0.0.0/bin/orabase binary does not exist
+You can set ORACLE_BASE manually if it is required.
+AGENT13@ep14db01:~ $ emctl status agent
+Oracle Enterprise Manager Cloud Control 13c Release 5  
+Copyright (c) 1996, 2021 Oracle Corporation.  All rights reserved.
+---------------------------------------------------------------
+Agent Version          : 13.5.0.0.0
+OMS Version            : 13.5.0.0.0
+Protocol Version       : 12.1.0.1.0
+Agent Home             : /u01/app/oracle/product/13.4/agent_inst
+Agent Log Directory    : /u01/app/oracle/product/13.4/agent_inst/sysman/log
+Agent Binaries         : /u01/app/oracle/product/13.4/agent_13.5.0.0.0
+Core JAR Location      : /u01/app/oracle/product/13.4/agent_13.5.0.0.0/jlib
+Agent Process ID       : 384976
+Parent Process ID      : 304863
+Agent URL              : https://ep14db01.corp.ads:3873/emd/main/
+Local Agent URL in NAT : https://ep14db01.corp.ads:3873/emd/main/
+Repository URL         : https://oempr.tsl.telus.com:4900/empbs/upload
+Started at             : 2023-11-05 01:59:49
+Started by user        : oracle
+Operating System       : Linux version 4.14.35-2047.508.3.3.el7uek.x86_64 (amd64)
+Number of Targets      : 80
+Last Reload            : (none)
+Last successful upload                       : 2024-04-13 03:41:45
+Last attempted upload                        : 2024-04-13 03:41:45
+Total Megabytes of XML files uploaded so far : 1,491.59
+Number of XML files pending upload           : 0
+Size of XML files pending upload(MB)         : 0
+Available disk space on upload filesystem    : 70.29%
+Collection Status                            : Collections enabled
+Heartbeat Status                             : Ok
+Last attempted heartbeat to OMS              : 2024-04-13 03:42:11
+Last successful heartbeat to OMS             : 2024-04-13 03:42:11
+Next scheduled heartbeat to OMS              : 2024-04-13 03:43:11
+
+---------------------------------------------------------------
+Agent is Running and Ready
+AGENT13@ep14db01:~ $ date
+Sat Apr 13 03:42:22 EDT 2024
+AGENT13@ep14db01:~ $ 

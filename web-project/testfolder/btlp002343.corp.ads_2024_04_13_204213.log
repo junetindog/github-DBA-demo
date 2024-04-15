@@ -1,0 +1,234 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 20:42:13 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "x159031".
+Pre-authentication banner message from server:
+|  +---------------------------------------------------------------------------
+> -+
+|  | Unauthorized access to any program or data on this system is not permitted
+> ,|
+|  | and any unauthorized access beyond this point may lead to prosecution     
+>  |
+|  | and/or disciplinary action.  If you are not an authorized user, do not    
+>  |
+|  | attempt to log on.                                                        
+>  |
+|  | If you are an authorized user, you may log on using your LDAP/AD password.
+>  |
+|  |                                                                           
+>  |
+|  | For user access visit http://go/unix_access                               
+>  |
+|  | For password resets visit http://go/password                              
+>  |
+|  +---------------------------------------------------------------------------
+> -+
+|  | Il est interdit d'y accéder sans autorisation, et tout accès non autoris
+> é  |
+|  | au delà de ce point peut entrainer des poursuites ou actions             
+>   |
+|  | disciplinaires.  Si vous n'êtes pas un usager autorisé, n'essayez pas d'
+> y  |
+|  | accéder.                                                                 
+>   |
+|  | Si vous êtes un utilisateur autorisé, vous pouvez vous connecter en     
+>    |
+|  | utilisant votre passe de LDAP/AD.                                         
+>  |
+|  |                                                                           
+>  |
+|  | Pour accès utilisateur visitez http://go/unix_access                     
+>   |
+|  | Pour les réinitialisations de mots de passe visitez http://go/passwd     
+>   |
+|  +---------------------------------------------------------------------------
+> -+
+| 
+End of banner message from server
+Last login: Sat Apr 13 06:32:39 2024 from 142.63.12.215
+
+ +----------------------------------------------------------------------------+
+ | WARNING                                                                    |
+ | The programs and data stored on this system are licensed to, or are        |
+ | private property of, TELUS and are lawfully available only to authorized   |
+ | users for approved purposes.  Unauthorized access to any program or data   |
+ | on this system is not permitted, and any unauthorized access beyond this   |
+ | point may lead to prosecution and/or disciplinary action.                  |
+ | This system may  be monitored at any time for operational reasons.         |
+ | If you are not an authorized user, do not attempt to log on.               |
+ +----------------------------------------------------------------------------+
+ | AVERTISSEMENT                                                              |
+ | Les programmes et les données stockés dans ce système sont visés par une   |
+ | licence ou sont propriété privée de TELUS et ils ne sont accessibles       |
+ | légalement qu'aux usagers autorisés à des fins autorisées.  Il est         |
+ | interdit d'y accéder sans autorisation, et tout accès non autorisé au delà |
+ | de ce point peut entrainer des poursuites ou actions disciplinaires.       |
+ | Le système peut en tout temps faire l'objet d'une surveillance.            |
+ | Si vous n'êtes pas un usager autorisé, n'essayez pas d'y accéder.          |
+ +----------------------------------------------------------------------------+
+
+]0;x159031@btlp002343:~[?1034h[x159031@btlp002343 ~]$ su - oracle
+Password: 
+Last login: Sat Apr 13 12:39:11 UTC 2024
+[?1034h
+oracle : btlp002343 : @ : /home/oracle
+$ ps -ef | grep pmon
+oracle    3506     1  0 Apr10 ?        00:00:19 asm_pmon_+ASM2
+oracle    3849     1  0 Apr10 ?        00:00:22 ora_pmon_P002342F2
+oracle    5983     1  0 Apr10 ?        00:00:15 apx_pmon_+APX2
+oracle   12722     1  0 Apr10 ?        00:00:15 mdb_pmon_-MGMTDB
+oracle   20949     1  0 Apr10 ?        00:00:20 ora_pmon_P002342I2
+oracle   25555     1  0 Apr10 ?        00:00:23 ora_pmon_P002342A2
+oracle   31529     1  0 Apr10 ?        00:00:21 ora_pmon_P002342B2
+oracle   36730     1  0 Apr10 ?        00:00:31 ora_pmon_P002343B1
+oracle   41568 41458  0 12:42 pts/0    00:00:00 grep pmon
+oracle   43615     1  0 Apr10 ?        00:00:28 ora_pmon_P002342E2
+oracle   50320     1  0 Apr10 ?        00:00:21 ora_pmon_P12DB04DH1
+oracle   55781     1  0 Apr10 ?        00:00:18 ora_pmon_SP12CR2C2
+
+oracle : btlp002343 : @ : /home/oracle
+$ uptime
+ 12:42:24 up 3 days,  7:28,  1 user,  load average: 12.12, 12.42, 12.60
+
+oracle : btlp002343 : @ : /home/oracle
+$ . oraenv
+ORACLE_SID = [oracle] ? 
+ORACLE_HOME = [/home/oracle] ? 
+ORACLE_BASE environment variable is not being set since this
+information is not available for the current user ID oracle.
+You can set ORACLE_BASE manually if it is required.
+Resetting ORACLE_BASE to its previous value or ORACLE_HOME
+The Oracle base has been set to /home/oracle
+
+oracle : btlp002343 : @oracle : /home/oracle
+$ 
+
+oracle : btlp002343 : @oracle : /home/oracle
+$ 
+
+oracle : btlp002343 : @oracle : /home/oracle
+$ ps -ef|grep dbback
+oracle    2400  2392  0 05:15 ?        00:00:00 /bin/ksh /home/oracle/orabackup/subScripts/dbbackup.ksh P002342A2 emcdd-hot_rman-cumu1
+oracle   38005 43051  0 12:34 ?        00:00:00 tee -a /home/oracle/orabackup/log/20240413_052024UTC179_dbbackup_P002342E_incr0.log
+oracle   42091  2400  0 11:47 ?        00:00:00 tee -a /home/oracle/orabackup/log/20240413_051537UTC167_dbbackup_P002342A_cumu1.log
+oracle   42245 41458  0 12:42 pts/0    00:00:00 grep dbback
+oracle   43051 43043  0 05:20 ?        00:00:00 /bin/ksh /home/oracle/orabackup/subScripts/dbbackup.ksh P002342E2 emcdd-hot_rman-incr0
+
+oracle : btlp002343 : @oracle : /home/oracle
+$ cd /home/oracle/orabackup/log
+
+oracle : btlp002343 : @oracle : /home/oracle/orabackup/log
+$ ls -ltr *P002342A* | tail -20
+-rw-r--r--. 1 oracle dba  928567 Apr 11 17:13 20240411_151039UTC138_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  386820 Apr 11 20:06 20240411_181056UTC314_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  388880 Apr 11 22:30 20240411_211023UTC923_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1967 Apr 12 00:11 20240412_001022UTC474_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   34696 Apr 12 03:26 20240412_021024UTC301_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1966 Apr 12 04:11 20240412_041038UTC205_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1982 Apr 12 05:16 20240412_051543UTC214_dbbackup_P002342A_cumu1.log.a
+-rw-r--r--. 1 oracle dba   14291 Apr 12 07:20 20240412_061031UTC180_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  115549 Apr 12 10:00 20240412_081033UTC236_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 12:12 20240412_121030UTC276_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  587556 Apr 12 12:46 20240412_101032UTC073_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  301841 Apr 12 19:41 20240412_181026UTC285_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 21:11 20240412_211024UTC133_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1968 Apr 13 00:12 20240413_001034UTC884_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   57939 Apr 13 05:14 20240413_041018UTC149_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba   14295 Apr 13 07:30 20240413_061023UTC101_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 10:12 20240413_101028UTC565_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  156086 Apr 13 11:18 20240413_081025UTC249_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 12:18 20240413_121017UTC190_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  455001 Apr 13 12:39 20240413_051537UTC167_dbbackup_P002342A_cumu1.log
+
+oracle : btlp002343 : @oracle : /home/oracle/orabackup/log
+$ ls -ltr *P002342A* | tail -20
+-rw-r--r--. 1 oracle dba  928567 Apr 11 17:13 20240411_151039UTC138_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  386820 Apr 11 20:06 20240411_181056UTC314_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  388880 Apr 11 22:30 20240411_211023UTC923_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1967 Apr 12 00:11 20240412_001022UTC474_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   34696 Apr 12 03:26 20240412_021024UTC301_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1966 Apr 12 04:11 20240412_041038UTC205_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1982 Apr 12 05:16 20240412_051543UTC214_dbbackup_P002342A_cumu1.log.a
+-rw-r--r--. 1 oracle dba   14291 Apr 12 07:20 20240412_061031UTC180_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  115549 Apr 12 10:00 20240412_081033UTC236_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 12:12 20240412_121030UTC276_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  587556 Apr 12 12:46 20240412_101032UTC073_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  301841 Apr 12 19:41 20240412_181026UTC285_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 21:11 20240412_211024UTC133_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1968 Apr 13 00:12 20240413_001034UTC884_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   57939 Apr 13 05:14 20240413_041018UTC149_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba   14295 Apr 13 07:30 20240413_061023UTC101_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 10:12 20240413_101028UTC565_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  156086 Apr 13 11:18 20240413_081025UTC249_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 12:18 20240413_121017UTC190_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  471938 Apr 13 12:46 20240413_051537UTC167_dbbackup_P002342A_cumu1.log
+
+oracle : btlp002343 : @oracle : /home/oracle/orabackup/log
+$ ls -ltr *P002342A* | tail -20
+-rw-r--r--. 1 oracle dba  928567 Apr 11 17:13 20240411_151039UTC138_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  386820 Apr 11 20:06 20240411_181056UTC314_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  388880 Apr 11 22:30 20240411_211023UTC923_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1967 Apr 12 00:11 20240412_001022UTC474_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   34696 Apr 12 03:26 20240412_021024UTC301_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1966 Apr 12 04:11 20240412_041038UTC205_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1982 Apr 12 05:16 20240412_051543UTC214_dbbackup_P002342A_cumu1.log.a
+-rw-r--r--. 1 oracle dba   14291 Apr 12 07:20 20240412_061031UTC180_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  115549 Apr 12 10:00 20240412_081033UTC236_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 12:12 20240412_121030UTC276_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  587556 Apr 12 12:46 20240412_101032UTC073_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  301841 Apr 12 19:41 20240412_181026UTC285_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 21:11 20240412_211024UTC133_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1968 Apr 13 00:12 20240413_001034UTC884_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   57939 Apr 13 05:14 20240413_041018UTC149_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba   14295 Apr 13 07:30 20240413_061023UTC101_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 10:12 20240413_101028UTC565_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  156086 Apr 13 11:18 20240413_081025UTC249_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 12:18 20240413_121017UTC190_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  472112 Apr 13 13:13 20240413_051537UTC167_dbbackup_P002342A_cumu1.log
+
+oracle : btlp002343 : @oracle : /home/oracle/orabackup/log
+$ ls -ltr *P002342A* | tail -20
+-rw-r--r--. 1 oracle dba  928567 Apr 11 17:13 20240411_151039UTC138_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  386820 Apr 11 20:06 20240411_181056UTC314_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  388880 Apr 11 22:30 20240411_211023UTC923_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1967 Apr 12 00:11 20240412_001022UTC474_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   34696 Apr 12 03:26 20240412_021024UTC301_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1966 Apr 12 04:11 20240412_041038UTC205_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1982 Apr 12 05:16 20240412_051543UTC214_dbbackup_P002342A_cumu1.log.a
+-rw-r--r--. 1 oracle dba   14291 Apr 12 07:20 20240412_061031UTC180_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  115549 Apr 12 10:00 20240412_081033UTC236_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 12:12 20240412_121030UTC276_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  587556 Apr 12 12:46 20240412_101032UTC073_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  301841 Apr 12 19:41 20240412_181026UTC285_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 21:11 20240412_211024UTC133_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1968 Apr 13 00:12 20240413_001034UTC884_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   57939 Apr 13 05:14 20240413_041018UTC149_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba   14295 Apr 13 07:30 20240413_061023UTC101_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 10:12 20240413_101028UTC565_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  156086 Apr 13 11:18 20240413_081025UTC249_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 12:18 20240413_121017UTC190_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  473456 Apr 13 13:38 20240413_051537UTC167_dbbackup_P002342A_cumu1.log
+
+oracle : btlp002343 : @oracle : /home/oracle/orabackup/log
+$ ls -ltr *P002342A* | tail -20
+-rw-r--r--. 1 oracle dba  928567 Apr 11 17:13 20240411_151039UTC138_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  386820 Apr 11 20:06 20240411_181056UTC314_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  388880 Apr 11 22:30 20240411_211023UTC923_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1967 Apr 12 00:11 20240412_001022UTC474_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   34696 Apr 12 03:26 20240412_021024UTC301_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1966 Apr 12 04:11 20240412_041038UTC205_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1982 Apr 12 05:16 20240412_051543UTC214_dbbackup_P002342A_cumu1.log.a
+-rw-r--r--. 1 oracle dba   14291 Apr 12 07:20 20240412_061031UTC180_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  115549 Apr 12 10:00 20240412_081033UTC236_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 12:12 20240412_121030UTC276_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  587556 Apr 12 12:46 20240412_101032UTC073_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba  301841 Apr 12 19:41 20240412_181026UTC285_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 12 21:11 20240412_211024UTC133_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba    1968 Apr 13 00:12 20240413_001034UTC884_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba   57939 Apr 13 05:14 20240413_041018UTC149_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba   14295 Apr 13 07:30 20240413_061023UTC101_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 10:12 20240413_101028UTC565_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  156086 Apr 13 11:18 20240413_081025UTC249_dbbackup_P002342A_arch.log.s
+-rw-r--r--. 1 oracle dba    1968 Apr 13 12:18 20240413_121017UTC190_dbbackup_P002342A_arch.log.a
+-rw-r--r--. 1 oracle dba  474119 Apr 13 13:56 20240413_051537UTC167_dbbackup_P002342A_cumu1.log
+
+oracle : btlp002343 : @oracle : /home/oracle/orabackup/log
+$ 

@@ -1,0 +1,85 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 15:55:31 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "x159031".
+Pre-authentication banner message from server:
+|  +---------------------------------------------------------------------------
+> -+
+|  | Unauthorized access to any program or data on this system is not permitted
+> ,|
+|  | and any unauthorized access beyond this point may lead to prosecution     
+>  |
+|  | and/or disciplinary action.  If you are not an authorized user, do not    
+>  |
+|  | attempt to log on.                                                        
+>  |
+|  | If you are an authorized user, you may log on using your LDAP/AD password.
+>  |
+|  |                                                                           
+>  |
+|  | For user access visit http://go/unix_access                               
+>  |
+|  | For password resets visit http://go/password                              
+>  |
+|  +---------------------------------------------------------------------------
+> -+
+|  | Il est interdit d'y accéder sans autorisation, et tout accès non autoris
+> é  |
+|  | au delà de ce point peut entrainer des poursuites ou actions             
+>   |
+|  | disciplinaires.  Si vous n'êtes pas un usager autorisé, n'essayez pas d'
+> y  |
+|  | accéder.                                                                 
+>   |
+|  | Si vous êtes un utilisateur autorisé, vous pouvez vous connecter en     
+>    |
+|  | utilisant votre passe de LDAP/AD.                                         
+>  |
+|  |                                                                           
+>  |
+|  | Pour accès utilisateur visitez http://go/unix_access                     
+>   |
+|  | Pour les réinitialisations de mots de passe visitez http://go/passwd     
+>   |
+|  +---------------------------------------------------------------------------
+> -+
+| 
+End of banner message from server
+Last login: Sat Apr  6 06:51:12 2024 from 142.175.216.116
+
+ +----------------------------------------------------------------------------+
+ | WARNING                                                                    |
+ | The programs and data stored on this system are licensed to, or are        |
+ | private property of, TELUS and are lawfully available only to authorized   |
+ | users for approved purposes.  Unauthorized access to any program or data   |
+ | on this system is not permitted, and any unauthorized access beyond this   |
+ | point may lead to prosecution and/or disciplinary action.                  |
+ | This system may  be monitored at any time for operational reasons.         |
+ | If you are not an authorized user, do not attempt to log on.               |
+ +----------------------------------------------------------------------------+
+ | AVERTISSEMENT                                                              |
+ | Les programmes et les données stockés dans ce système sont visés par une   |
+ | licence ou sont propriété privée de TELUS et ils ne sont accessibles       |
+ | légalement qu'aux usagers autorisés à des fins autorisées.  Il est         |
+ | interdit d'y accéder sans autorisation, et tout accès non autorisé au delà |
+ | de ce point peut entrainer des poursuites ou actions disciplinaires.       |
+ | Le système peut en tout temps faire l'objet d'une surveillance.            |
+ | Si vous n'êtes pas un usager autorisé, n'essayez pas d'y accéder.          |
+ +----------------------------------------------------------------------------+
+
+[?1034hlp97842:x159031$ su - oempr1
+Password: 
+
+  oempr1 : lp97842 : @ : /work/users/oempr1
+$ . oraenv
+ORACLE_SID = [oempr1] ? CCONTROL
+The Oracle base for ORACLE_HOME=/work/users/oempr1/Oracle/12.1.0.4.0/oms is 
+XPointer evaluation failed: no locset
+
+  oempr1 : lp97842 : @CCONTROL : /work/users/oempr1
+$ $ORACLE _HOME/bin/emctl status oms
+Oracle Enterprise Manager Cloud Control 12c Release 4  
+Copyright (c) 1996, 2014 Oracle Corporation.  All rights reserved.
+WebTier is Up
+Oracle Management Server is Up
+
+  oempr1 : lp97842 : @CCONTROL : /work/users/oempr1
+$ 

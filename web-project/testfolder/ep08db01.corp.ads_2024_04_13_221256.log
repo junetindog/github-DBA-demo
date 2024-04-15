@@ -1,0 +1,45 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 22:12:56 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "oracle".
+Last login: Sat Apr 13 08:01:38 MDT 2024 from ep08db03.corp.ads on ssh
+Last login: Sat Apr 13 08:12:57 2024 from 142.63.12.215
+[?1034hep08db01@:~ $ ps -ef | grep pmon
+oracle   242050      1  0  2023 ?        00:39:33 asm_[01;31m[Kpmon[m[K_+ASM1
+oracle   254270 253385  0 08:13 pts/0    00:00:00 grep --color=auto [01;31m[Kpmon[m[K
+oracle   254297      1  0  2023 ?        00:40:31 apx_[01;31m[Kpmon[m[K_+APX1
+oracle   260569      1  0  2023 ?        01:19:32 ora_[01;31m[Kpmon[m[K_KBSMTCPR1
+oracle   260586      1  0  2023 ?        01:39:08 ora_[01;31m[Kpmon[m[K_KBREFCPR1
+oracle   260643      1  0  2023 ?        06:09:14 ora_[01;31m[Kpmon[m[K_KBCUSCPR1
+oracle   260673      1  0  2023 ?        01:17:13 ora_[01;31m[Kpmon[m[K_KBU56CPR1
+oracle   260675      1  0  2023 ?        01:16:51 ora_[01;31m[Kpmon[m[K_KBU12CPR1
+oracle   260677      1  0  2023 ?        01:17:01 ora_[01;31m[Kpmon[m[K_KBU34CPR1
+ep08db01@:~ $ . oraenv
+ORACLE_SID = [oracle] ? KBCUSCPR1
+The Oracle base has been set to /u01/app/oracle
+ep08db01@KBCUSCPR1:~ $ cd /ora/fs0000/log/KBCUSRPT/novo/POL1rpt1
+ep08db01@KBCUSCPR1:/ora/fs0000/log/KBCUSRPT/novo/POL1rpt1 $ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Apr 13 08:13:16 2024
+Version 19.10.0.0.0
+
+Copyright (c) 1982, 2020, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.10.0.0.0
+
+SQL> alter session set container = POL1C;
+
+Session altered.
+
+SQL> set linesize 300
+col username for a15
+col ACCOUNT_STATUS for a20
+col EXPIRY_DATE for a12
+col Profile for a20
+select username, account_status, lock_date, expiry_date, Profile 
+from dba_users where username like '%X222911%';SQL> SQL> SQL> SQL> SQL>   2  
+
+no rows selected
+
+SQL> 

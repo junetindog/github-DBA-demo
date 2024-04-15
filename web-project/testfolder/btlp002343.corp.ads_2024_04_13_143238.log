@@ -1,0 +1,223 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 14:32:38 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "x159031".
+Pre-authentication banner message from server:
+|  +---------------------------------------------------------------------------
+> -+
+|  | Unauthorized access to any program or data on this system is not permitted
+> ,|
+|  | and any unauthorized access beyond this point may lead to prosecution     
+>  |
+|  | and/or disciplinary action.  If you are not an authorized user, do not    
+>  |
+|  | attempt to log on.                                                        
+>  |
+|  | If you are an authorized user, you may log on using your LDAP/AD password.
+>  |
+|  |                                                                           
+>  |
+|  | For user access visit http://go/unix_access                               
+>  |
+|  | For password resets visit http://go/password                              
+>  |
+|  +---------------------------------------------------------------------------
+> -+
+|  | Il est interdit d'y accéder sans autorisation, et tout accès non autoris
+> é  |
+|  | au delà de ce point peut entrainer des poursuites ou actions             
+>   |
+|  | disciplinaires.  Si vous n'êtes pas un usager autorisé, n'essayez pas d'
+> y  |
+|  | accéder.                                                                 
+>   |
+|  | Si vous êtes un utilisateur autorisé, vous pouvez vous connecter en     
+>    |
+|  | utilisant votre passe de LDAP/AD.                                         
+>  |
+|  |                                                                           
+>  |
+|  | Pour accès utilisateur visitez http://go/unix_access                     
+>   |
+|  | Pour les réinitialisations de mots de passe visitez http://go/passwd     
+>   |
+|  +---------------------------------------------------------------------------
+> -+
+| 
+End of banner message from server
+Last login: Fri Apr 12 13:22:42 2024 from 142.175.218.86
+
+ +----------------------------------------------------------------------------+
+ | WARNING                                                                    |
+ | The programs and data stored on this system are licensed to, or are        |
+ | private property of, TELUS and are lawfully available only to authorized   |
+ | users for approved purposes.  Unauthorized access to any program or data   |
+ | on this system is not permitted, and any unauthorized access beyond this   |
+ | point may lead to prosecution and/or disciplinary action.                  |
+ | This system may  be monitored at any time for operational reasons.         |
+ | If you are not an authorized user, do not attempt to log on.               |
+ +----------------------------------------------------------------------------+
+ | AVERTISSEMENT                                                              |
+ | Les programmes et les données stockés dans ce système sont visés par une   |
+ | licence ou sont propriété privée de TELUS et ils ne sont accessibles       |
+ | légalement qu'aux usagers autorisés à des fins autorisées.  Il est         |
+ | interdit d'y accéder sans autorisation, et tout accès non autorisé au delà |
+ | de ce point peut entrainer des poursuites ou actions disciplinaires.       |
+ | Le système peut en tout temps faire l'objet d'une surveillance.            |
+ | Si vous n'êtes pas un usager autorisé, n'essayez pas d'y accéder.          |
+ +----------------------------------------------------------------------------+
+
+]0;x159031@btlp002343:~[?1034h[x159031@btlp002343 ~]$ su - oracle
+Password: 
+Last login: Sat Apr 13 06:28:38 UTC 2024
+[?1034h
+oracle : btlp002343 : @ : /home/oracle
+$ ps -ef | grep pmon
+oracle    3506     1  0 Apr10 ?        00:00:18 asm_pmon_+ASM2
+oracle    3849     1  0 Apr10 ?        00:00:20 ora_pmon_P002342F2
+oracle    5983     1  0 Apr10 ?        00:00:13 apx_pmon_+APX2
+oracle   12722     1  0 Apr10 ?        00:00:14 mdb_pmon_-MGMTDB
+oracle   20949     1  0 Apr10 ?        00:00:18 ora_pmon_P002342I2
+oracle   25555     1  0 Apr10 ?        00:00:21 ora_pmon_P002342A2
+oracle   31529     1  0 Apr10 ?        00:00:19 ora_pmon_P002342B2
+oracle   34594 34475  0 06:32 pts/0    00:00:00 grep pmon
+oracle   36730     1  0 Apr10 ?        00:00:28 ora_pmon_P002343B1
+oracle   43615     1  0 Apr10 ?        00:00:26 ora_pmon_P002342E2
+oracle   50320     1  0 Apr10 ?        00:00:19 ora_pmon_P12DB04DH1
+oracle   55781     1  0 Apr10 ?        00:00:16 ora_pmon_SP12CR2C2
+
+oracle : btlp002343 : @ : /home/oracle
+$ uptime
+ 06:32:48 up 3 days,  1:18,  1 user,  load average: 6.53, 7.06, 7.94
+
+oracle : btlp002343 : @ : /home/oracle
+$ . oraenv
+ORACLE_SID = [oracle] ? P002342E2
+The Oracle base has been set to /ora/fs0000/app/oracle
+
+oracle : btlp002343 : @P002342E2 : /home/oracle
+$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Apr 13 06:32:56 2024
+Version 19.5.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.5.0.0.0
+
+SQL> show pdbs
+
+    CON_ID CON_NAME			  OPEN MODE  RESTRICTED
+---------- ------------------------------ ---------- ----------
+	 2 PDB$SEED			  READ ONLY  NO
+	 3 HSMPR			  READ WRITE NO
+SQL> alter session set container -=    = HSMPR;
+
+Session altered.
+
+SQL> col "Tablespace" for a22
+col "Used MB" for 99,999,999
+col "Free MB" for 99,999,999
+col "Total MB" for 99,999,999
+select df.tablespace_name "Tablespace",
+totalusedspace "Used MB",
+(df.totalspace - tu.totalusedspace) "Free MB",
+df.totalspace "Total MB",
+SQL> SQL> SQL> SQL>   2    3    4    5  --round(100 * ( (df.totalspace - tu.totalusedspace)/ df.totalspace))
+  6  --"Pct. Free",
+  7  round((tu.totalusedspace/df.totalspace)*100)
+  8  "Pct. Used"
+  9  from
+(select tablespace_name,
+round(sum(bytes) / 1048576) TotalSpace
+from dba_data_files
+ 10   11   12   13  group by tablespace_name) df,
+(select round(sum(bytes)/(1024*1024)) totalusedspace, tablespace_name
+from dba_segments
+group by tablespace_name) tu
+where df.tablespace_name = tu.tablespace_name and df.tablespace_name in ('HSM_MART_DATA'); 14   15   16   17  
+
+Tablespace		   Used MB     Free MB	  Total MB  Pct. Used
+---------------------- ----------- ----------- ----------- ----------
+HSM_MART_DATA		   826,573     164,659	   991,232	   83
+
+SQL> col "Tablespace" for a22
+SQL> col "Used MB" for 99,999,999
+col "Free MB" for 99,999,999
+col "Total MB" for 99,999,999
+SQL> SQL> SQL> select df.tablespace_name "Tablespace",
+totalusedspace "Used MB",
+(df.totalspace - tu.totalusedspace) "Free MB",
+df.totalspace "Total MB",
+--round(100 * ( (df.totalspace - tu.totalusedspace)/ df.totalspace))
+--"Pct. Free",
+  2    3    4    5    6    7  round((tu.totalusedspace/df.totalspace)*100)
+"Pct. Used"
+from
+(select tablespace_name,
+round(sum(bytes) / 1048576) TotalSpace
+from dba_data_files
+group by tablespace_name) df,
+(select round(sum(bytes)/(1024*1024)) totalusedspace, tablespace_name
+  8    9   10   11   12   13   14   15  from dba_segments
+group by tablespace_name) tu
+where df.tablespace_name = tu.tablespace_name and df.tablespace_name in ('HSM_STG_DATA'); 16   17  
+
+Tablespace		   Used MB     Free MB	  Total MB  Pct. Used
+---------------------- ----------- ----------- ----------- ----------
+HSM_STG_DATA		   626,324     136,556	   762,880	   82
+
+SQL> set line 1000
+show parameter DB_CREATE_FILE_DESTSQL> 
+
+NAME				     TYPE	 VALUE
+------------------------------------ ----------- ------------------------------
+db_create_file_dest		     string	 +HSMPR_ORADATA1_DG
+SQL> SELECT name, free_mb, total_mb, (total_mb-free_mb)/total_mb*100 as "Used percentage"
+FROM v$asm_diskgroup where name='HSMPR_ORADATA1_DG';  2  
+
+NAME				  FREE_MB   TOTAL_MB Used percentage
+------------------------------ ---------- ---------- ---------------
+HSMPR_ORADATA1_DG		  1396078   12472320	  88.8065893
+
+SQL> set lines 500 pagesize 500
+col tablespace_name for a20
+col USED_PERCENT for a30
+col global_name for a20
+SELECT * FROM 
+(SELECT global_name,a.tablespace_name, 
+	SUM(a.tots)/1024/1024 Total_Size_MB, 
+	SUM(a.tots)/1024/1024-SUM(a.sumb)/1024/1024 Used_Size_MB,
+	round(((SUM(a.tots)/1024/1024-SUM(a.sumb)/1024/1024)/(SUM(a.tots)/1024/1024)),2)*100||'%' as Used_Percent, 
+	SUM(a.sumb)/1024/1024 Free_Size_MB
+	FROM (SELECT tablespace_name,0 tots,SUM(bytes) sumb
+			FROM dba_free_space a  GROUP BY tablespace_name
+			UNION  SELECT tablespace_name,SUM(bytes) tots,0 FROM
+			dba_data_files GROUP BY tablespace_name) a, global_name GROUP BY a.tablespace_name, global_name);SQL> SQL> SQL> SQL>   2    3    4    5    6    7    8    9   10  
+
+GLOBAL_NAME	     TABLESPACE_NAME	  TOTAL_SIZE_MB USED_SIZE_MB USED_PERCENT		    FREE_SIZE_MB
+-------------------- -------------------- ------------- ------------ ------------------------------ ------------
+HSMPR		     HSM_ADMIN_DATA		   5120       1.5625 0% 			       5118.4375
+HSMPR		     HSM_DGC_DATA		   2048 	3.25 0% 				 2044.75
+HSMPR		     SYSAUX			  35840   30171.0625 84%			       5668.9375
+HSMPR		     USERS		     923647.984   259495.547 28%			      664152.438
+HSMPR		     SECURE_LOG 		   5120       1965.5 38%				  3154.5
+HSMPR		     UNDOTBS1		     146431.984   59899.6719 41%			      86532.3125
+HSMPR		     HSM_CM_DATA		 414384    184079.75 44%			       230304.25
+HSMPR		     HSM_INT_DATA		2057216   1445134.38 70%			      612081.625
+HSMPR		     MKTSTRAT_DATA		   5120 	   3 0% 				    5117
+HSMPR		     HSM_CMP_STG_DATA		   5120     2285.125 45%				2834.875
+HSMPR		     HSM_DBM_DATA		  52224    2186.0625 4% 			      50037.9375
+HSMPR		     SYSTEM			  10240     8384.875 82%				1855.125
+HSMPR		     HSM_D2C_DATA		   1024       2.3125 0% 			       1021.6875
+HSMPR		     HSM_STG_DATA		 762880   626341.125 82%			      136538.875
+HSMPR		     DATA01			2688000   1406591.06 52%			      1281408.94
+HSMPR		     HSM_CAMPAIGN_DATA		1054720   227660.688 22%			      827059.313
+HSMPR		     HSM_CM_AD_DATA		1269760   817923.813 64%			      451836.188
+HSMPR		     HSM_MART_DATA		 991232   826604.688 83%			      164627.313
+HSMPR		     UNDO_2		     146431.984   33302.1719 23%			      113129.813
+
+19 rows selected.
+
+SQL> 

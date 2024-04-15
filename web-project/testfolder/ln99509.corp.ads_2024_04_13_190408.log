@@ -1,0 +1,1110 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 19:04:08 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "x159031".
+Last login: Fri Mar 29 05:42:44 2024 from 142.175.123.123
+
+ +----------------------------------------------------------------------------+
+ | WARNING                                                                    |
+ | The programs and data stored on this system are licensed to, or are        |
+ | private property of, TELUS and are lawfully available only to authorized   |
+ | users for approved purposes.  Unauthorized access to any program or data   |
+ | on this system is not permitted, and any unauthorized access beyond this   |
+ | point may lead to prosecution and/or disciplinary action.                  |
+ | This system may  be monitored at any time for operational reasons.         |
+ | If you are not an authorized user, do not attempt to log on.               |
+ +----------------------------------------------------------------------------+
+ | AVERTISSEMENT                                                              |
+ | Les programmes et les données stockés dans ce système sont visés par une   |
+ | licence ou sont propriété privée de TELUS et ils ne sont accessibles       |
+ | légalement qu'aux usagers autorisés à des fins autorisées.  Il est         |
+ | interdit d'y accéder sans autorisation, et tout accès non autorisé au delà |
+ | de ce point peut entrainer des poursuites ou actions disciplinaires.       |
+ | Le système peut en tout temps faire l'objet d'une surveillance.            |
+ | Si vous n'êtes pas un usager autorisé, n'essayez pas d'y accéder.          |
+ +----------------------------------------------------------------------------+
+
+/home/x159031/.profile[20]: .[26]: .[63]: shopt: not found [No such file or directory]
+/home/x159031/.profile[20]: .[26]: .[74]: shopt: not found [No such file or directory]
+ln99509:x159031$ su - oracle
+Password: 
+The Oracle base for ORACLE_HOME=/ora/fs0000/grid/oracle/product/11.2.0.4 is /ora/fs0000/app/oracle
+
+=================================================================
+=                    Bulletin Board                             =
+=================================================================
+  In order To avoid conflicts, please update bulletin_board      
+         in  ~oracle/dbasetup/bulletin_board                     
+  to list any active tasks such as changes, patches or installs. 
+                                                                 
+                                                                 
+  yyyy-mm-dd  Who         What                                   
+  ----------  ---------   -------------------------------------  
+  2014-06-06 P. Gupta     ONGOING - GRID INSTALLATION            
+                                                                 
+                                                                 
+=================================================================
+[?1034h
+  oracle : ln99509 : @crs : /home/oracle
+$ ps -ef | grep pmon
+oracle    2191     1  0  2021 ?        09:36:58 ora_pmon_SMCOGST1
+oracle    2203     1  0  2021 ?        09:55:40 ora_pmon_SMIST1
+oracle    2218     1  0  2021 ?        09:53:18 ora_pmon_SMISS1
+oracle    2571     1  0  2021 ?        09:35:24 ora_pmon_SMCOGPT1
+oracle    2747     1  0  2021 ?        11:51:56 ora_pmon_SMIS1ST1
+oracle    2748     1  0  2021 ?        11:22:06 ora_pmon_SMTIXPT1
+oracle    8159     1  0  2021 ?        11:55:20 ora_pmon_SMIS1PT1
+oracle   10286 10078  0 11:04 pts/0    00:00:00 grep pmon
+oracle   32596     1  0  2021 ?        08:26:39 asm_pmon_+ASM1
+
+  oracle : ln99509 : @crs : /home/oracle
+$ uptime
+ 11:04:40 up 1074 days,  9:00,  1 user,  load average: 0.59, 0.57, 0.49
+
+  oracle : ln99509 : @crs : /home/oracle
+$ tail -1000 /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/trace/alert_SMIS1PT1.log
+  Current log# 1 seq# 200451 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200452 (LGWR switch)
+  Current log# 2 seq# 200452 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200452 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:28:22 2024
+Archived Log entry 379592 added for thread 1 sequence 200451 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200453
+Checkpoint not complete
+  Current log# 2 seq# 200452 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200452 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:28:25 2024
+Thread 1 advanced to log sequence 200453 (LGWR switch)
+  Current log# 1 seq# 200453 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200453 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:28:25 2024
+Archived Log entry 379594 added for thread 1 sequence 200452 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200454
+Checkpoint not complete
+  Current log# 1 seq# 200453 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200453 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200454 (LGWR switch)
+  Current log# 2 seq# 200454 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200454 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Archived Log entry 379595 added for thread 1 sequence 200453 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200455
+Checkpoint not complete
+  Current log# 2 seq# 200454 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200454 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200455 (LGWR switch)
+  Current log# 1 seq# 200455 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200455 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Archived Log entry 379596 added for thread 1 sequence 200454 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200456
+Checkpoint not complete
+  Current log# 1 seq# 200455 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200455 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200456 (LGWR switch)
+  Current log# 2 seq# 200456 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200456 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Archived Log entry 379597 added for thread 1 sequence 200455 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:28:37 2024
+Thread 1 cannot allocate new log, sequence 200457
+Checkpoint not complete
+  Current log# 2 seq# 200456 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200456 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200457 (LGWR switch)
+  Current log# 1 seq# 200457 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200457 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:28:38 2024
+Archived Log entry 379599 added for thread 1 sequence 200456 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200458
+Checkpoint not complete
+  Current log# 1 seq# 200457 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200457 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200458 (LGWR switch)
+  Current log# 2 seq# 200458 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200458 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:28:44 2024
+Archived Log entry 379600 added for thread 1 sequence 200457 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:28:49 2024
+Thread 1 cannot allocate new log, sequence 200459
+Checkpoint not complete
+  Current log# 2 seq# 200458 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200458 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200459 (LGWR switch)
+  Current log# 1 seq# 200459 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200459 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:28:50 2024
+Archived Log entry 379601 added for thread 1 sequence 200458 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200460
+Checkpoint not complete
+  Current log# 1 seq# 200459 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200459 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200460 (LGWR switch)
+  Current log# 2 seq# 200460 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200460 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:28:56 2024
+Archived Log entry 379603 added for thread 1 sequence 200459 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:29:01 2024
+Thread 1 cannot allocate new log, sequence 200461
+Checkpoint not complete
+  Current log# 2 seq# 200460 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200460 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200461 (LGWR switch)
+  Current log# 1 seq# 200461 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200461 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:29:02 2024
+Archived Log entry 379604 added for thread 1 sequence 200460 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200462
+Checkpoint not complete
+  Current log# 1 seq# 200461 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200461 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200462 (LGWR switch)
+  Current log# 2 seq# 200462 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200462 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:29:08 2024
+Archived Log entry 379605 added for thread 1 sequence 200461 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:29:13 2024
+Thread 1 cannot allocate new log, sequence 200463
+Checkpoint not complete
+  Current log# 2 seq# 200462 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200462 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200463 (LGWR switch)
+  Current log# 1 seq# 200463 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200463 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:29:14 2024
+Archived Log entry 379607 added for thread 1 sequence 200462 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200464
+Checkpoint not complete
+  Current log# 1 seq# 200463 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200463 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200464 (LGWR switch)
+  Current log# 2 seq# 200464 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200464 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:29:20 2024
+Archived Log entry 379608 added for thread 1 sequence 200463 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:29:25 2024
+Thread 1 cannot allocate new log, sequence 200465
+Checkpoint not complete
+  Current log# 2 seq# 200464 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200464 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200465 (LGWR switch)
+  Current log# 1 seq# 200465 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200465 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:29:26 2024
+Archived Log entry 379609 added for thread 1 sequence 200464 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200466
+Checkpoint not complete
+  Current log# 1 seq# 200465 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200465 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200466 (LGWR switch)
+  Current log# 2 seq# 200466 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200466 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:29:33 2024
+Archived Log entry 379611 added for thread 1 sequence 200465 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:29:37 2024
+Thread 1 cannot allocate new log, sequence 200467
+Checkpoint not complete
+  Current log# 2 seq# 200466 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200466 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200467 (LGWR switch)
+  Current log# 1 seq# 200467 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200467 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:29:39 2024
+Archived Log entry 379612 added for thread 1 sequence 200466 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200468
+Checkpoint not complete
+  Current log# 1 seq# 200467 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200467 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200468 (LGWR switch)
+  Current log# 2 seq# 200468 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200468 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:29:45 2024
+Archived Log entry 379613 added for thread 1 sequence 200467 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:29:51 2024
+Thread 1 cannot allocate new log, sequence 200469
+Checkpoint not complete
+  Current log# 2 seq# 200468 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200468 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200469 (LGWR switch)
+  Current log# 1 seq# 200469 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200469 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:29:54 2024
+Archived Log entry 379615 added for thread 1 sequence 200468 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200470
+Checkpoint not complete
+  Current log# 1 seq# 200469 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200469 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200470 (LGWR switch)
+  Current log# 2 seq# 200470 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200470 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:30:00 2024
+Archived Log entry 379616 added for thread 1 sequence 200469 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:30:04 2024
+Thread 1 cannot allocate new log, sequence 200471
+Checkpoint not complete
+  Current log# 2 seq# 200470 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200470 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200471 (LGWR switch)
+  Current log# 1 seq# 200471 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200471 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:30:06 2024
+Archived Log entry 379617 added for thread 1 sequence 200470 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200472
+Checkpoint not complete
+  Current log# 1 seq# 200471 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200471 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200472 (LGWR switch)
+  Current log# 2 seq# 200472 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200472 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:30:12 2024
+Archived Log entry 379619 added for thread 1 sequence 200471 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:30:16 2024
+Thread 1 cannot allocate new log, sequence 200473
+Checkpoint not complete
+  Current log# 2 seq# 200472 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200472 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200473 (LGWR switch)
+  Current log# 1 seq# 200473 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200473 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:30:18 2024
+Archived Log entry 379620 added for thread 1 sequence 200472 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200474
+Checkpoint not complete
+  Current log# 1 seq# 200473 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200473 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:30:27 2024
+Thread 1 advanced to log sequence 200474 (LGWR switch)
+  Current log# 2 seq# 200474 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200474 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:30:27 2024
+Archived Log entry 379621 added for thread 1 sequence 200473 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200475
+Checkpoint not complete
+  Current log# 2 seq# 200474 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200474 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200475 (LGWR switch)
+  Current log# 1 seq# 200475 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200475 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:30:36 2024
+Archived Log entry 379623 added for thread 1 sequence 200474 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:30:42 2024
+Thread 1 cannot allocate new log, sequence 200476
+Checkpoint not complete
+  Current log# 1 seq# 200475 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200475 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200476 (LGWR switch)
+  Current log# 2 seq# 200476 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200476 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:30:45 2024
+Archived Log entry 379624 added for thread 1 sequence 200475 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200477
+Checkpoint not complete
+  Current log# 2 seq# 200476 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200476 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200477 (LGWR switch)
+  Current log# 1 seq# 200477 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200477 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:30:52 2024
+Archived Log entry 379625 added for thread 1 sequence 200476 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:30:58 2024
+Thread 1 cannot allocate new log, sequence 200478
+Checkpoint not complete
+  Current log# 1 seq# 200477 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200477 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200478 (LGWR switch)
+  Current log# 2 seq# 200478 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200478 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:31:01 2024
+Archived Log entry 379627 added for thread 1 sequence 200477 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200479
+Checkpoint not complete
+  Current log# 2 seq# 200478 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200478 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:31:09 2024
+Thread 1 advanced to log sequence 200479 (LGWR switch)
+  Current log# 1 seq# 200479 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200479 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:31:10 2024
+Archived Log entry 379628 added for thread 1 sequence 200478 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200480
+Checkpoint not complete
+  Current log# 1 seq# 200479 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200479 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200480 (LGWR switch)
+  Current log# 2 seq# 200480 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200480 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:31:19 2024
+Archived Log entry 379629 added for thread 1 sequence 200479 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:31:25 2024
+Thread 1 cannot allocate new log, sequence 200481
+Checkpoint not complete
+  Current log# 2 seq# 200480 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200480 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200481 (LGWR switch)
+  Current log# 1 seq# 200481 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200481 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:31:28 2024
+Archived Log entry 379631 added for thread 1 sequence 200480 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200482
+Checkpoint not complete
+  Current log# 1 seq# 200481 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200481 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:31:37 2024
+Thread 1 advanced to log sequence 200482 (LGWR switch)
+  Current log# 2 seq# 200482 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200482 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:31:37 2024
+Archived Log entry 379632 added for thread 1 sequence 200481 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200483
+Checkpoint not complete
+  Current log# 2 seq# 200482 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200482 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200483 (LGWR switch)
+  Current log# 1 seq# 200483 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200483 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:31:46 2024
+Archived Log entry 379633 added for thread 1 sequence 200482 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:31:52 2024
+Thread 1 cannot allocate new log, sequence 200484
+Checkpoint not complete
+  Current log# 1 seq# 200483 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200483 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200484 (LGWR switch)
+  Current log# 2 seq# 200484 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200484 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:31:55 2024
+Archived Log entry 379635 added for thread 1 sequence 200483 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200485
+Checkpoint not complete
+  Current log# 2 seq# 200484 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200484 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:32:04 2024
+Thread 1 advanced to log sequence 200485 (LGWR switch)
+  Current log# 1 seq# 200485 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200485 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:32:04 2024
+Archived Log entry 379636 added for thread 1 sequence 200484 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200486
+Checkpoint not complete
+  Current log# 1 seq# 200485 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200485 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200486 (LGWR switch)
+  Current log# 2 seq# 200486 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200486 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:32:13 2024
+Archived Log entry 379637 added for thread 1 sequence 200485 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:32:19 2024
+Thread 1 cannot allocate new log, sequence 200487
+Checkpoint not complete
+  Current log# 2 seq# 200486 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200486 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200487 (LGWR switch)
+  Current log# 1 seq# 200487 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200487 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:32:22 2024
+Archived Log entry 379639 added for thread 1 sequence 200486 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200488
+Checkpoint not complete
+  Current log# 1 seq# 200487 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200487 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:32:31 2024
+Thread 1 advanced to log sequence 200488 (LGWR switch)
+  Current log# 2 seq# 200488 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200488 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:32:31 2024
+Archived Log entry 379640 added for thread 1 sequence 200487 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200489
+Checkpoint not complete
+  Current log# 2 seq# 200488 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200488 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200489 (LGWR switch)
+  Current log# 1 seq# 200489 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200489 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:32:40 2024
+Archived Log entry 379641 added for thread 1 sequence 200488 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:32:46 2024
+Thread 1 cannot allocate new log, sequence 200490
+Checkpoint not complete
+  Current log# 1 seq# 200489 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200489 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200490 (LGWR switch)
+  Current log# 2 seq# 200490 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200490 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:32:47 2024
+Archived Log entry 379643 added for thread 1 sequence 200489 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200491
+Checkpoint not complete
+  Current log# 2 seq# 200490 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200490 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200491 (LGWR switch)
+  Current log# 1 seq# 200491 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200491 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:32:54 2024
+Archived Log entry 379644 added for thread 1 sequence 200490 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:33:01 2024
+Thread 1 cannot allocate new log, sequence 200492
+Checkpoint not complete
+  Current log# 1 seq# 200491 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200491 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200492 (LGWR switch)
+  Current log# 2 seq# 200492 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200492 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:33:02 2024
+Archived Log entry 379645 added for thread 1 sequence 200491 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200493
+Checkpoint not complete
+  Current log# 2 seq# 200492 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200492 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200493 (LGWR switch)
+  Current log# 1 seq# 200493 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200493 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:33:08 2024
+Archived Log entry 379646 added for thread 1 sequence 200492 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:33:13 2024
+Thread 1 cannot allocate new log, sequence 200494
+Checkpoint not complete
+  Current log# 1 seq# 200493 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200493 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200494 (LGWR switch)
+  Current log# 2 seq# 200494 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200494 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:33:15 2024
+Archived Log entry 379648 added for thread 1 sequence 200493 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200495
+Checkpoint not complete
+  Current log# 2 seq# 200494 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200494 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200495 (LGWR switch)
+  Current log# 1 seq# 200495 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200495 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:33:21 2024
+Archived Log entry 379649 added for thread 1 sequence 200494 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:33:25 2024
+Thread 1 cannot allocate new log, sequence 200496
+Checkpoint not complete
+  Current log# 1 seq# 200495 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200495 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200496 (LGWR switch)
+  Current log# 2 seq# 200496 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200496 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:33:27 2024
+Archived Log entry 379650 added for thread 1 sequence 200495 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200497
+Checkpoint not complete
+  Current log# 2 seq# 200496 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200496 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200497 (LGWR switch)
+  Current log# 1 seq# 200497 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200497 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:33:34 2024
+Archived Log entry 379652 added for thread 1 sequence 200496 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:33:40 2024
+Thread 1 cannot allocate new log, sequence 200498
+Checkpoint not complete
+  Current log# 1 seq# 200497 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200497 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200498 (LGWR switch)
+  Current log# 2 seq# 200498 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200498 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:33:41 2024
+Archived Log entry 379653 added for thread 1 sequence 200497 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200499
+Checkpoint not complete
+  Current log# 2 seq# 200498 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200498 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200499 (LGWR switch)
+  Current log# 1 seq# 200499 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200499 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:33:48 2024
+Archived Log entry 379654 added for thread 1 sequence 200498 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:33:52 2024
+Thread 1 cannot allocate new log, sequence 200500
+Checkpoint not complete
+  Current log# 1 seq# 200499 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200499 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200500 (LGWR switch)
+  Current log# 2 seq# 200500 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200500 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:33:55 2024
+Archived Log entry 379656 added for thread 1 sequence 200499 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200501
+Checkpoint not complete
+  Current log# 2 seq# 200500 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200500 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200501 (LGWR switch)
+  Current log# 1 seq# 200501 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200501 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:34:03 2024
+Archived Log entry 379657 added for thread 1 sequence 200500 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:34:07 2024
+Thread 1 cannot allocate new log, sequence 200502
+Checkpoint not complete
+  Current log# 1 seq# 200501 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200501 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200502 (LGWR switch)
+  Current log# 2 seq# 200502 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200502 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:34:10 2024
+Archived Log entry 379658 added for thread 1 sequence 200501 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200503
+Checkpoint not complete
+  Current log# 2 seq# 200502 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200502 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:34:18 2024
+Thread 1 advanced to log sequence 200503 (LGWR switch)
+  Current log# 1 seq# 200503 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200503 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:34:18 2024
+Archived Log entry 379660 added for thread 1 sequence 200502 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200504
+Checkpoint not complete
+  Current log# 1 seq# 200503 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200503 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200504 (LGWR switch)
+  Current log# 2 seq# 200504 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200504 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:34:24 2024
+Archived Log entry 379661 added for thread 1 sequence 200503 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:34:29 2024
+Thread 1 cannot allocate new log, sequence 200505
+Checkpoint not complete
+  Current log# 2 seq# 200504 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200504 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200505 (LGWR switch)
+  Current log# 1 seq# 200505 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200505 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:34:31 2024
+Archived Log entry 379662 added for thread 1 sequence 200504 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200506
+Checkpoint not complete
+  Current log# 1 seq# 200505 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200505 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:34:39 2024
+Thread 1 advanced to log sequence 200506 (LGWR switch).
+  Current log# 2 seq# 200506 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200506 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:34:39 2024
+Archived Log entry 379664 added for thread 1 sequence 200505 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200507
+Checkpoint not complete
+  Current log# 2 seq# 200506 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200506 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200507 (LGWR switch)
+  Current log# 1 seq# 200507 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200507 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:34:46 2024
+Archived Log entry 379665 added for thread 1 sequence 200506 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:34:52 2024
+Thread 1 cannot allocate new log, sequence 200508
+Checkpoint not complete
+  Current log# 1 seq# 200507 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200507 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200508 (LGWR switch)
+  Current log# 2 seq# 200508 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200508 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:34:54 2024
+Archived Log entry 379666 added for thread 1 sequence 200507 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200509
+Checkpoint not complete
+  Current log# 2 seq# 200508 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200508 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:35:03 2024
+Thread 1 advanced to log sequence 200509 (LGWR switch)
+  Current log# 1 seq# 200509 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200509 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:35:03 2024
+Archived Log entry 379668 added for thread 1 sequence 200508 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200510
+Checkpoint not complete
+  Current log# 1 seq# 200509 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200509 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200510 (LGWR switch)
+  Current log# 2 seq# 200510 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200510 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:35:10 2024
+Archived Log entry 379669 added for thread 1 sequence 200509 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:35:16 2024
+Thread 1 cannot allocate new log, sequence 200511
+Checkpoint not complete
+  Current log# 2 seq# 200510 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200510 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200511 (LGWR switch)
+  Current log# 1 seq# 200511 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200511 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:35:18 2024
+Archived Log entry 379670 added for thread 1 sequence 200510 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200512
+Checkpoint not complete
+  Current log# 1 seq# 200511 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200511 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200512 (LGWR switch)
+  Current log# 2 seq# 200512 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200512 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:35:26 2024
+Archived Log entry 379672 added for thread 1 sequence 200511 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:35:32 2024
+Thread 1 cannot allocate new log, sequence 200513
+Checkpoint not complete
+  Current log# 2 seq# 200512 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200512 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200513 (LGWR switch)
+  Current log# 1 seq# 200513 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group oraenv
+_1.257.804103807
+  Current log# 1 seq# 200513 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:35:34 2024
+Archived Log entry 379673 added for thread 1 sequence 200512 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200514
+Checkpoint not complete
+  Current log# 1 seq# 200513 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200513 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200514 (LGWR switch)
+  Current log# 2 seq# 200514 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200514 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:35:40 2024
+Archived Log entry 379674 added for thread 1 sequence 200513 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:35:44 2024
+Thread 1 cannot allocate new log, sequence 200515
+Checkpoint not complete
+  Current log# 2 seq# 200514 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200514 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200515 (LGWR switch)
+  Current log# 1 seq# 200515 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200515 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:35:46 2024
+Archived Log entry 379676 added for thread 1 sequence 200514 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200516
+Checkpoint not complete
+  Current log# 1 seq# 200515 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200515 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:35:55 2024
+Thread 1 advanced to log sequence 200516 (LGWR switch)
+  Current log# 2 seq# 200516 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200516 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:35:55 2024
+Archived Log entry 379677 added for thread 1 sequence 200515 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200517
+Checkpoint not complete
+  Current log# 2 seq# 200516 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200516 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200517 (LGWR switch)
+  Current log# 1 seq# 200517 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200517 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:36:04 2024
+Archived Log entry 379678 added for thread 1 sequence 200516 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:36:10 2024
+Thread 1 cannot allocate new log, sequence 200518
+Checkpoint not complete
+  Current log# 1 seq# 200517 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200517 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200518 (LGWR switch)
+  Current log# 2 seq# 200518 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200518 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:36:10 2024
+Archived Log entry 379680 added for thread 1 sequence 200517 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200519
+Checkpoint not complete
+  Current log# 2 seq# 200518 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200518 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200519 (LGWR switch)
+  Current log# 1 seq# 200519 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200519 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:36:17 2024
+Archived Log entry 379681 added for thread 1 sequence 200518 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:36:23 2024
+Thread 1 cannot allocate new log, sequence 200520
+Checkpoint not complete
+  Current log# 1 seq# 200519 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200519 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200520 (LGWR switch)
+  Current log# 2 seq# 200520 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200520 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:36:25 2024
+Archived Log entry 379682 added for thread 1 sequence 200519 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200521
+Checkpoint not complete
+  Current log# 2 seq# 200520 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200520 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:36:34 2024
+Thread 1 advanced to log sequence 200521 (LGWR switch)
+  Current log# 1 seq# 200521 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200521 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:36:34 2024
+Archived Log entry 379684 added for thread 1 sequence 200520 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200522
+Checkpoint not complete
+  Current log# 1 seq# 200521 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200521 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200522 (LGWR switch)
+  Current log# 2 seq# 200522 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200522 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:36:43 2024
+Archived Log entry 379685 added for thread 1 sequence 200521 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:36:50 2024
+Thread 1 cannot allocate new log, sequence 200523
+Checkpoint not complete
+  Current log# 2 seq# 200522 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200522 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200523 (LGWR switch)
+  Current log# 1 seq# 200523 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200523 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:36:52 2024
+Archived Log entry 379686 added for thread 1 sequence 200522 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200524
+Checkpoint not complete
+  Current log# 1 seq# 200523 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200523 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:37:01 2024
+Thread 1 advanced to log sequence 200524 (LGWR switch)
+  Current log# 2 seq# 200524 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200524 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:37:02 2024
+Archived Log entry 379688 added for thread 1 sequence 200523 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200525
+Checkpoint not complete
+  Current log# 2 seq# 200524 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200524 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200525 (LGWR switch)
+  Current log# 1 seq# 200525 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200525 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:37:11 2024
+Archived Log entry 379689 added for thread 1 sequence 200524 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:37:17 2024
+Thread 1 cannot allocate new log, sequence 200526
+Checkpoint not complete
+  Current log# 1 seq# 200525 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200525 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200526 (LGWR switch)
+  Current log# 2 seq# 200526 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200526 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:37:20 2024
+Archived Log entry 379690 added for thread 1 sequence 200525 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200527
+Checkpoint not complete
+  Current log# 2 seq# 200526 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200526 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:37:29 2024
+Thread 1 advanced to log sequence 200527 (LGWR switch)
+  Current log# 1 seq# 200527 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200527 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:37:29 2024
+Archived Log entry 379692 added for thread 1 sequence 200526 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200528
+Checkpoint not complete
+  Current log# 1 seq# 200527 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200527 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200528 (LGWR switch)
+  Current log# 2 seq# 200528 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200528 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:37:38 2024
+Archived Log entry 379693 added for thread 1 sequence 200527 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:37:44 2024
+Thread 1 cannot allocate new log, sequence 200529
+Checkpoint not complete
+  Current log# 2 seq# 200528 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200528 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200529 (LGWR switch)
+  Current log# 1 seq# 200529 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200529 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:37:47 2024
+Archived Log entry 379694 added for thread 1 sequence 200528 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200530
+Checkpoint not complete
+  Current log# 1 seq# 200529 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200529 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:37:56 2024
+Thread 1 advanced to log sequence 200530 (LGWR switch)
+  Current log# 2 seq# 200530 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200530 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:37:56 2024
+Archived Log entry 379696 added for thread 1 sequence 200529 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200531
+Checkpoint not complete
+  Current log# 2 seq# 200530 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200530 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Thread 1 advanced to log sequence 200531 (LGWR switch)
+  Current log# 1 seq# 200531 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200531 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:38:05 2024
+Archived Log entry 379697 added for thread 1 sequence 200530 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:38:11 2024
+Thread 1 cannot allocate new log, sequence 200532
+Checkpoint not complete
+  Current log# 1 seq# 200531 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200531 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200532 (LGWR switch)
+  Current log# 2 seq# 200532 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200532 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:38:14 2024
+Archived Log entry 379698 added for thread 1 sequence 200531 ID 0xf4a0dd7a dest 1:
+Thread 1 cannot allocate new log, sequence 200533
+Checkpoint not complete
+  Current log# 2 seq# 200532 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200532 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:38:23 2024
+Thread 1 advanced to log sequence 200533 (LGWR switch)
+  Current log# 1 seq# 200533 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200533 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 11:38:23 2024
+Archived Log entry 379700 added for thread 1 sequence 200532 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 11:38:28 2024
+Suspending MMON slave action kewrmapsa_ for 82800 seconds
+Thread 1 cannot allocate new log, sequence 200534
+Checkpoint not complete
+  Current log# 1 seq# 200533 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200533 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Thread 1 advanced to log sequence 200534 (LGWR switch)
+  Current log# 2 seq# 200534 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200534 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 11:38:32 2024
+Archived Log entry 379701 added for thread 1 sequence 200533 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 15:34:18 2024
+Starting background process CJQ0
+Fri Apr 12 15:34:18 2024
+CJQ0 started with pid=53, OS id=1642 
+Fri Apr 12 16:00:00 2024
+Setting Resource Manager plan SCHEDULER[0x3193]:DEFAULT_MAINTENANCE_PLAN via scheduler window
+Setting Resource Manager plan DEFAULT_MAINTENANCE_PLAN via parameter
+Fri Apr 12 16:00:00 2024
+Starting background process VKRM
+Fri Apr 12 16:00:00 2024
+VKRM started with pid=64, OS id=9789 
+Fri Apr 12 16:00:01 2024
+Begin automatic SQL Tuning Advisor run for special tuning task  "SYS_AUTO_SQL_TUNING_TASK"
+Fri Apr 12 16:00:20 2024
+Thread 1 advanced to log sequence 200535 (LGWR switch)
+  Current log# 1 seq# 200535 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200535 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Fri Apr 12 16:00:20 2024
+Archived Log entry 379702 added for thread 1 sequence 200534 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 16:01:07 2024
+Errors in file /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/trace/SMIS1PT1_j002_9843.trc:
+ORA-12012: error on auto execute of job "SYS"."ORA$AT_SA_SPC_SY_34644"
+ORA-06532: Subscript outside of limit
+ORA-06512: at "SYS.DBMS_ADVISOR", line 201
+ORA-06512: at "SYS.DBMS_SPACE", line 2465
+ORA-06512: at "SYS.DBMS_SPACE", line 2538
+Fri Apr 12 16:20:22 2024
+Errors in file /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/trace/SMIS1PT1_j002_12064.trc:
+ORA-12012: error on auto execute of job "ORACLE_OCM"."MGMT_CONFIG_JOB_2_1"
+ORA-29280: invalid directory path
+ORA-06512: at "ORACLE_OCM.MGMT_DB_LL_METRICS", line 2436
+ORA-06512: at line 1
+Fri Apr 12 16:23:20 2024
+End automatic SQL Tuning Advisor run for special tuning task  "SYS_AUTO_SQL_TUNING_TASK"
+Fri Apr 12 23:06:21 2024
+ALTER SYSTEM SET backup_tape_io_slaves=TRUE DEFERRED SCOPE=BOTH;
+Fri Apr 12 23:08:08 2024
+ALTER SYSTEM ARCHIVE LOG
+Fri Apr 12 17:08:10 2024
+Thread 1 advanced to log sequence 200536 (LGWR switch)
+  Current log# 2 seq# 200536 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200536 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 17:08:10 2024
+Archived Log entry 379705 added for thread 1 sequence 200535 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 17:08:27 2024
+Running KSFV I/O slave I601 os pid=20922 
+Fri Apr 12 17:08:34 2024
+Running KSFV I/O slave I701 os pid=20976 
+Fri Apr 12 23:08:35 2024
+Errors in file /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/trace/SMIS1PT1_ora_20974.trc  (incident=160695):
+ORA-04031: unable to allocate 1056856 bytes of shared memory ("large pool","unknown object","large pool","KSFQ Buffers")
+Incident details in: /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/incident/incdir_160695/SMIS1PT1_ora_20974_i160695.trc
+Use ADRCI or Support Workbench to package the incident.
+See Note 411.1 at My Oracle Support for error and packaging details.
+Fri Apr 12 17:08:38 2024
+Dumping diagnostic data in directory=[cdmp_20240412170838], requested by (instance=1, osid=20974), summary=[incident=160695].
+Fri Apr 12 17:08:38 2024
+Sweep [inc][160695]: completed
+Sweep [inc2][160695]: completed
+ORA-04031: unable to allocate 1056856 bytes of shared memory ("large pool","unknown object","large pool","KSFQ Buffers")
+ksfqxcre: failure to allocate shared memory means sync I/O will be used
+          whenever async I/O to file not supported natively
+Fri Apr 12 23:08:43 2024
+ALTER SYSTEM ARCHIVE LOG
+Fri Apr 12 17:08:43 2024
+Thread 1 advanced to log sequence 200537 (LGWR switch)
+  Current log# 1 seq# 200537 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200537 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Archived Log entry 379706 added for thread 1 sequence 200536 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 17:10:49 2024
+Thread 1 advanced to log sequence 200538 (LGWR switch)
+  Current log# 2 seq# 200538 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200538 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Fri Apr 12 17:10:49 2024
+Archived Log entry 379708 added for thread 1 sequence 200537 ID 0xf4a0dd7a dest 1:
+Fri Apr 12 17:10:51 2024
+KSFV I/O slave I601 dp=0xc342df80 exiting
+Fri Apr 12 17:10:51 2024
+KSFV I/O slave I701 dp=0xc340af90 exiting
+Fri Apr 12 17:10:52 2024
+Running KSFV I/O slave I601 os pid=24447 
+Fri Apr 12 17:11:07 2024
+KSFV I/O slave I601 dp=0xc340af90 exiting
+Fri Apr 12 20:00:00 2024
+Closing Resource Manager plan via scheduler window
+Clearing Resource Manager plan via parameter
+Fri Apr 12 21:15:01 2024
+Stopping background process CJQ0
+Fri Apr 12 23:30:02 2024
+Starting background process CJQ0
+Fri Apr 12 23:30:02 2024
+CJQ0 started with pid=60, OS id=4894 
+Sat Apr 13 00:00:00 2024
+Setting Resource Manager plan DEFAULT_MAINTENANCE_PLAN via parameter
+Sat Apr 13 00:00:00 2024
+Starting background process VKRM
+Sat Apr 13 00:00:00 2024
+VKRM started with pid=62, OS id=19213 
+Sat Apr 13 07:11:48 2024
+ALTER SYSTEM SET backup_tape_io_slaves=TRUE DEFERRED SCOPE=BOTH;
+Sat Apr 13 07:13:29 2024
+ALTER SYSTEM ARCHIVE LOG
+Sat Apr 13 01:13:30 2024
+Thread 1 advanced to log sequence 200539 (LGWR switch)
+  Current log# 1 seq# 200539 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200539 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Sat Apr 13 01:13:30 2024
+Archived Log entry 379711 added for thread 1 sequence 200538 ID 0xf4a0dd7a dest 1:
+Sat Apr 13 01:13:43 2024
+Running KSFV I/O slave I601 os pid=32657 
+Sat Apr 13 01:13:50 2024
+Running KSFV I/O slave I701 os pid=708 
+Sat Apr 13 07:13:52 2024
+Errors in file /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/trace/SMIS1PT1_ora_697.trc  (incident=163006):
+ORA-04031: unable to allocate 1056856 bytes of shared memory ("large pool","unknown object","large pool","KSFQ Buffers")
+Incident details in: /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/incident/incdir_163006/SMIS1PT1_ora_697_i163006.trc
+Use ADRCI or Support Workbench to package the incident.
+See Note 411.1 at My Oracle Support for error and packaging details.
+Sat Apr 13 01:13:54 2024
+Dumping diagnostic data in directory=[cdmp_20240413011354], requested by (instance=1, osid=697), summary=[incident=163006].
+Sat Apr 13 01:13:56 2024
+Sweep [inc][163006]: completed
+Sweep [inc2][163006]: completed
+ORA-04031: unable to allocate 1056856 bytes of shared memory ("large pool","unknown object","large pool","KSFQ Buffers")
+ksfqxcre: failure to allocate shared memory means sync I/O will be used
+          whenever async I/O to file not supported natively
+Sat Apr 13 07:13:59 2024
+ALTER SYSTEM ARCHIVE LOG
+Sat Apr 13 01:13:59 2024
+Thread 1 advanced to log sequence 200540 (LGWR switch)
+  Current log# 2 seq# 200540 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200540 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Archived Log entry 379712 added for thread 1 sequence 200539 ID 0xf4a0dd7a dest 1:
+Sat Apr 13 01:14:20 2024
+KSFV I/O slave I601 dp=0xc340af90 exiting
+Sat Apr 13 01:14:20 2024
+KSFV I/O slave I701 dp=0xc342df80 exiting
+Sat Apr 13 01:14:22 2024
+Running KSFV I/O slave I601 os pid=2859 
+Sat Apr 13 01:14:30 2024
+Running KSFV I/O slave I701 os pid=3000 
+Sat Apr 13 07:14:31 2024
+Errors in file /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/trace/SMIS1PT1_ora_2995.trc  (incident=162794):
+ORA-04031: unable to allocate 1056856 bytes of shared memory ("large pool","unknown object","large pool","KSFQ Buffers")
+Incident details in: /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/incident/incdir_162794/SMIS1PT1_ora_2995_i162794.trc
+Use ADRCI or Support Workbench to package the incident.
+See Note 411.1 at My Oracle Support for error and packaging details.
+Sat Apr 13 01:14:33 2024
+Dumping diagnostic data in directory=[cdmp_20240413011433], requested by (instance=1, osid=2995), summary=[incident=162794].
+ORA-04031: unable to allocate 1056856 bytes of shared memory ("large pool","unknown object","large pool","KSFQ Buffers")
+ksfqxcre: failure to allocate shared memory means sync I/O will be used
+          whenever async I/O to file not supported natively
+Sat Apr 13 01:14:56 2024
+Sweep [inc][162794]: completed
+Sweep [inc2][162794]: completed
+Sat Apr 13 01:21:27 2024
+KSFV I/O slave I601 dp=0xc340af90 exiting
+Sat Apr 13 01:21:27 2024
+KSFV I/O slave I701 dp=0xc342df80 exiting
+Sat Apr 13 07:21:32 2024
+ALTER SYSTEM ARCHIVE LOG
+Sat Apr 13 01:21:33 2024
+Thread 1 advanced to log sequence 200541 (LGWR switch)
+  Current log# 1 seq# 200541 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200541 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Sat Apr 13 01:21:33 2024
+Archived Log entry 379715 added for thread 1 sequence 200540 ID 0xf4a0dd7a dest 1:
+Sat Apr 13 01:21:44 2024
+Running KSFV I/O slave I601 os pid=16987 
+Sat Apr 13 01:21:51 2024
+Running KSFV I/O slave I701 os pid=17099 
+Sat Apr 13 07:21:53 2024
+Errors in file /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/trace/SMIS1PT1_ora_17097.trc  (incident=163038):
+ORA-04031: unable to allocate 1056856 bytes of shared memory ("large pool","unknown object","large pool","KSFQ Buffers")
+Incident details in: /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/incident/incdir_163038/SMIS1PT1_ora_17097_i163038.trc
+Use ADRCI or Support Workbench to package the incident.
+See Note 411.1 at My Oracle Support for error and packaging details.
+Sat Apr 13 01:21:54 2024
+Dumping diagnostic data in directory=[cdmp_20240413012154], requested by (instance=1, osid=17097), summary=[incident=163038].
+Sat Apr 13 01:21:56 2024
+Sweep [inc][163038]: completed
+Sweep [inc2][163038]: completed
+ORA-04031: unable to allocate 1056856 bytes of shared memory ("large pool","unknown object","large pool","KSFQ Buffers")
+ksfqxcre: failure to allocate shared memory means sync I/O will be used
+          whenever async I/O to file not supported natively
+Sat Apr 13 07:22:00 2024
+ALTER SYSTEM ARCHIVE LOG
+Sat Apr 13 01:22:00 2024
+Thread 1 advanced to log sequence 200542 (LGWR switch)
+  Current log# 2 seq# 200542 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_2.258.804103807
+  Current log# 2 seq# 200542 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_2.258.804103807
+Archived Log entry 379716 added for thread 1 sequence 200541 ID 0xf4a0dd7a dest 1:
+Sat Apr 13 01:22:21 2024
+KSFV I/O slave I701 dp=0xc340af90 exiting
+Sat Apr 13 01:22:21 2024
+KSFV I/O slave I601 dp=0xc342df80 exiting
+Sat Apr 13 01:22:22 2024
+Running KSFV I/O slave I601 os pid=17538 
+Sat Apr 13 01:22:44 2024
+Thread 1 advanced to log sequence 200543 (LGWR switch)
+  Current log# 1 seq# 200543 mem# 0: +LN98408_ORADATA1_DG/smis1pt/onlinelog/group_1.257.804103807
+  Current log# 1 seq# 200543 mem# 1: +LN98408_ORARECV1_DG/smis1pt/onlinelog/group_1.257.804103807
+Sat Apr 13 01:22:44 2024
+Archived Log entry 379718 added for thread 1 sequence 200542 ID 0xf4a0dd7a dest 1:
+Sat Apr 13 01:22:46 2024
+KSFV I/O slave I601 dp=0xc342df80 exiting
+Sat Apr 13 01:22:48 2024
+Running KSFV I/O slave I601 os pid=17870 
+Sat Apr 13 01:25:40 2024
+KSFV I/O slave I601 dp=0xc342df80 exiting
+
+  oracle : ln99509 : @crs : /home/oracle
+$ . oraenv
+ORACLE_SID = [crs] ? 
+The Oracle base for ORACLE_HOME=/ora/fs0000/grid/oracle/product/11.2.0.4 is /ora/fs0000/app/oracle
+
+  oracle : ln99509 : @crs : /home/oracle
+$ 
+
+  oracle : ln99509 : @crs : /home/oracle
+$ more /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/incident/incdir_163038/SMIS1PT1_ora_17097_i163038.trc
+Dump file /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/incident/incdir_163038/SMIS1PT1_ora_17097_i163038.trc
+Oracle Database 11g Enterprise Edition Release 11.2.0.3.0 - 64bit Production
+With the Partitioning, Real Application Clusters, Automatic Storage Management, OLAP,
+Data Mining and Real Application Testing options
+ORACLE_HOME = /ora/fs0000/app/oracle/product/11.2.0.3
+System name:	Linux
+Node name:	ln99509
+Release:	2.6.32-754.35.1.el6.x86_64
+Version:	#1 SMP Wed Oct 7 14:48:30 EDT 2020
+Machine:	x86_64
+Instance name: SMIS1PT1
+Redo thread mounted by this instance: 1
+Oracle process number: 75
+Unix process pid: 17097, image: oracle@ln99509 (TNS V1-V3)
+
+
+*** 2024-04-13 07:21:53.059
+*** SESSION ID:(169.20595) 2024-04-13 07:21:53.059
+*** CLIENT ID:() 2024-04-13 07:21:53.059
+*** SERVICE NAME:(SYS$USERS) 2024-04-13 07:21:53.059
+*** MODULE NAME:(rman@ln99509 (TNS V1-V3)) 2024-04-13 07:21:53.059
+*** ACTION NAME:(0000001 STARTED1) 2024-04-13 07:21:53.059
+ 
+Dump continued from file: /ora/fs0000/app/oracle/diag/rdbms/smis1pt/SMIS1PT1/trace/SMIS1PT1_ora_17097.trc
+ORA-04031: unable to allocate 1056856 bytes of shared memory ("large pool","unknown object","large pool","KSFQ Buffers")
+
+========= Dump for incident 163038 (ORA 4031) ========
+
+*** 2024-04-13 07:21:53.063
+dbkedDefDump(): Starting incident default dumps (flags=0x2, level=3, mask=0x0)
+----- SQL Statement (None) -----
+Current SQL information unavailable - no cursor.
+----- PL/SQL Stack -----
+----- PL/SQL Call Stack -----
+[7m--More--(0%)[27m

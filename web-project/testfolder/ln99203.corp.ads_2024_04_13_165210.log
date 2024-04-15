@@ -1,0 +1,119 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2024.04.13 16:52:10 =~=~=~=~=~=~=~=~=~=~=~=
+Using username "x159031".
+Pre-authentication banner message from server:
+| 
+|  +---------------------------------------------------------------------------
+> -+
+|  | WARNING                                                                   
+>  |
+|  | The programs and data stored on this system are licensed to, or are       
+>  |
+|  | private property of, TELUS and are lawfully available only to authorized  
+>  |
+|  | users for approved purposes.  Unauthorized access to any program or data  
+>  |
+|  | on this system is not permitted, and any unauthorized access beyond this  
+>  |
+|  | point may lead to prosecution and/or disciplinary action.                 
+>  |
+|  | This system may  be monitored at any time for operational reasons.        
+>  |
+|  | If you are not an authorized user, do not attempt to log on.              
+>  |
+|  +---------------------------------------------------------------------------
+> -+
+|  | AVERTISSEMENT                                                             
+>  |
+|  | Les programmes et les données stockés dans ce système sont visés par une  
+>  |
+|  | licence ou sont propriété privée de TELUS et ils ne sont accessibles      
+>  |
+|  | légalement qu'aux usagers autorisés à des fins autorisées.  Il est        
+>  |
+|  | interdit d'y accéder sans autorisation, et tout accès non autorisé au delà
+>  |
+|  | de ce point peut entrainer des poursuites ou actions disciplinaires.      
+>  |
+|  | Le système peut en tout temps faire l'objet d'une surveillance.           
+>  |
+|  | Si vous n'êtes pas un usager autorisé, n'essayez pas d'y accéder.         
+>  |
+|  +---------------------------------------------------------------------------
+> -+
+| 
+End of banner message from server
+Last login: Wed Mar 13 03:41:07 2024 from vpn-vanc01-d818.west.tsl.telus.com
+
+ +----------------------------------------------------------------------------+
+ | WARNING                                                                    |
+ | The programs and data stored on this system are licensed to, or are        |
+ | private property of, TELUS and are lawfully available only to authorized   |
+ | users for approved purposes.  Unauthorized access to any program or data   |
+ | on this system is not permitted, and any unauthorized access beyond this   |
+ | point may lead to prosecution and/or disciplinary action.                  |
+ | This system may  be monitored at any time for operational reasons.         |
+ | If you are not an authorized user, do not attempt to log on.               |
+ +----------------------------------------------------------------------------+
+ | AVERTISSEMENT                                                              |
+ | Les programmes et les données stockés dans ce système sont visés par une   |
+ | licence ou sont propriété privée de TELUS et ils ne sont accessibles       |
+ | légalement qu'aux usagers autorisés à des fins autorisées.  Il est         |
+ | interdit d'y accéder sans autorisation, et tout accès non autorisé au delà |
+ | de ce point peut entrainer des poursuites ou actions disciplinaires.       |
+ | Le système peut en tout temps faire l'objet d'une surveillance.            |
+ | Si vous n'êtes pas un usager autorisé, n'essayez pas d'y accéder.          |
+ +----------------------------------------------------------------------------+
+
+ln99203:x159031$ su - oracle
+Password: 
+[?1034hln99203:/home/oracle $ ps -ef | grep pmon
+oracle    3428     1  0  2021 ?        10:02:44 ora_pmon_PORTST2
+oracle    9265     1  0  2023 ?        05:39:23 ora_pmon_SBMST2
+oracle   19872 19827  0 08:52 pts/0    00:00:00 grep pmon
+oracle   20675     1  0  2021 ?        06:16:18 asm_pmon_+ASM2
+oracle   21008     1  0  2023 ?        05:32:46 ora_pmon_WLILNPST2
+oracle   25953     1  0  2021 ?        08:30:14 ora_pmon_CCONST2
+oracle   28249     1  0  2021 ?        07:51:34 ora_pmon_MTSST2
+oracle   32713     1  0  2021 ?        08:10:19 ora_pmon_LDORSST2
+ln99203:/home/oracle $ uptime
+ 08:52:20 up 1032 days, 23:58,  1 user,  load average: 0.54, 0.47, 0.45
+ln99203:/home/oracle $ . oraenv
+ORACLE_SID = [oracle] ? 
+ORACLE_HOME = [/home/oracle] ? 
+The Oracle base for ORACLE_HOME=/home/oracle is /home/oracle
+ln99203:/home/oracle $ ps -ef|grep dbback
+oracle   19976 19827  0 08:52 pts/0    00:00:00 grep dbback
+ln99203:/home/oracle $ cd /home/oracle/orabackup/log
+ln99203:/home/oracle/orabackup/log $ ls -ltr *LDORSST* | tail -20
+-rw-r--r-- 1 oracle oinstall 12080 Apr  6 23:54 20240406_235015UTC103_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 21724 Apr  7 08:04 20240407_075523UTC190_dbbackup_LDORSST_cumu1.log.s
+-rw-r--r-- 1 oracle oinstall 12591 Apr  7 15:54 20240407_155025UTC146_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 12085 Apr  7 23:54 20240407_235025UTC308_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 21758 Apr  8 08:03 20240408_075521UTC326_dbbackup_LDORSST_cumu1.log.s
+-rw-r--r-- 1 oracle oinstall 12586 Apr  8 15:53 20240408_155017UTC112_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 11671 Apr  8 23:54 20240408_235038UTC206_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 22133 Apr  9 08:04 20240409_075522UTC302_dbbackup_LDORSST_cumu1.log.s
+-rw-r--r-- 1 oracle oinstall 12590 Apr  9 15:54 20240409_155022UTC174_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 11902 Apr  9 23:54 20240409_235032UTC309_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 21915 Apr 10 07:54 20240410_074532UTC350_dbbackup_LDORSST_incr0.log.s
+-rw-r--r-- 1 oracle oinstall 13735 Apr 10 15:54 20240410_155015UTC966_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 11676 Apr 10 23:54 20240410_235022UTC515_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall  2130 Apr 11 07:56 20240411_075526UTC165_dbbackup_LDORSST_cumu1.log.a
+-rw-r--r-- 1 oracle oinstall 10070 Apr 11 15:53 20240411_155015UTC202_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 12086 Apr 11 23:54 20240411_235027UTC202_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 22142 Apr 12 08:03 20240412_075521UTC977_dbbackup_LDORSST_cumu1.log.s
+-rw-r--r-- 1 oracle oinstall 12775 Apr 12 15:54 20240412_155022UTC206_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 11675 Apr 12 23:53 20240412_235009UTC407_dbbackup_LDORSST_arch.log.s
+-rw-r--r-- 1 oracle oinstall 22827 Apr 13 08:04 20240413_075543UTC240_dbbackup_LDORSST_cumu1.log.s
+ln99203:/home/oracle/orabackup/log $ tail 20240413_075543UTC240_dbbackup_LDORSST_cumu1.log.s
+      'DB_LDORSST_s82904_p1_t1165392140';
+RELEASE CHANNEL;
+exit;
+=== END of RMAN script displaying ==================================
+
+===============================================================
+EXIT_CODE: [0]
+RESULT   : [SUCCEEDED:COMPLETELY SUCCESSFUL]
+DONE AT  : [2024-04-13 08:04:47 UTC]
+===============================================================
+ln99203:/home/oracle/orabackup/log $ 
